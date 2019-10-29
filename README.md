@@ -62,11 +62,14 @@ Service interactions can be tested and developed locally using Docker Compose.
 1. Open a terminal and go into the project folders root directory
 
 2. Start the build of the docker images and creation of containers - can take some minutes
+
 ```
 docker-compose up
 ```
 
-CTRL+C stops running services in the terminal where docker-compose up has been initiated. In case this does not work, or you change some configs, run:
+3. If you want to test the running service follow [these](docs/README_Test.md#Test) steps.
+
+4. _CTRL+C_ stops running services in the terminal where docker-compose up has been initiated. In case this does not work, or you change some configs, run:
 ```
 docker-compose down
 ```
@@ -75,15 +78,14 @@ Or kill all containers:
 docker kill $(docker ps -q)
 ```
 
-If you want to test the running service follow [these](docs/README_Test.md#Test) steps.
 
-Refer to [these](docs/README_Minikube.md) how to run the AAS Service on a local cluster (e.g. Minikube). 
+Refer to [this](docs/README_Minikube.md) how to run the AAS Service on a local cluster (e.g. Minikube). 
 
 # Configuration
 
-The setup described above uses the configurations in the folder `.compose-envs/`.
+The setup described above uses the configurations in the folder [.compose-envs/](.compose-envs/).
 
-Read [here](docs/README_Network.md) how to join service containers locally. 
+See [here](docs/README_Network.md) how to join service containers locally. 
 
 # Known Issues
 
