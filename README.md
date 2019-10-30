@@ -83,9 +83,12 @@ Refer to [this](docs/README_Minikube.md) how to run the AAS Service on a local c
 
 # Configuration
 
-The setup described above uses the configurations in the folder [.compose-envs/](.compose-envs/).
+The local setup uses the configurations in the folder [.compose-envs/](.compose-envs/).
 
 See [here](docs/README_Network.md) how to join service containers locally. 
+
+We have included minimalistic instances of popular opensource services for a message broker and for database persistance in some parts. 
+These can freely be replaced by any other service of your choosing or a different configuration of those same services as long as they deliver the same functionality and adhere to the internal API. 
 
 # Known Issues
 

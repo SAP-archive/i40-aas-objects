@@ -107,7 +107,7 @@
           "modelType": {
             "name": "Property"
           },
-          "value": "hilscher",
+          "value": "foobar",
           "valueType": {
             "dataObjectType": {
               "name": "String"
@@ -131,7 +131,7 @@
           "modelType": {
             "name": "Property"
           },
-          "value": "hilscher.com",
+          "value": "foobar.com",
           "valueType": {
             "dataObjectType": {
               "name": "String"
@@ -377,7 +377,7 @@
           "modelType": {
             "name": "Property"
           },
-          "value": "hilscher.com/NIOT-E-TIJCX-GB-RE/1321.300/6534235",
+          "value": "foobar.com/bar/",
           "valueType": {
             "dataObjectType": {
               "name": "String"
@@ -401,7 +401,7 @@
           "modelType": {
             "name": "Property"
           },
-          "value": "https://www.hilscher.com/de/produkte/produktgruppen/industrie-40-industrial-internet/netiot-edge/niot-e-tijcx-gb-repns/?",
+          "value": "https://www.foobar.com/de/produkte/testpruduct",
           "valueType": {
             "dataObjectType": {
               "name": "String"
