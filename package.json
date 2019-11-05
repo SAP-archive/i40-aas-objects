@@ -1,0 +1,38 @@
+{
+  "name": "i40-aas-objects",
+  "version": "0.0.2-alpha",
+  "description": "",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git://github.com/SAP/i40-aas-objects.git",
+  "scripts": {
+    "format": "prettier --config .prettierrc.js --write \"./src/**/*.ts\"",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "build": "tsc",
+    "prepublish": "npm run clean && npm run build && npm run format",
+    "clean": "rm -rf ./dist/*",
+    "start": "node /dist/index.js",
+    "browserify": "npm run build && browserify ./dist/index.js --standalone aas --outfile aasForBrowser.js"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "jsonschema": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "npm": "^6.12.1",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.2.0",
+    "typescript": "^3.4.5"
+  }
+}
