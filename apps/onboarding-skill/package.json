@@ -2,18 +2,14 @@
   "name": "i40-aas-onboarding-skill",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "test-client": "tsc-watch --onSuccess \"node ./dist/examples/test-client.js\"",
-    "test-client-mqtt-to-amqp": "tsc-watch --onSuccess \"node ./dist/examples/test-client-mqtt-to-amqp.js\"",
-    "test-client-amqp-to-mqtt": "tsc-watch --onSuccess \"node ./dist/examples/test-client-amqp-to-mqtt.js\"",
-    "build": "tsc",
-    "test": "mocha --require ts-node/register --exit test/unit/**/*.spec.ts",
-    "test-with-integration": "mocha --require ts-node/register --exit test/integration/**/*.spec.ts test/unit/**/*.spec.ts",
-    "test-integration-only": "mocha --require ts-node/register --exit test/integration/**/*.spec.ts",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
     "coverage": "nyc --reporter html --reporter text npm test",
-    "coverage-with-integration": "nyc --reporter html --reporter text npm run test-with-integration"
+    "build": "tsc",
+    "clean": "rm -rf ./dist/* ",
+    "start": "node ./dist/server.js"
   },
   "nyc": {
     "include": [
@@ -38,6 +34,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "i40-aas-objects": "0.0.1-alpha",
     "@types/amqplib": "^0.5.13",
     "@types/axios": "^0.14.0",
     "@types/compression": "0.0.36",
@@ -54,7 +51,6 @@
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^5.0.0-alpha.7",
-    "i40-aas-objects": "git+https://github.com/SAP/i40-aas.git",
     "json-stringify-safe": "^5.0.1",
     "md5": "^2.2.1",
     "mongodb": "^3.3.0-beta2",

@@ -2,53 +2,37 @@ version: '3.7'
 services:
   ## i40-aas containers
   i40-aas-onboarding-skill:
-    ## TODO: Proposal to create org on Dockerhub and release images once this repo is Open Source, allows skipping build process
-    # image: i40-aas/onboarding-skill
-    build:
-      context: apps/onboarding-skill
-      dockerfile: ../../docker/onboarding-skill/Dockerfile
+    image: i40-aas/i40-aas-onboarding-skill
     env_file:
       - .compose-envs/mongodb.env
       - .compose-envs/rabbitmq.env
       - .compose-envs/serviceaddresses.env
   i40-aas-https-endpoint:
-    build:
-      context: apps/https-endpoint
-      dockerfile: ../../docker/https-endpoint/Dockerfile
+    image: i40-aas/i40-aas-https-endpoint
     ports:
       - "2000:2000"
     env_file:
       - .compose-envs/rabbitmq.env
   i40-aas-https-endpoint-egress:
-    build:
-      context: apps/https-endpoint-egress
-      dockerfile: ../../docker/https-endpoint-egress/Dockerfile
+    image: i40-aas/i40-aas-https-endpoint-egress
     env_file:
       - .compose-envs/postgres.env
       - .compose-envs/rabbitmq.env
       - .compose-envs/serviceaddresses.env
   i40-aas-data-manager:
-    build:
-      context: apps/data-manager
-      dockerfile: ../../docker/data-manager/Dockerfile
+    image: i40-aas/i40-aas-data-manager
     env_file:
       - .compose-envs/serviceaddresses.env
   i40-aas-registry:
-    build:
-      context: apps/registry
-      dockerfile: ../../docker/registry/Dockerfile
+    image: i40-aas/i40-aas-registry
     env_file:
       - .compose-envs/postgres.env
   i40-aas-adapter-registry:
-    build: 
-      context: apps/adapter-registry
-      dockerfile: ../../docker/adapter-registry/Dockerfile
+    image: i40-aas/i40-aas-adapter-registry
     env_file:
       - .compose-envs/serviceaddresses.env
   i40-aas-storage-adapter-mongodb:
-    build:
-      context: apps/storage-adapter-mongodb
-      dockerfile: ../../docker/storage-adapter-mongodb/Dockerfile
+    image: i40-aas/i40-aas-storage-adapter-mongodb
     ports:
       - "3100:3100"
     env_file:
@@ -81,5 +65,5 @@ services:
       - "15672:15672"
       - "1883:1883"
     volumes:
-      - ./helm/kubernetes/rabbitmq-broker/enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./k8s/rabbitmq-broker/enabled_plugins:/etc/rabbitmq/enabled_plugins
 

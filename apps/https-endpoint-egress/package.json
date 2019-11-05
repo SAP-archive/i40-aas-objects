@@ -2,26 +2,27 @@
   "name": "i40-aas-https-endpoint-egress",
   "version": "1.0.0",
   "description": "This component listens to messages published to the broker from skills and posts them to their respective receivers.",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
     "node": "12.4.0",
     "npm": "6.10.1"
   },
   "scripts": {
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "test": "mocha --require ts-node/register --exit test/unit/**/*.spec.ts",
-    "test-with-integration": "mocha --require ts-node/register --exit test/integration/**/*.spec.ts test/unit/**/*.spec.ts",
-    "clean": "rm -r node_modules",
-    "reinstall": "npm run clean && npm install",
-    "rebuild": "npm run clean && npm install && rm -r dist && npm buildnpm "
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "coverage": "nyc --reporter html --reporter text npm test",
+    "build": "tsc",
+    "clean": "rm -rf ./dist/* ",
+    "start": "node ./dist/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.wdf.sap.corp/IoTInnovation/i40-aas-https-endpoint-egress.git"
+    "url": "https://github.com/SAP/i40-aas.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "i40-aas-objects": "0.0.1-alpha",
     "@hapi/joi": "^15.0.3",
     "@types/boom": "^7.2.1",
     "@types/compression": "0.0.36",
@@ -33,13 +34,14 @@
     "@types/swagger-ui-express": "^3.0.1",
     "ajv": "^6.10.0",
     "class-validator": "^0.9.1",
+    "axios": "^0.19.0",
+    "boom": "^7.3.0",
     "compression": "^1.7.4",
     "core-util-is": "^1.0.2",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^5.0.0-alpha.7",
     "express-validation": "^1.0.2",
-    "i40-aas-objects": "git+https://github.com/SAP/i40-aas.git",
     "json-schema-to-typescript": "^6.1.3",
     "nconf": "^0.10.0",
     "request": "^2.88.0",
@@ -58,8 +60,6 @@
     "@types/chai-http": "^4.2.0",
     "@types/mocha": "^5.2.7",
     "@types/nock": "^10.0.3",
-    "axios": "^0.19.0",
-    "boom": "^7.3.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.3.0",

@@ -1,14 +1,35 @@
-FROM node:lts-alpine
-
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+FROM node:lts-alpine as ts-builder
 
 WORKDIR /service
 
-COPY . /service
+## TODO: REMOVE
+RUN npm set registry http://0.0.0.0:4873
 
+# Install required modules from package.json first to avoid frequent reinstallation
+COPY package.json /service
 RUN npm install
 
+# Add & compile sourcecode
+COPY . /service
+RUN npm run clean \
+    && npm run build
+
+###################################
+FROM node:lts-alpine
+
+RUN adduser -D aasuser
+
+WORKDIR /service
+
+## TODO: REMOVE
+RUN npm set registry http://0.0.0.0:4873
+
+COPY --from=ts-builder /service/dist /service/dist
+COPY package.json /service
+
+RUN npm install --production
+
+USER aasuser
 EXPOSE 2000
 
-ENTRYPOINT [ "npm", "run", "dev" ]
+ENTRYPOINT [ "npm", "start" ]
