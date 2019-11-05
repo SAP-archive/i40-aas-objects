@@ -2,9 +2,6 @@ FROM node:lts-alpine as ts-builder
 
 WORKDIR /service
 
-## TODO: REMOVE
-RUN npm set registry http://0.0.0.0:4873
-
 # Install required modules from package.json first to avoid frequent reinstallation
 COPY package.json /service
 RUN npm install
@@ -20,9 +17,6 @@ FROM node:lts-alpine
 RUN adduser -D aasuser
 
 WORKDIR /service
-
-## TODO: REMOVE
-RUN npm set registry http://0.0.0.0:4873
 
 COPY --from=ts-builder /service/dist /service/dist
 COPY package.json /service

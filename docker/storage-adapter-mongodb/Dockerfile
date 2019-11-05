@@ -5,9 +5,6 @@ RUN apk update && apk upgrade && \
 
 WORKDIR /adapter
 
-## TODO: REMOVE
-RUN npm set registry http://0.0.0.0:4873
-
 # Install required modules from package.json first to avoid frequent reinstallation
 COPY package.json /adapter
 RUN npm install
@@ -23,9 +20,6 @@ FROM node:lts-alpine
 RUN adduser -D aasuser
 
 WORKDIR /adapter
-
-## TODO: REMOVE
-RUN npm set registry http://0.0.0.0:4873
 
 COPY --from=ts-builder /adapter/dist /adapter/dist
 COPY package.json /adapter
