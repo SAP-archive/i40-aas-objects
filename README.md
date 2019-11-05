@@ -115,7 +115,7 @@ Or add it manually to your `package.json`. (**NOTE**: You need to run `npm i` af
       ...
   },
   "author": "",
-  "license": "ISC"
+  "license": "SEE LICENSE IN LICENSE"
 }
 ```
 
