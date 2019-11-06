@@ -2,7 +2,9 @@
 
 Provide a set of tools to realize the Asset Administration Shell for Industrie 4.0.
 
+[![Build Status](https://travis-ci.com/SAP/i40-aas-objects.svg?branch=master)](https://travis-ci.com/SAP/i40-aas-objects)
 
+---
 
 #### Contents:  
 1. [Description](#description)
