@@ -9,8 +9,7 @@ import { Description } from '../characteristics/interfaces/Description';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { Identifier } from '../characteristics/interfaces/Identifier';
 import { ModelType } from '../characteristics/interfaces/ModelType';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { applyMixins } from '../characteristics/mixins';
+import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Qualifiable } from '../characteristics/Qualifiable';
 import { Property } from '../referables/Property';
 import { SubmodelElement } from '../referables/SubmodelElement';
@@ -20,48 +19,44 @@ import { KindEnum } from '../types/KindEnum';
 import { MultiLanguageProperty } from '../referables/MultiLanguageProperty';
 import { Operation } from '../referables/Operation';
 
-interface SubmodelInterface {
+interface ISubmodel {
+    qualifiers?: Array<Constraint>;
+    modelType: ModelType;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Array<Description>;
+    identification: Identifier;
+    administration?: AdministrativeInformation;
+    kind: KindEnum;
+    semanticId?: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    submodelElements?: Array<SubmodelElement>;
+}
+interface ISubmodelConstructor {
     qualifiers?: Array<Constraint>;
     modelType?: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
     identification: Identifier;
     administration?: AdministrativeInformation;
     kind?: KindEnum;
-    semanticId?: Reference;
+    semanticId?: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     submodelElements?: Array<SubmodelElement>;
 }
-class Submodel implements HasModelType, Identifiable, HasKind, HasSemantics, HasDataSpecification, Qualifiable {
-    getReference(): Reference {
-        throw new Error('Method not implemented.');
-    }
-    qualifiers?: Array<Constraint> = [];
-    modelType: ModelType = { name: KeyElementsEnum.Submodel };
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    descriptions: Array<Description> = [];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+class Submodel extends Identifiable implements ISubmodel, HasKind, HasSemantics, Qualifiable {
+    qualifiers?: Array<Constraint>;
     kind: KindEnum = KindEnum.Instance;
-    semanticId?: Reference;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
+    semanticId?: IReference;
     submodelElements: Array<SubmodelElement> = [];
-    constructor(obj: SubmodelInterface) {
-        if (obj.qualifiers) this.qualifiers = obj.qualifiers;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        this.identification = obj.identification;
-        this.administration = obj.administration;
-        if (obj.kind) this.kind = obj.kind;
+    constructor(obj: ISubmodelConstructor) {
+        super(obj, { name: KeyElementsEnum.Submodel });
         this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        if (obj.submodelElements) this.submodelElements = obj.submodelElements;
+        if (obj.kind) this.kind = obj.kind;
+        if (obj.submodelElements) this.setSubmodelElements(obj.submodelElements);
     }
     getSubmodelElements(): Array<SubmodelElement> {
         return this.submodelElements;
@@ -76,28 +71,39 @@ class Submodel implements HasModelType, Identifiable, HasKind, HasSemantics, Has
         submodelElements.forEach(function(submodelElement: SubmodelElement) {
             that.addSubmodelElement(submodelElement);
         });
+        return this;
     }
     public addSubmodelElement(submodelElement: SubmodelElement) {
         submodelElement.parent = this.getReference();
         if (submodelElement.modelType != null) {
-            if (submodelElement.modelType.name === KeyElementsEnum.Property) {
-                let submodelElementTemp: Property = <Property>submodelElement;
-                this.submodelElements.push(new Property(submodelElementTemp));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.SubmodelElementCollection) {
-                this.submodelElements.push(new SubmodelElementCollection(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.MultiLanguageProperty) {
-                this.submodelElements.push(new MultiLanguageProperty(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.Operation) {
-                let submodelElementTemp: Operation = <Operation>submodelElement;
-                this.submodelElements.push(new Operation(submodelElementTemp));
-            } else {
-                throw new Error('Only Property and SubmodelElementCollection are supported submodelElements');
+            switch (submodelElement.modelType.name) {
+                case KeyElementsEnum.Property:
+                    this.submodelElements.push(new Property(submodelElement as Property));
+                    break;
+                case KeyElementsEnum.SubmodelElementCollection:
+                    this.submodelElements.push(
+                        new SubmodelElementCollection(submodelElement as SubmodelElementCollection),
+                    );
+                    break;
+                case KeyElementsEnum.MultiLanguageProperty:
+                    this.submodelElements.push(new MultiLanguageProperty(submodelElement as MultiLanguageProperty));
+                    break;
+                case KeyElementsEnum.Operation:
+                    this.submodelElements.push(new Operation(submodelElement as Operation));
+                    break;
+                default:
+                    throw new Error(
+                        'Could not parse SubmodeElement. ModelType: ' +
+                            submodelElement.modelType.name +
+                            ' is not supported',
+                    );
             }
         } else {
             throw new Error(
                 `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,
             );
         }
+        return this;
     }
 
     public getSubmodelElementByIdShort(idShort: string): SubmodelElement {
@@ -115,23 +121,13 @@ class Submodel implements HasModelType, Identifiable, HasKind, HasSemantics, Has
         }
     }
 
-    toJSON() {
-        return {
-            qualifiers: this.qualifiers,
-            idShort: this.idShort,
-            parent: this.parent,
-            modelType: this.modelType,
-            category: this.category,
-            descriptions: this.descriptions,
-            identification: this.identification,
-            administration: this.administration,
-            kind: this.kind,
-            semanticId: this.semanticId,
-            embeddedDataSpecifications: this.embeddedDataSpecifications,
-            submodelElements: this.submodelElements,
-        };
+    toJSON(): ISubmodel {
+        let res: any = super.toJSON();
+        res.kind = this.kind;
+        res.semanticId = this.semanticId;
+        res.submodelElements = this.submodelElements;
+        return res;
     }
 }
-applyMixins(Submodel, [HasModelType, Identifiable, HasKind, HasSemantics, HasDataSpecification, Qualifiable]);
 
-export { Submodel, SubmodelInterface };
+export { Submodel, ISubmodelConstructor, ISubmodel };

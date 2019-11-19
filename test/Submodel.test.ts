@@ -5,91 +5,173 @@ import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
 import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
 import { SubmodelElement } from '../src/referables/SubmodelElement';
 import { Property } from '../src/referables/Property';
-import { ValueTypeEnum } from '../src/types/ValueTypeEnum';
+import { anyAtomicType } from '../src/types/anyAtomicType';
 
 describe('Construct Submodel', function() {
-  it('create an Submodel', function() {
-    let submodel = new Submodel({
-      identification: {
-        id: 'http://sap.com/customer/2',
-        idType: IdTypeEnum.URI
-      },
-      modelType: {
-        name: KeyElementsEnum.Submodel
-      },
-      embeddedDataSpecifications: [],
-      descriptions: [
-        {
-          language: CountryCodeEnum.Germany,
-          text: 'VWS eines Kundensystems'
-        }
-      ],
-      idShort: 'customer2',
-      administration: {
-        revision: '0.0.0',
-        version: '0.0.1'
-      },
-      submodelElements: [new SubmodelElement({ modelType: { name: KeyElementsEnum.Property }, idShort: 'test' })]
+    it('create an Submodel', function() {
+        let submodel = new Submodel({
+            identification: {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            modelType: {
+                name: KeyElementsEnum.Submodel,
+            },
+            embeddedDataSpecifications: [],
+            descriptions: [
+                {
+                    language: CountryCodeEnum.Germany,
+                    text: 'VWS eines Kundensystems',
+                },
+            ],
+            idShort: 'customer2',
+            administration: {
+                revision: '0.0.0',
+                version: '0.0.1',
+            },
+            submodelElements: [
+                new Property({
+                    modelType: { name: KeyElementsEnum.Property },
+                    idShort: 'test',
+                    semanticId: {
+                        keys: [
+                            {
+                                idType: IdTypeEnum.IRI,
+                                local: true,
+                                value: '123.vom',
+                                type: KeyElementsEnum.GlobalReference,
+                            },
+                        ],
+                    },
+                    valueType: anyAtomicType.float,
+                }),
+            ],
+        });
+        expect(Object.keys(submodel)).to.include.members([
+            'identification',
+            'idShort',
+            'kind',
+            'submodelElements',
+            'modelType',
+        ]);
     });
-    expect(Object.keys(submodel)).to.include.members(['identification', 'idShort', 'kind', 'submodelElements', 'modelType']);
-  });
 });
 
 describe('Access submodelElements via getter', function() {
-  it('gets submodelElements', function() {
-    let submodel = new Submodel({
-      identification: {
-        id: 'http://sap.com/customer/2',
-        idType: IdTypeEnum.URI
-      },
-      modelType: {
-        name: KeyElementsEnum.Submodel
-      },
-      embeddedDataSpecifications: [],
-      descriptions: [
-        {
-          language: CountryCodeEnum.Germany,
-          text: 'VWS eines Kundensystems'
-        }
-      ],
-      idShort: 'customer2',
-      administration: {
-        revision: '0.0.0',
-        version: '0.0.1'
-      },
-      submodelElements: [new Property({ idShort: 'test', valueType: { dataObjectType: { name: ValueTypeEnum.string } } })]
+    it('gets submodelElements', function() {
+        let submodel = new Submodel({
+            identification: {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            modelType: {
+                name: KeyElementsEnum.Submodel,
+            },
+            embeddedDataSpecifications: [],
+            descriptions: [
+                {
+                    language: CountryCodeEnum.Germany,
+                    text: 'VWS eines Kundensystems',
+                },
+            ],
+            idShort: 'customer2',
+            administration: {
+                revision: '0.0.0',
+                version: '0.0.1',
+            },
+            submodelElements: [
+                new Property({
+                    modelType: { name: KeyElementsEnum.Property },
+                    idShort: 'test',
+                    semanticId: {
+                        keys: [
+                            {
+                                idType: IdTypeEnum.IRI,
+                                local: true,
+                                value: '123.vom',
+                                type: KeyElementsEnum.GlobalReference,
+                            },
+                        ],
+                    },
+                    valueType: anyAtomicType.float,
+                }),
+            ],
+        });
+        console.log(submodel);
+        expect(submodel.submodelElements)
+            .to.be.an('array')
+            .with.length(1);
     });
-    console.log(submodel);
-    expect(submodel.submodelElements)
-      .to.be.an('array')
-      .with.length(1);
-  });
 });
 
 describe('Get SubmodelElement by idShort', function() {
-  it('returns a submodelElement by idShort', function() {
-    let submodel = new Submodel({
-      identification: {
-        id: 'http://sap.com/customer/2',
-        idType: IdTypeEnum.URI
-      },
-      modelType: {
-        name: KeyElementsEnum.Submodel
-      },
-      embeddedDataSpecifications: [],
-      descriptions: [
-        {
-          language: CountryCodeEnum.Germany,
-          text: 'VWS eines Kundensystems'
-        }
-      ],
-      idShort: 'customer2',
-      administration: {
-        revision: '0.0.0',
-        version: '0.0.1'
-      },
-      submodelElements: [new Property({ idShort: 'test', valueType: { dataObjectType: { name: ValueTypeEnum.string } } })]
+    it('returns a submodelElement by idShort', function() {
+        let submodel = new Submodel({
+            identification: {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            modelType: {
+                name: KeyElementsEnum.Submodel,
+            },
+            embeddedDataSpecifications: [],
+            descriptions: [
+                {
+                    language: CountryCodeEnum.Germany,
+                    text: 'VWS eines Kundensystems',
+                },
+            ],
+            idShort: 'customer2',
+            administration: {
+                revision: '0.0.0',
+                version: '0.0.1',
+            },
+            submodelElements: [
+                new Property({
+                    modelType: { name: KeyElementsEnum.Property },
+                    idShort: 'test',
+                    semanticId: {
+                        keys: [
+                            {
+                                idType: IdTypeEnum.IRI,
+                                local: true,
+                                value: '123.vom',
+                                type: KeyElementsEnum.GlobalReference,
+                            },
+                        ],
+                    },
+                    valueType: anyAtomicType.float,
+                }),
+            ],
+        });
+        expect(submodel.getSubmodelElementByIdShort('test')).to.have.all.keys(
+            Object.keys(
+                new Property({
+                    modelType: { name: KeyElementsEnum.Property },
+                    idShort: 'test',
+                    semanticId: {
+                        keys: [
+                            {
+                                idType: IdTypeEnum.IRI,
+                                local: true,
+                                value: '123.vom',
+                                type: KeyElementsEnum.GlobalReference,
+                            },
+                        ],
+                    },
+                    parent: {
+                        keys: [
+                            {
+                                idType: IdTypeEnum.IRI,
+                                local: true,
+                                value: '123.vom',
+                                type: KeyElementsEnum.GlobalReference,
+                            },
+                        ],
+                    },
+                    valueType: anyAtomicType.float,
+                }),
+            ),
+        );
     });
-    expect(submodel.getSubmodelElementByIdShort('test')).to.have.all.keys(Object.keys(new Property({ idShort: 'test', valueType: { dataObjectType: { name: ValueTypeEnum.string } } })));
-  });
 });

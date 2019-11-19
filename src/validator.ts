@@ -1,9 +1,8 @@
 const aasJsonSchema = {
-    $schema: 'http://json-schema.org/draft-04/schema#',
+    $schema: 'https://json-schema.org/draft/2019-09/schema',
     title: 'AssetAdministrationShellEnvironment',
     type: 'object',
-    id: 'urn://www.admin-shell.io/schema/json/v1.1',
-    additionalProperties: false,
+    $id: 'urn://www.admin-shell.io/schema/json/v2.0',
     required: ['assetAdministrationShells', 'submodels', 'assets', 'conceptDescriptions'],
     properties: {
         assetAdministrationShells: {
@@ -32,23 +31,16 @@ const aasJsonSchema = {
         },
     },
     definitions: {
-        AssetAdministrationShell: {
+        Referable: {
             type: 'object',
-            additionalProperties: false,
             properties: {
-                identification: {
-                    $ref: '#/definitions/Identifier',
-                },
-                administration: {
-                    $ref: '#/definitions/AdministrativeInformation',
-                },
                 idShort: {
                     type: 'string',
                 },
                 category: {
                     type: 'string',
                 },
-                descriptions: {
+                description: {
                     type: 'array',
                     items: {
                         $ref: '#/definitions/LangString',
@@ -60,66 +52,112 @@ const aasJsonSchema = {
                 modelType: {
                     $ref: '#/definitions/ModelType',
                 },
+            },
+            required: ['idShort', 'modelType'],
+        },
+        Identifiable: {
+            allOf: [
+                { $ref: '#/definitions/Referable' },
+                {
+                    properties: {
+                        identification: {
+                            $ref: '#/definitions/Identifier',
+                        },
+                        administration: {
+                            $ref: '#/definitions/AdministrativeInformation',
+                        },
+                    },
+                    required: ['identification'],
+                },
+            ],
+        },
+        Qualifiable: {
+            type: 'object',
+            properties: {
+                qualifiers: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/Constraint',
+                    },
+                },
+            },
+        },
+        HasSemantics: {
+            type: 'object',
+            properties: {
+                semanticId: {
+                    $ref: '#/definitions/Reference',
+                },
+            },
+            required: ['semanticId'],
+        },
+        HasDataSpecification: {
+            type: 'object',
+            properties: {
                 embeddedDataSpecifications: {
                     type: 'array',
                     items: {
                         $ref: '#/definitions/EmbeddedDataSpecification',
                     },
                 },
-                derivedFrom: {
-                    $ref: '#/definitions/Reference',
-                },
-                asset: {
-                    $ref: '#/definitions/Reference',
-                },
-                submodels: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Reference',
-                    },
-                },
-                views: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/View',
-                    },
-                },
-                conceptDictionaries: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/ConceptDictionary',
-                    },
-                },
             },
+        },
+        AssetAdministrationShell: {
+            allOf: [
+                { $ref: '#/definitions/Identifiable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                {
+                    properties: {
+                        derivedFrom: {
+                            $ref: '#/definitions/Reference',
+                        },
+                        asset: {
+                            $ref: '#/definitions/Reference',
+                        },
+                        submodels: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
+                        views: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/View',
+                            },
+                        },
+                        conceptDictionaries: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/ConceptDictionary',
+                            },
+                        },
+                        security: {
+                            $ref: '#/definitions/Security',
+                        },
+                    },
+                    required: ['asset'],
+                },
+            ],
         },
         Identifier: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 id: {
                     type: 'string',
                 },
                 idType: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/KeyType',
-                        },
-                    ],
+                    $ref: '#/definitions/KeyType',
                 },
             },
+            required: ['id', 'idType'],
         },
         KeyType: {
             type: 'string',
-            description: '',
-            'x-enumNames': ['Custom', 'URI', 'IRDI', 'IdShort'],
-            enum: ['Custom', 'URI', 'IRDI', 'IdShort'],
+            enum: ['Custom', 'IRDI', 'IRI', 'IdShort', 'FragmentId'],
         },
         AdministrativeInformation: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 version: {
                     type: 'string',
@@ -131,7 +169,6 @@ const aasJsonSchema = {
         },
         LangString: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 language: {
                     type: 'string',
@@ -140,10 +177,10 @@ const aasJsonSchema = {
                     type: 'string',
                 },
             },
+            required: ['language', 'text'],
         },
         Reference: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 keys: {
                     type: 'array',
@@ -152,1025 +189,860 @@ const aasJsonSchema = {
                     },
                 },
             },
+            required: ['keys'],
         },
         Key: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 type: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/KeyElements',
-                        },
-                    ],
+                    $ref: '#/definitions/KeyElements',
                 },
                 idType: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/KeyType',
-                        },
-                    ],
+                    $ref: '#/definitions/KeyType',
                 },
                 value: {
                     type: 'string',
                 },
                 local: {
-                    type: ['boolean', 'null'],
+                    type: 'boolean',
                 },
             },
+            required: ['type', 'idType', 'value', 'local'],
         },
         KeyElements: {
             type: 'string',
-            description: '',
-            'x-enumNames': [
-                'GlobalReference',
-                'ConceptDictionary',
-                'AccessPermissionRule',
-                'DataElement',
-                'View',
-                'Property',
-                'MultiLanguageProperty',
-                'SubmodelElement',
-                'File',
-                'Blob',
-                'ReferenceElement',
-                'SubmodelElementCollection',
-                'RelationshipElement',
-                'Event',
-                'Operation',
-                'OperationParameter',
-                'AssetAdministrationShell',
-                'Submodel',
-                'ConceptDescription',
-                'Asset',
-            ],
             enum: [
-                'GlobalReference',
-                'ConceptDictionary',
-                'AccessPermissionRule',
-                'DataElement',
-                'View',
-                'Property',
-                'MultiLanguageProperty',
-                'SubmodelElement',
-                'File',
-                'Blob',
-                'ReferenceElement',
-                'SubmodelElementCollection',
-                'RelationshipElement',
-                'Event',
-                'Operation',
-                'OperationParameter',
-                'AssetAdministrationShell',
-                'Submodel',
-                'ConceptDescription',
                 'Asset',
+                'AssetAdministrationShell',
+                'ConceptDescription',
+                'Submodel',
+                'AccessPermissionRule',
+                'AnnotatedRelationshipElement',
+                'BasicEvent',
+                'Blob',
+                'Capability',
+                'ConceptDictionary',
+                'DataElement',
+                'File',
+                'Entity',
+                'Event',
+                'MultiLanguageProperty',
+                'Operation',
+                'Property',
+                'Range',
+                'ReferenceElement',
+                'RelationshipElement',
+                'SubmodelElement',
+                'SubmodelElementCollection',
+                'View',
+                'GlobalReference',
+                'FragmentReference',
+            ],
+        },
+        ModelTypes: {
+            type: 'string',
+            enum: [
+                'Asset',
+                'AssetAdministrationShell',
+                'ConceptDescription',
+                'Submodel',
+                'AccessPermissionRule',
+                'AnnotatedRelationshipElement',
+                'BasicEvent',
+                'Blob',
+                'Capability',
+                'ConceptDictionary',
+                'DataElement',
+                'File',
+                'Entity',
+                'Event',
+                'MultiLanguageProperty',
+                'Operation',
+                'Property',
+                'Range',
+                'ReferenceElement',
+                'RelationshipElement',
+                'SubmodelElement',
+                'SubmodelElementCollection',
+                'View',
+                'GlobalReference',
+                'FragmentReference',
+                'Constraint',
+                'Formula',
+                'Qualifier',
             ],
         },
         ModelType: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 name: {
-                    type: 'string',
+                    $ref: '#/definitions/ModelTypes',
                 },
             },
+            required: ['name'],
         },
         EmbeddedDataSpecification: {
             type: 'object',
-            additionalProperties: false,
             properties: {
-                hasDataSpecification: {
+                dataSpecification: {
                     $ref: '#/definitions/Reference',
                 },
                 dataSpecificationContent: {
                     $ref: '#/definitions/DataSpecificationContent',
                 },
             },
+            required: ['dataSpecification', 'dataSpecificationContent'],
         },
         DataSpecificationContent: {
-            type: 'object',
+            oneOf: [
+                { $ref: '#/definitions/DataSpecificationIEC61360Content' },
+                { $ref: '#/definitions/DataSpecificationPhysicalUnitContent' },
+            ],
         },
-        Asset: {
-            additionalProperties: false,
+        DataSpecificationPhysicalUnitContent: {
+            type: 'object',
             properties: {
-                identification: {
-                    $ref: '#/definitions/Identifier',
-                },
-                administration: {
-                    $ref: '#/definitions/AdministrativeInformation',
-                },
-                idShort: {
+                unitName: {
                     type: 'string',
                 },
-                category: {
+                unitSymbol: {
                     type: 'string',
                 },
-                descriptions: {
+                definition: {
                     type: 'array',
                     items: {
                         $ref: '#/definitions/LangString',
                     },
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
-                    ],
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
-                    },
-                },
-                assetIdentificationModel: {
-                    $ref: '#/definitions/Reference',
-                },
-            },
-        },
-        Kind: {
-            type: 'string',
-            description: '',
-            'x-enumNames': ['Type', 'Instance'],
-            enum: ['Type', 'Instance'],
-        },
-        Submodel: {
-            additionalProperties: false,
-            properties: {
-                identification: {
-                    $ref: '#/definitions/Identifier',
-                },
-                administration: {
-                    $ref: '#/definitions/AdministrativeInformation',
-                },
-                idShort: {
+                siNotation: {
                     type: 'string',
                 },
-                category: {
+                siName: {
                     type: 'string',
                 },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
+                dinNotation: {
+                    type: 'string',
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
+                eceName: {
+                    type: 'string',
                 },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
+                eceCode: {
+                    type: 'string',
                 },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
-                    ],
+                nistName: {
+                    type: 'string',
                 },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
+                sourceOfDefinition: {
+                    type: 'string',
                 },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
+                conversionFactor: {
+                    type: 'string',
                 },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
-                    },
+                registrationAuthorityId: {
+                    type: 'string',
                 },
-                submodelElements: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/SubmodelElement',
-                    },
+                supplier: {
+                    type: 'string',
                 },
             },
+            required: ['unitName', 'unitSymbol', 'definition'],
         },
-        Constraint: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-            },
-            anyOf: [
+        DataSpecificationIEC61360Content: {
+            allOf: [
+                { $ref: '#/definitions/ValueObject' },
                 {
-                    $ref: '#/definitions/Formula',
-                },
-                {
-                    $ref: '#/definitions/Qualifier',
+                    type: 'object',
+                    properties: {
+                        dataType: {
+                            enum: [
+                                'DATE',
+                                'STRING',
+                                'STRING_TRANSLATABLE',
+                                'REAL_MEASURE',
+                                'REAL_COUNT',
+                                'REAL_CURRENCY',
+                                'BOOLEAN',
+                                'URL',
+                                'RATIONAL',
+                                'RATIONAL_MEASURE',
+                                'TIME',
+                                'TIMESTAMP',
+                            ],
+                        },
+                        definition: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/LangString',
+                            },
+                        },
+                        preferredName: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/LangString',
+                            },
+                        },
+                        shortName: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/LangString',
+                            },
+                        },
+                        sourceOfDefinition: {
+                            type: 'string',
+                        },
+                        symbol: {
+                            type: 'string',
+                        },
+                        unit: {
+                            type: 'string',
+                        },
+                        unitId: {
+                            $ref: '#/definitions/Reference',
+                        },
+                        valueFormat: {
+                            type: 'string',
+                        },
+                        valueList: {
+                            $ref: '#/definitions/ValueList',
+                        },
+                        levelType: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/LevelType',
+                            },
+                        },
+                    },
+                    required: ['preferredName'],
                 },
             ],
         },
-        DataType: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                dataObjectType: {
-                    $ref: '#/definitions/DataObjectType',
-                },
-            },
+        LevelType: {
+            type: 'string',
+            enum: ['Min', 'Max', 'Nom', 'Typ'],
         },
-        DataObjectType: {
+        ValueList: {
             type: 'object',
-            additionalProperties: false,
             properties: {
-                name: {
-                    type: 'string',
-                },
-            },
-        },
-        Operation: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
+                valueReferencePairTypes: {
                     type: 'array',
+                    minItems: 1,
                     items: {
-                        $ref: '#/definitions/Constraint',
+                        $ref: '#/definitions/ValueReferencePairType',
                     },
                 },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
+            },
+            required: ['valueReferencePairTypes'],
+        },
+        ValueReferencePairType: {
+            allOf: [{ $ref: '#/definitions/ValueObject' }],
+        },
+        ValueObject: {
+            type: 'object',
+            properties: {
+                value: { type: 'string' },
+                valueId: {
                     $ref: '#/definitions/Reference',
                 },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
+                valueType: {
+                    type: 'string',
+                    enum: [
+                        'anyUri',
+                        'base64Binary',
+                        'boolean',
+                        'date',
+                        'dateTime',
+                        'dateTimeStamp',
+                        'decimal',
+                        'integer',
+                        'long',
+                        'int',
+                        'short',
+                        'byte',
+                        'nonNegativeInteger',
+                        'positiveInteger',
+                        'unsignedLong',
+                        'unsignedInt',
+                        'unsignedShort',
+                        'unsignedByte',
+                        'nonPositiveInteger',
+                        'negativeInteger',
+                        'double',
+                        'duration',
+                        'dayTimeDuration',
+                        'yearMonthDuration',
+                        'float',
+                        'gDay',
+                        'gMonth',
+                        'gMonthDay',
+                        'gYear',
+                        'gYearMonth',
+                        'hexBinary',
+                        'NOTATION',
+                        'QName',
+                        'string',
+                        'normalizedString',
+                        'token',
+                        'language',
+                        'Name',
+                        'NCName',
+                        'ENTITY',
+                        'ID',
+                        'IDREF',
+                        'NMTOKEN',
+                        'time',
                     ],
                 },
+            },
+        },
+        Asset: {
+            allOf: [
+                { $ref: '#/definitions/Identifiable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                {
+                    properties: {
+                        kind: {
+                            $ref: '#/definitions/AssetKind',
+                        },
+                        assetIdentificationModel: {
+                            $ref: '#/definitions/Reference',
+                        },
+                        billOfMaterial: {
+                            $ref: '#/definitions/Reference',
+                        },
+                    },
+                    required: ['kind'],
+                },
+            ],
+        },
+        AssetKind: {
+            type: 'string',
+            enum: ['Type', 'Instance'],
+        },
+        ModelingKind: {
+            type: 'string',
+            enum: ['Template', 'Instance'],
+        },
+        Submodel: {
+            allOf: [
+                { $ref: '#/definitions/Identifiable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                { $ref: '#/definitions/Qualifiable' },
+                { $ref: '#/definitions/HasSemantics' },
+                {
+                    properties: {
+                        kind: {
+                            $ref: '#/definitions/ModelingKind',
+                        },
+                        submodelElements: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/SubmodelElement',
+                            },
+                        },
+                    },
+                },
+            ],
+        },
+        Constraint: {
+            type: 'object',
+            properties: {
                 modelType: {
                     $ref: '#/definitions/ModelType',
                 },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
-                    },
-                },
-                in: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/OperationVariable',
-                    },
-                },
-                out: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/OperationVariable',
-                    },
-                },
             },
+            required: ['modelType'],
+        },
+        Operation: {
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        inputVariable: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/OperationVariable',
+                            },
+                        },
+                        outputVariable: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/OperationVariable',
+                            },
+                        },
+                        inoutputVariable: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/OperationVariable',
+                            },
+                        },
+                    },
+                },
+            ],
         },
         OperationVariable: {
             type: 'object',
-            additionalProperties: false,
             properties: {
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
+                value: {
                     oneOf: [
-                        {
-                            type: 'null',
-                        },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
+                        { $ref: '#/definitions/Blob' },
+                        { $ref: '#/definitions/File' },
+                        { $ref: '#/definitions/Capability' },
+                        { $ref: '#/definitions/Entity' },
+                        { $ref: '#/definitions/Event' },
+                        { $ref: '#/definitions/BasicEvent' },
+                        { $ref: '#/definitions/MultiLanguageProperty' },
+                        { $ref: '#/definitions/Operation' },
+                        { $ref: '#/definitions/Property' },
+                        { $ref: '#/definitions/Range' },
+                        { $ref: '#/definitions/ReferenceElement' },
+                        { $ref: '#/definitions/RelationshipElement' },
+                        { $ref: '#/definitions/SubmodelElementCollection' },
                     ],
                 },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
-                    },
-                },
-                index: {
-                    type: ['integer', 'null'],
-                },
-                dataType: {
-                    $ref: '#/definitions/DataType',
-                },
             },
+            required: ['value'],
         },
         SubmodelElement: {
-            type: 'object',
-            properties: {
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/Referable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                { $ref: '#/definitions/HasSemantics' },
+                { $ref: '#/definitions/Qualifiable' },
+                {
+                    properties: {
+                        kind: {
+                            $ref: '#/definitions/ModelingKind',
                         },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
-                    ],
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
                     },
                 },
-            },
-            anyOf: [
+            ],
+        },
+        Event: {
+            allOf: [{ $ref: '#/definitions/SubmodelElement' }],
+        },
+        BasicEvent: {
+            allOf: [
+                { $ref: '#/definitions/Event' },
                 {
-                    $ref: '#/definitions/Property',
+                    properties: {
+                        observed: {
+                            $ref: '#/definitions/Reference',
+                        },
+                    },
+                    required: ['observed'],
                 },
+            ],
+        },
+        EntityType: {
+            type: 'string',
+            enum: ['CoManagedEntity', 'SelfManagedEntity'],
+        },
+        Entity: {
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
                 {
-                    $ref: '#/definitions/File',
-                },
-                {
-                    $ref: '#/definitions/Blob',
-                },
-                {
-                    $ref: '#/definitions/ReferenceElement',
-                },
-                {
-                    $ref: '#/definitions/SubmodelElementCollection',
-                },
-                {
-                    $ref: '#/definitions/RelationshipElement',
-                },
-                {
-                    $ref: '#/definitions/Operation',
-                },
-                {
-                    $ref: '#/definitions/OperationVariable',
+                    properties: {
+                        statements: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/SubmodelElement',
+                            },
+                        },
+                        entityType: {
+                            $ref: '#/definitions/EntityType',
+                        },
+                        asset: {
+                            $ref: '#/definitions/Reference',
+                        },
+                    },
+                    required: ['entityType'],
                 },
             ],
         },
         View: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
+            allOf: [
+                { $ref: '#/definitions/Referable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                { $ref: '#/definitions/HasSemantics' },
+                {
+                    properties: {
+                        containedElements: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
                     },
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                containedElements: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Reference',
-                    },
-                },
-            },
+            ],
         },
         ConceptDictionary: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
+            allOf: [
+                { $ref: '#/definitions/Referable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                {
+                    properties: {
+                        conceptDescriptions: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
                     },
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                conceptDescriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Reference',
-                    },
-                },
-            },
+            ],
         },
         ConceptDescription: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                identification: {
-                    $ref: '#/definitions/Identifier',
-                },
-                administration: {
-                    $ref: '#/definitions/AdministrativeInformation',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
+            allOf: [
+                { $ref: '#/definitions/Identifiable' },
+                { $ref: '#/definitions/HasDataSpecification' },
+                {
+                    properties: {
+                        isCaseOf: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
                     },
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
-                    },
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                isCaseOf: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Reference',
-                    },
-                },
-            },
+            ],
+        },
+        Capability: {
+            allOf: [{ $ref: '#/definitions/SubmodelElement' }],
         },
         Property: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {},
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [{ $ref: '#/definitions/SubmodelElement' }, { $ref: '#/definitions/ValueObject' }],
+        },
+        Range: {
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        valueType: {
+                            type: 'string',
+                            enum: [
+                                'anyUri',
+                                'base64Binary',
+                                'boolean',
+                                'date',
+                                'dateTime',
+                                'dateTimeStamp',
+                                'decimal',
+                                'integer',
+                                'long',
+                                'int',
+                                'short',
+                                'byte',
+                                'nonNegativeInteger',
+                                'positiveInteger',
+                                'unsignedLong',
+                                'unsignedInt',
+                                'unsignedShort',
+                                'unsignedByte',
+                                'nonPositiveInteger',
+                                'negativeInteger',
+                                'double',
+                                'duration',
+                                'dayTimeDuration',
+                                'yearMonthDuration',
+                                'float',
+                                'gDay',
+                                'gMonth',
+                                'gMonthDay',
+                                'gYear',
+                                'gYearMonth',
+                                'hexBinary',
+                                'NOTATION',
+                                'QName',
+                                'string',
+                                'normalizedString',
+                                'token',
+                                'language',
+                                'Name',
+                                'NCName',
+                                'ENTITY',
+                                'ID',
+                                'IDREF',
+                                'NMTOKEN',
+                                'time',
+                            ],
                         },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
+                        min: { type: 'string' },
+                        max: { type: 'string' },
                     },
+                    required: ['valueType', 'min', 'max'],
                 },
-                valueId: {
-                    $ref: '#/definitions/Reference',
-                },
-            },
+            ],
         },
         MultiLanguageProperty: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        value: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/LangString',
+                            },
                         },
-                        {
-                            $ref: '#/definitions/Kind',
+                        valueId: {
+                            $ref: '#/definitions/Reference',
                         },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
                     },
                 },
-                valueId: {
-                    $ref: '#/definitions/Reference',
-                },
-            },
+            ],
         },
         File: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {
-                    type: 'string',
-                },
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        value: {
+                            type: 'string',
                         },
-                        {
-                            $ref: '#/definitions/Kind',
+                        mimeType: {
+                            type: 'string',
                         },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
                     },
+                    required: ['mimeType', 'value'],
                 },
-                mimeType: {
-                    type: 'string',
-                },
-            },
+            ],
         },
         Blob: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {
-                    type: 'string',
-                },
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        value: {
+                            type: 'string',
                         },
-                        {
-                            $ref: '#/definitions/Kind',
+                        mimeType: {
+                            type: 'string',
                         },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
                     },
+                    required: ['mimeType', 'value'],
                 },
-                mimeType: {
-                    type: 'string',
-                },
-            },
+            ],
         },
         ReferenceElement: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {
-                    $ref: '#/definitions/Reference',
-                },
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        value: {
+                            $ref: '#/definitions/Reference',
                         },
-                        {
-                            $ref: '#/definitions/Kind',
-                        },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
                     },
                 },
-            },
+            ],
         },
         SubmodelElementCollection: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                value: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/SubmodelElement',
-                    },
-                },
-                valueType: {
-                    $ref: '#/definitions/DataType',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        value: {
+                            type: 'array',
+                            items: {
+                                oneOf: [
+                                    { $ref: '#/definitions/Blob' },
+                                    { $ref: '#/definitions/File' },
+                                    { $ref: '#/definitions/Capability' },
+                                    { $ref: '#/definitions/Entity' },
+                                    { $ref: '#/definitions/Event' },
+                                    { $ref: '#/definitions/BasicEvent' },
+                                    { $ref: '#/definitions/MultiLanguageProperty' },
+                                    { $ref: '#/definitions/Operation' },
+                                    { $ref: '#/definitions/Property' },
+                                    { $ref: '#/definitions/Range' },
+                                    { $ref: '#/definitions/ReferenceElement' },
+                                    { $ref: '#/definitions/RelationshipElement' },
+                                    { $ref: '#/definitions/SubmodelElementCollection' },
+                                ],
+                            },
                         },
-                        {
-                            $ref: '#/definitions/Kind',
+                        allowDuplicates: {
+                            type: 'boolean',
                         },
-                    ],
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
+                        ordered: {
+                            type: 'boolean',
+                        },
                     },
                 },
-                allowDuplicates: {
-                    type: 'boolean',
-                },
-                ordered: {
-                    type: 'boolean',
-                },
-            },
+            ],
         },
         RelationshipElement: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                idShort: {
-                    type: 'string',
-                },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
-                    },
-                },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                kind: {
-                    oneOf: [
-                        {
-                            type: 'null',
+            allOf: [
+                { $ref: '#/definitions/SubmodelElement' },
+                {
+                    properties: {
+                        first: {
+                            $ref: '#/definitions/Reference',
                         },
-                        {
-                            $ref: '#/definitions/Kind',
+                        second: {
+                            $ref: '#/definitions/Reference',
                         },
-                    ],
+                    },
+                    required: ['first', 'second'],
                 },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                embeddedDataSpecifications: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/EmbeddedDataSpecification',
+            ],
+        },
+        AnnotatedRelationshipElement: {
+            allOf: [
+                { $ref: '#/definitions/RelationshipElement' },
+                {
+                    properties: {
+                        annotation: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
                     },
                 },
-                first: {
-                    $ref: '#/definitions/Reference',
-                },
-                second: {
-                    $ref: '#/definitions/Reference',
-                },
-            },
+            ],
         },
         Qualifier: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                modelType: {
-                    $ref: '#/definitions/ModelType',
+            allOf: [
+                { $ref: '#/definitions/Constraint' },
+                { $ref: '#/definitions/HasSemantics' },
+                { $ref: '#/definitions/ValueObject' },
+                {
+                    properties: {
+                        type: {
+                            type: 'string',
+                        },
+                    },
+                    required: ['type'],
                 },
-                semanticId: {
-                    $ref: '#/definitions/Reference',
-                },
-                qualifierType: {
-                    type: 'string',
-                },
-                qualifierValue: {},
-                qualifierValueId: {
-                    $ref: '#/definitions/Reference',
-                },
-            },
+            ],
         },
         Formula: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                modelType: {
-                    $ref: '#/definitions/ModelType',
+            allOf: [
+                { $ref: '#/definitions/Constraint' },
+                {
+                    properties: {
+                        dependsOn: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
+                    },
                 },
-                dependsOn: {
+            ],
+        },
+        Security: {
+            type: 'object',
+            properties: {
+                accessControlPolicyPoints: {
+                    $ref: '#/definitions/AccessControlPolicyPoints',
+                },
+                certificate: {
+                    type: 'array',
+                    items: {
+                        oneOf: [{ $ref: '#/definitions/BlobCertificate' }],
+                    },
+                },
+                requiredCertificateExtension: {
                     type: 'array',
                     items: {
                         $ref: '#/definitions/Reference',
                     },
                 },
             },
+            required: ['accessControlPolicyPoints'],
+        },
+        Certificate: {
+            type: 'object',
+        },
+        BlobCertificate: {
+            allOf: [
+                { $ref: '#/definitions/Certificate' },
+                {
+                    properties: {
+                        blobCertificate: {
+                            $ref: '#/definitions/Blob',
+                        },
+                        containedExtension: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/Reference',
+                            },
+                        },
+                        lastCertificate: {
+                            type: 'boolean',
+                        },
+                    },
+                },
+            ],
+        },
+        AccessControlPolicyPoints: {
+            type: 'object',
+            properties: {
+                policyAdministrationPoint: {
+                    $ref: '#/definitions/PolicyAdministrationPoint',
+                },
+                policyDecisionPoint: {
+                    $ref: '#/definitions/PolicyDecisionPoint',
+                },
+                policyEnforcementPoint: {
+                    $ref: '#/definitions/PolicyEnforcementPoint',
+                },
+                policyInformationPoints: {
+                    $ref: '#/definitions/PolicyInformationPoints',
+                },
+            },
+            required: ['policyAdministrationPoint', 'policyDecisionPoint', 'policyEnforcementPoint'],
         },
         PolicyAdministrationPoint: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 localAccessControl: {
-                    oneOf: [
-                        {
-                            $ref: '#/definitions/LocalAccessControl',
-                        },
-                        {
-                            type: 'null',
-                        },
-                    ],
+                    $ref: '#/definitions/AccessControl',
                 },
                 externalAccessControl: {
-                    oneOf: [
-                        {
-                            type: 'object',
-                        },
-                        {
-                            type: 'null',
-                        },
-                    ],
+                    type: 'boolean',
                 },
             },
+            required: ['externalAccessControl'],
+        },
+        PolicyInformationPoints: {
+            type: 'object',
+            properties: {
+                internalInformationPoint: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/Reference',
+                    },
+                },
+                externalInformationPoint: {
+                    type: 'boolean',
+                },
+            },
+            required: ['externalInformationPoint'],
+        },
+        PolicyEnforcementPoint: {
+            type: 'object',
+            properties: {
+                externalPolicyEnforcementPoint: {
+                    type: 'boolean',
+                },
+            },
+            required: ['externalPolicyEnforcementPoint'],
+        },
+        PolicyDecisionPoint: {
+            type: 'object',
+            properties: {
+                externalPolicyDecisionPoints: {
+                    type: 'boolean',
+                },
+            },
+            required: ['externalPolicyDecisionPoints'],
         },
         AccessControl: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 selectableSubjectAttributes: {
                     $ref: '#/definitions/Reference',
@@ -1185,87 +1057,50 @@ const aasJsonSchema = {
                     $ref: '#/definitions/Reference',
                 },
                 selectableEnvironmentAttributes: {
-                    oneOf: [
-                        {
-                            $ref: '#/definitions/Submodel',
-                        },
-                        {
-                            type: 'null',
-                        },
-                    ],
+                    $ref: '#/definitions/Reference',
                 },
                 defaultEnvironmentAttributes: {
                     $ref: '#/definitions/Reference',
                 },
                 accessPermissionRule: {
-                    oneOf: [
-                        {
-                            $ref: '#/definitions/AccessPermissionRule',
-                        },
-                        {
-                            type: 'null',
-                        },
-                    ],
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/AccessPermissionRule',
+                    },
                 },
             },
         },
         AccessPermissionRule: {
-            type: 'object',
-            additionalProperties: false,
-            properties: {
-                identification: {
-                    $ref: '#/definitions/Identifier',
-                },
-                administration: {
-                    $ref: '#/definitions/AdministrativeInformation',
-                },
-                idShort: {
-                    type: 'string',
-                },
-                category: {
-                    type: 'string',
-                },
-                descriptions: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/LangString',
+            allOf: [
+                { $ref: '#/definitions/Referable' },
+                { $ref: '#/definitions/Qualifiable' },
+                {
+                    properties: {
+                        targetSubjectAttributes: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/SubjectAttributes',
+                            },
+                            minItems: 1,
+                        },
+                        permissionsPerObject: {
+                            type: 'array',
+                            items: {
+                                $ref: '#/definitions/PermissionsPerObject',
+                            },
+                        },
                     },
+                    required: ['targetSubjectAttributes'],
                 },
-                parent: {
-                    $ref: '#/definitions/Reference',
-                },
-                modelType: {
-                    $ref: '#/definitions/ModelType',
-                },
-                qualifiers: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Constraint',
-                    },
-                },
-                targetSubjectAttributes: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/SubjectAttributes',
-                    },
-                    minItems: 1,
-                },
-                permissionsPerObject: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/PermissionsPerObject',
-                    },
-                },
-            },
+            ],
         },
         SubjectAttributes: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 subjectAttributes: {
                     type: 'array',
                     items: {
-                        $ref: '#/definitions/Property',
+                        $ref: '#/definitions/Reference',
                     },
                     minItems: 1,
                 },
@@ -1273,20 +1108,12 @@ const aasJsonSchema = {
         },
         PermissionsPerObject: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 object: {
                     $ref: '#/definitions/Reference',
                 },
                 targetObjectAttributes: {
-                    oneOf: [
-                        {
-                            $ref: '#/definitions/ObjectAttributes',
-                        },
-                        {
-                            type: 'null',
-                        },
-                    ],
+                    $ref: '#/definitions/ObjectAttributes',
                 },
                 permission: {
                     type: 'array',
@@ -1298,29 +1125,28 @@ const aasJsonSchema = {
         },
         ObjectAttributes: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 objectAttribute: {
                     type: 'array',
                     items: {
                         $ref: '#/definitions/Property',
-                        minItems: 1,
                     },
+                    minItems: 1,
                 },
             },
         },
         Permission: {
             type: 'object',
-            additionalProperties: false,
             properties: {
                 permission: {
                     $ref: '#/definitions/Reference',
                 },
                 kindOfPermission: {
                     type: 'string',
-                    enum: ['allow', 'deny', 'not applicable', 'undefined'],
+                    enum: ['Allow', 'Deny', 'NotApplicable', 'Undefined'],
                 },
             },
+            required: ['permission', 'kindOfPermission'],
         },
     },
 };

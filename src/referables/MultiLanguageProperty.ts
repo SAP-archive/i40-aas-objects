@@ -1,55 +1,43 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { HasModelType } from '../characteristics/HasModelType';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { KindEnum } from '../types/KindEnum';
+import { IReference } from '../characteristics/interfaces/Reference';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { LangString } from '../characteristics/interfaces/LangString';
-import { DataType } from '../types/DataType';
-import { ValueTypeEnum } from '../types/ValueTypeEnum';
-interface MultiLanguagePropertyInterface {
+import { KindEnum } from '../types/KindEnum';
+import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { ModelType } from '../characteristics/interfaces/ModelType';
+import { Description } from '../characteristics/interfaces/Description';
+import { Constraint } from '../characteristics/interfaces/Constraint';
+
+interface IMultiLanguageProperty {
     kind?: KindEnum;
-    semanticId?: Reference;
+    semanticId: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
+    qualifiers?: Array<Constraint>;
     value?: Array<LangString>;
-    ordered?: boolean;
-    allowDuplicates?: boolean;
 }
-class MultiLanguageProperty implements HasModelType, SubmodelElement, MultiLanguagePropertyInterface {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    valueType: DataType = { dataObjectType: { name: ValueTypeEnum.langString } };
-    kind: KindEnum = KindEnum.Instance;
-    semanticId?: Reference;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType = { name: KeyElementsEnum.MultiLanguageProperty };
+interface IMultiLanguagePropertyConstructor {
+    kind?: KindEnum;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType?: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
+    descriptions?: Array<Description>;
+    qualifiers?: Array<Constraint>;
+    value?: Array<LangString>;
+}
+class MultiLanguageProperty extends SubmodelElement implements IMultiLanguageProperty {
     value: Array<LangString> = [];
-    ordered: boolean = false;
-    allowDuplicates: boolean = true;
 
-    constructor(obj: MultiLanguagePropertyInterface) {
-        if (obj.kind) this.kind = obj.kind;
-        this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
+    constructor(obj: IMultiLanguagePropertyConstructor) {
+        super(obj, { name: KeyElementsEnum.MultiLanguageProperty });
         if (obj.value) this.value = obj.value;
-        if (obj.ordered) this.ordered = obj.ordered;
-        if (obj.allowDuplicates) this.allowDuplicates = obj.allowDuplicates;
     }
 
     getValue() {
@@ -61,27 +49,18 @@ class MultiLanguageProperty implements HasModelType, SubmodelElement, MultiLangu
         values.forEach(function(value) {
             that.addValue(value);
         });
+        return this;
     }
     public addValue(value: LangString) {
         this.value.push(value);
+        return this;
     }
 
-    toJSON() {
-        return {
-            idShort: this.idShort,
-            parent: this.parent,
-            category: this.category,
-            descriptions: this.descriptions,
-            kind: this.kind,
-            modelType: this.modelType,
-            semanticId: this.semanticId,
-            embeddedDataSpecifications: this.embeddedDataSpecifications,
-            value: this.value,
-            ordered: this.ordered,
-            allowDuplicates: this.allowDuplicates,
-        };
+    toJSON(): IMultiLanguageProperty {
+        let res: any = super.toJSON();
+        res.value = this.value;
+        return res;
     }
 }
-applyMixins(MultiLanguageProperty, [HasModelType, SubmodelElement]);
 
 export { MultiLanguageProperty };

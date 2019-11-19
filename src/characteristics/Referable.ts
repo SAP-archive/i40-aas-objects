@@ -1,27 +1,48 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Description } from './interfaces/Description';
 import { HasModelType } from './HasModelType';
 import { ModelType } from './interfaces/ModelType';
 import { IdTypeEnum } from '../types/IdTypeEnum';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
-class Referable implements HasModelType {
+import { Key } from './interfaces/Key';
+
+interface IReferable {
     modelType: ModelType;
-    idShort?: string;
-    parent?: Reference;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Array<Description>;
+}
+interface IReferableConstructor {
+    modelType?: ModelType;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Array<Description>;
+}
+abstract class Referable implements HasModelType {
+    modelType: ModelType;
+    idShort: string;
+    parent?: IReference;
     category?: string;
     descriptions: Array<Description> = [];
-    constructor(obj: Referable) {
-        this.modelType = obj.modelType;
+    constructor(obj: IReferableConstructor, modelType?: ModelType) {
+        let modelTypeTemp: ModelType;
+        if (modelType) {
+            modelTypeTemp = modelType;
+        } else if (obj.modelType) {
+            modelTypeTemp = obj.modelType;
+        } else {
+            throw new Error('A Referable requires a modelType');
+        }
+        this.modelType = modelTypeTemp;
         this.idShort = obj.idShort;
-        this.parent = obj.parent;
+        if (obj.parent) this.parent = new Reference(obj.parent);
         this.category = obj.category;
-        this.descriptions = obj.descriptions;
+        if (obj.descriptions) this.descriptions = obj.descriptions;
     }
 
     getReference(): Reference {
         let keys = [];
-        let index = 0;
         let rootKey = {
             idType: IdTypeEnum.IdShort,
             type: this.modelType.name,
@@ -29,15 +50,25 @@ class Referable implements HasModelType {
             local: true,
         };
 
-        keys.push(rootKey);
+        keys.push(new Key(rootKey));
         if (this.parent) {
             this.parent.keys.forEach(function(key) {
                 var newKey = key;
-                keys.push(newKey);
+                keys.push(new Key(newKey));
             });
         }
-        return {
+        return new Reference({
             keys: keys,
+        });
+    }
+
+    toJSON(): IReferable {
+        return {
+            idShort: this.idShort,
+            parent: this.parent,
+            category: this.category,
+            descriptions: this.descriptions,
+            modelType: this.modelType,
         };
     }
 }

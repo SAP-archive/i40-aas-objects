@@ -1,30 +1,36 @@
-import { applyMixins } from './characteristics/mixins';
-import { AssetAdministrationShell, AssetAdministrationShellInterface } from './identifiables/AssetAdministrationShell';
-import { Submodel, SubmodelInterface } from './identifiables/Submodel';
-import { ConceptDescription, ConceptDescriptionInterface } from './identifiables/ConceptDescription';
-import { Asset, AssetInterface } from './identifiables/Asset';
-import { Reference } from './characteristics/interfaces/Reference';
+import {
+    AssetAdministrationShell,
+    IAssetAdministrationShellConstructor,
+} from './identifiables/AssetAdministrationShell';
+import { Submodel, ISubmodel, ISubmodelConstructor } from './identifiables/Submodel';
+import {
+    ConceptDescription,
+    IConceptDescription,
+    IConceptDescriptionConstructor,
+} from './identifiables/ConceptDescription';
+import { Asset, IAssetConstructor, IAsset } from './identifiables/Asset';
+import { IReference, Reference } from './characteristics/interfaces/Reference';
 import { Referable } from './characteristics/Referable';
 import { ModelType } from './characteristics/interfaces/ModelType';
-import { Key } from './characteristics/interfaces/Key';
+import { IKey } from './characteristics/interfaces/Key';
 import { Identifiable } from './characteristics/Identifiable';
-interface AssetAdministrationShellEnvInterface {
+interface IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell>;
     submodels: Array<Submodel>;
     conceptDescriptions: Array<ConceptDescription>;
     assets: Array<Asset>;
 }
-class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterface {
+class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell> = [];
     submodels: Array<Submodel> = [];
     conceptDescriptions: Array<ConceptDescription> = [];
     assets: Array<Asset> = [];
 
-    constructor(obj: AssetAdministrationShellEnvInterface) {
-        this.assetAdministrationShells = obj.assetAdministrationShells;
-        this.submodels = obj.submodels;
-        this.conceptDescriptions = obj.conceptDescriptions;
-        this.assets = obj.assets;
+    constructor(obj: IAssetAdministrationShellEnv) {
+        this.setAssetAdministrationShells(obj.assetAdministrationShells);
+        this.setSubmodels(obj.submodels);
+        this.setAssets(obj.assets);
+        this.setConceptDescriptions(obj.conceptDescriptions);
     }
     setAssetAdministrationShells(assetAdministrationShellsIn: Array<AssetAdministrationShell>) {
         this.assetAdministrationShells = [];
@@ -32,57 +38,64 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
         assetAdministrationShellsIn.forEach(assetAdministrationShell => {
             that.addAssetAdministrationShell(assetAdministrationShell);
         });
+        return this;
     }
 
     getAssetAdministrationShells(): Array<AssetAdministrationShell> {
         return this.assetAdministrationShells;
     }
-    addAssetAdministrationShell(assetAdministrationShell: AssetAdministrationShellInterface) {
+    addAssetAdministrationShell(assetAdministrationShell: IAssetAdministrationShellConstructor) {
         this.assetAdministrationShells.push(new AssetAdministrationShell(assetAdministrationShell));
+        return this;
     }
     getSubmodels() {
         return this.submodels;
     }
-    setSubmodels(submodels: Array<SubmodelInterface>) {
+    setSubmodels(submodels: Array<ISubmodel>) {
         this.submodels = [];
         var that = this;
         submodels.forEach(submodel => {
             that.addSubmodel(submodel);
         });
+        return this;
     }
-    addSubmodel(submodel: SubmodelInterface) {
+    addSubmodel(submodel: ISubmodelConstructor) {
         this.submodels.push(new Submodel(submodel));
+        return this;
     }
     getConceptDescriptions() {
         return this.conceptDescriptions;
     }
-    setConceptDescriptions(conceptDescriptions: Array<ConceptDescriptionInterface>) {
+    setConceptDescriptions(conceptDescriptions: Array<IConceptDescription>) {
         this.conceptDescriptions = [];
         var that = this;
         conceptDescriptions.forEach(conceptDescription => {
             that.addConceptDescription(conceptDescription);
         });
+        return this;
     }
-    addConceptDescription(conceptDescription: ConceptDescriptionInterface) {
+    addConceptDescription(conceptDescription: IConceptDescriptionConstructor) {
         this.conceptDescriptions.push(new ConceptDescription(conceptDescription));
+        return this;
     }
 
     getAssets() {
         return this.assets;
     }
 
-    setAssets(assets: Array<AssetInterface>) {
+    setAssets(assets: Array<IAsset>) {
         this.assets = [];
         var that = this;
         assets.forEach(asset => {
             that.addAsset(asset);
         });
     }
-    addAsset(asset: AssetInterface) {
+    addAsset(asset: IAssetConstructor) {
         this.assets.push(new Asset(asset));
+        return this;
     }
-    getInstance(ref: Reference): Referable {
-        var keyChain: Reference = this.getShortestRef(ref);
+    getInstance(ref: IReference): Referable {
+        var keyChain: IReference = this.getShortestRef(ref);
         var structure: any = this;
         var that = this;
         keyChain.keys.forEach(key => {
@@ -103,7 +116,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
         });
         return structure;
     }
-    getStructureAggregationName(key: Key, structureModelType?: ModelType): string {
+    getStructureAggregationName(key: IKey, structureModelType?: ModelType): string {
         var structureModelTypeName = 'AssetAdministrationShellEnv';
         if (structureModelType) {
             structureModelTypeName = structureModelType.name;
@@ -126,7 +139,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
                 throw new Error('Can nit find key type ' + key.type);
         }
     }
-    getShortestRef(ref: Reference): Reference {
+    getShortestRef(ref: IReference): IReference {
         var keys = ref.keys;
         if (keys.length <= 1) {
             return ref;
@@ -138,7 +151,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
                 break;
             }
         }
-        return { keys: newKeys };
+        return new Reference({ keys: newKeys });
     }
 
     public getSubmodelsByIdShort(idShort: string): Array<Submodel> {

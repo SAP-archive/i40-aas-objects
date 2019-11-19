@@ -1,77 +1,94 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Identifiable } from '../characteristics/Identifiable';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { ConceptDescription } from './ConceptDescription';
 import { ConceptDictionary } from '../referables/ConceptDictionary';
 import { View } from '../referables/View';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { Identifier } from '../characteristics/interfaces/Identifier';
 import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { HasModelType } from '../characteristics/HasModelType';
 import { ModelType } from '../characteristics/interfaces/ModelType';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { Description } from '../characteristics/interfaces/Description';
 
-interface AssetAdministrationShellInterface {
-    modelType?: ModelType;
+interface IAssetAdministrationShell {
+    modelType: ModelType;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    idShort?: string;
-    parent?: Reference;
+    idShort: string;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
     identification: Identifier;
     administration?: AdministrativeInformation;
-    derivedFrom?: Reference;
+    derivedFrom?: IReference;
     security?: any;
-    submodels?: Array<Reference>;
+    submodels?: Array<IReference>;
     conceptDictionaries?: Array<ConceptDictionary>;
     views?: Array<View>;
-    asset?: Reference;
+    asset: IReference;
 }
-class AssetAdministrationShell implements Identifiable, HasDataSpecification, HasModelType {
-    getReference(): Reference {
-        throw new Error('Method not implemented.');
-    }
-    public modelType: ModelType = { name: KeyElementsEnum.AssetAdministrationShell };
-    public embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    public idShort?: string;
-    public parent?: Reference;
-    public category?: string;
-    public descriptions: Array<Description> = [];
-    public identification: Identifier;
-    public administration?: AdministrativeInformation;
-    public derivedFrom?: Reference;
+interface IAssetAdministrationShellConstructor {
+    modelType?: ModelType;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Array<Description>;
+    identification: Identifier;
+    administration?: AdministrativeInformation;
+    derivedFrom?: IReference;
+    security?: any;
+    submodels?: Array<IReference>;
+    conceptDictionaries?: Array<ConceptDictionary>;
+    views?: Array<View>;
+    asset: IReference;
+}
+class AssetAdministrationShell extends Identifiable implements IAssetAdministrationShell {
+    public derivedFrom?: IReference;
     public security?: any;
-    public submodels: Array<Reference> = [];
-    public conceptDictionaries: Array<ConceptDictionary> = [];
+    public submodels: Array<IReference> = [];
+    public conceptDictionaries?: Array<ConceptDictionary>;
     public views?: Array<View>;
-    public asset?: Reference;
+    public asset: IReference;
 
-    constructor(obj: AssetAdministrationShellInterface) {
-        if (obj.embeddedDataSpecifications) {
-            this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        }
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        this.identification = obj.identification;
-        this.administration = obj.administration;
+    constructor(obj: IAssetAdministrationShellConstructor) {
+        super(obj, { name: KeyElementsEnum.AssetAdministrationShell });
         this.derivedFrom = obj.derivedFrom;
         this.security = obj.security;
-        if (obj.submodels) this.submodels = obj.submodels;
+        if (obj.submodels) this.setSubmodels(obj.submodels);
         if (obj.conceptDictionaries) this.conceptDictionaries = obj.conceptDictionaries;
         if (obj.views) this.views = obj.views;
-        this.asset = obj.asset;
+        if (!obj.asset) {
+            throw new Error('Asset is a required property for AssetAdministrationShell class');
+        }
+        this.asset = new Reference(obj.asset);
     }
-
-    addSubmodel(submodel: Reference) {
-        this.submodels.push(submodel);
+    setSubmodels(submodels: Array<IReference>) {
+        var that = this;
+        this.submodels = [];
+        submodels.forEach(function(submodel: IReference) {
+            that.addSubmodel(submodel);
+        });
+        return this;
+    }
+    addSubmodel(submodel: IReference) {
+        this.submodels.push(new Reference(submodel));
+        return this;
     }
     addConceptDictionary(conceptDictionary: ConceptDictionary) {
+        if (!this.conceptDictionaries) {
+            this.conceptDictionaries = [];
+        }
         this.conceptDictionaries.push(conceptDictionary);
+        return this;
+    }
+    toJSON(): IAssetAdministrationShell {
+        let res: any = super.toJSON();
+        res.derivedFrom = this.derivedFrom;
+        res.security = this.security;
+        res.submodels = this.submodels;
+        res.conceptDictionaries = this.conceptDictionaries;
+        res.views = this.views;
+        res.asset = this.asset;
+        return res;
     }
 }
-applyMixins(AssetAdministrationShell, [Identifiable, HasDataSpecification]);
-export { AssetAdministrationShell, AssetAdministrationShellInterface };
+export { AssetAdministrationShell, IAssetAdministrationShellConstructor, IAssetAdministrationShell };

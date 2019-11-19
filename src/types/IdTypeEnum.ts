@@ -1,6 +1,6 @@
 enum IdTypeEnum {
     IRDI = 'IRDI',
-    URI = 'URI',
+    IRI = 'IRI',
     Custom = 'Custom',
     IdShort = 'IdShort',
 }

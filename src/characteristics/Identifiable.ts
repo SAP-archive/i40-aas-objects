@@ -1,52 +1,65 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference, Reference } from '../characteristics/interfaces/Reference';
 import { Referable } from './Referable';
 import { Identifier } from './interfaces/Identifier';
 import { AdministrativeInformation } from './interfaces/AdministrativeInformation';
 import { ModelType } from './interfaces/ModelType';
 import { Description } from './interfaces/Description';
-import { IdTypeEnum } from '../types/IdTypeEnum';
-import { Key } from './interfaces/Key';
-interface IdentifiableInterface {
+
+import { Key, IKey } from './interfaces/Key';
+interface IIdentifiable {
     modelType: ModelType;
-    idShort?: string;
-    parent?: Reference;
+    idShort: string;
+    parent?: IReference;
     category?: string;
     descriptions?: Description[];
     identification: Identifier;
     administration?: AdministrativeInformation;
 }
-class Identifiable implements Referable, Identifiable {
+interface IIdentifiableConstructor {
+    modelType?: ModelType;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Description[];
+    identification: Identifier;
+    administration?: AdministrativeInformation;
+}
+class Identifiable extends Referable implements Identifiable {
     getReference(): Reference {
-        let keys: Array<Key> = [];
+        super.getReference();
+        let keys: Array<IKey> = [];
         let rootKey = {
             type: this.modelType.name,
             idType: this.identification.idType,
             value: this.identification.id,
             local: true,
-            index: 0,
         };
 
         keys.push(rootKey);
-        return {
+        return new Reference({
             keys: keys,
-        };
+        });
     }
-    modelType: ModelType;
-    idShort?: string;
-    parent?: Reference;
-    category?: string;
-    descriptions: Description[] = [];
+
     identification: Identifier;
     administration?: AdministrativeInformation;
-    constructor(obj: Identifiable) {
-        this.modelType = obj.modelType;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        this.descriptions = obj.descriptions;
+    constructor(obj: IIdentifiableConstructor, modelType: ModelType) {
+        super(obj, modelType);
         this.identification = obj.identification;
         this.administration = obj.administration;
+    }
+    toJSON(): IIdentifiable {
+        let supersJson = super.toJSON();
+        let res: IIdentifiable = {
+            identification: this.identification,
+            administration: this.administration,
+            parent: supersJson.parent,
+            modelType: supersJson.modelType,
+            descriptions: supersJson.descriptions,
+            idShort: supersJson.idShort,
+            category: supersJson.category,
+        };
+        return res;
     }
 }
 

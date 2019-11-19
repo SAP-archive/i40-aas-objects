@@ -1,47 +1,57 @@
-import { applyMixins } from '../characteristics/mixins';
 import { Referable } from '../characteristics/Referable';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference } from '../characteristics/interfaces/Reference';
 import { Description } from '../characteristics/interfaces/Description';
 import { ModelType } from '../characteristics/interfaces/ModelType';
 import { HasKind } from '../characteristics/HasKind';
 import { HasSemantics } from '../characteristics/HasSemantics';
 import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasModelType } from '../characteristics/HasModelType';
 import { KindEnum } from '../types/KindEnum';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-interface SubmodelElementInterface {
+import { Qualifiable } from '../characteristics/Qualifiable';
+import { Constraint } from '../characteristics/interfaces/Constraint';
+interface ISubmodelElement {
     kind?: KindEnum;
-    semanticId?: Reference;
+    semanticId: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
+    qualifiers?: Array<Constraint>;
 }
-class SubmodelElement implements HasModelType, Referable, HasKind, HasSemantics, HasDataSpecification {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    kind: KindEnum = KindEnum.Instance;
-    semanticId?: Reference;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType;
+interface ISubmodelElementConstructor {
+    kind?: KindEnum;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType?: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
-    constructor(obj: SubmodelElementInterface) {
+    descriptions?: Array<Description>;
+    qualifiers?: Array<Constraint>;
+}
+abstract class SubmodelElement extends Referable
+    implements ISubmodelElement, HasKind, HasSemantics, Qualifiable, HasDataSpecification {
+    qualifiers?: Array<Constraint>;
+    kind: KindEnum = KindEnum.Instance;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    constructor(obj: ISubmodelElementConstructor, modelType?: ModelType) {
+        super(obj, modelType);
+        if (obj.qualifiers) this.qualifiers = obj.qualifiers;
         if (obj.kind) this.kind = obj.kind;
         this.semanticId = obj.semanticId;
         if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.modelType = obj.modelType;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
+    }
+
+    toJSON(): ISubmodelElement {
+        let res: any = super.toJSON();
+        res.kind = this.kind;
+        res.semanticId = this.semanticId;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+        return res;
     }
 }
-applyMixins(SubmodelElement, [HasModelType, Referable, HasKind, HasSemantics, HasDataSpecification]);
 
-export { SubmodelElement };
+export { SubmodelElement, ISubmodelElement };

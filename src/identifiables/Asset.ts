@@ -1,7 +1,6 @@
-import { applyMixins } from '../characteristics/mixins';
 import { Identifiable } from '../characteristics/Identifiable';
 import { ModelType } from '../characteristics/interfaces/ModelType';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Identifier } from '../characteristics/interfaces/Identifier';
 import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
 import { HasDataSpecification } from '../characteristics/HasDataSpecification';
@@ -11,47 +10,48 @@ import { EmbeddedDataSpecification } from '../characteristics/interfaces/Embedde
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { Description } from '../characteristics/interfaces/Description';
 
-interface AssetInterface {
-    modelType?: ModelType;
+interface IAsset {
+    modelType: ModelType;
     kind?: KindEnum;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    idShort?: string;
-    parent?: Reference;
+    idShort: string;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
     identification: Identifier;
     administration?: AdministrativeInformation;
-    assetIdentificationModel?: Reference;
+    assetIdentificationModel?: IReference;
 }
 
-class Asset implements Identifiable, HasDataSpecification, HasKind {
-    getReference(): Reference {
-        throw new Error('Method not implemented.');
-    }
-    modelType: ModelType = { name: KeyElementsEnum.Asset };
-    kind: KindEnum = KindEnum.Instance;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    idShort?: string;
-    parent?: Reference;
+interface IAssetConstructor {
+    modelType?: ModelType;
+    kind?: KindEnum;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    idShort: string;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
+    descriptions?: Array<Description>;
     identification: Identifier;
     administration?: AdministrativeInformation;
-    assetIdentificationModel?: Reference;
+    assetIdentificationModel?: IReference;
+}
 
-    constructor(obj: AssetInterface) {
+class Asset extends Identifiable {
+    kind?: KindEnum;
+    assetIdentificationModel?: IReference;
+
+    constructor(obj: IAssetConstructor) {
+        super(obj, { name: KeyElementsEnum.Asset });
+        if (obj.assetIdentificationModel) this.assetIdentificationModel = new Reference(obj.assetIdentificationModel);
         if (obj.kind) this.kind = obj.kind;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        this.identification = obj.identification;
-        this.administration = obj.administration;
-        this.assetIdentificationModel = obj.assetIdentificationModel;
+    }
+    toJSON(): IAsset {
+        let res: any = super.toJSON();
+        res.assetIdentificationModel = this.assetIdentificationModel;
+        res.kind = this.kind;
+
+        return res;
     }
 }
 
-applyMixins(Asset, [Identifiable, HasDataSpecification, HasKind]);
-
-export { Asset, AssetInterface };
+export { Asset, IAssetConstructor, IAsset };

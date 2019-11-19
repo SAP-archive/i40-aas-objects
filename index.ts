@@ -38,13 +38,13 @@ import { ConversationMember, IConversationMember } from './src/interaction/Conve
 
 import { MultiLanguageProperty } from './src/referables/MultiLanguageProperty';
 
-import { SubmodelInterface } from './src/identifiables/Submodel';
+import { ISubmodel } from './src/identifiables/Submodel';
 
-import { AssetInterface } from './src/identifiables/Asset';
+import { IAsset } from './src/identifiables/Asset';
 
-import { AssetAdministrationShellInterface } from './src/identifiables/AssetAdministrationShell';
+import { IAssetAdministrationShell } from './src/identifiables/AssetAdministrationShell';
 
-import { ConceptDescriptionInterface } from './src/identifiables/ConceptDescription';
+import { IConceptDescription } from './src/identifiables/ConceptDescription';
 
 import { InteractionMessage } from './src/interaction/InteractionMessage';
 
@@ -54,10 +54,10 @@ export {
     IInteractionMessage,
     IConversationMember,
     InteractionMessage,
-    SubmodelInterface,
-    AssetInterface,
-    AssetAdministrationShellInterface,
-    ConceptDescriptionInterface,
+    ISubmodel,
+    IAsset,
+    IAssetAdministrationShell,
+    IConceptDescription,
     MultiLanguageProperty,
     IFrame,
     Frame,

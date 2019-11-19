@@ -1,52 +1,48 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference } from '../characteristics/interfaces/Reference';
 import { Description } from '../characteristics/interfaces/Description';
 import { ModelType } from '../characteristics/interfaces/ModelType';
-import { HasModelType } from '../characteristics/HasModelType';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { Property } from './Property';
 import { MultiLanguageProperty } from './MultiLanguageProperty';
 import { Operation } from './Operation';
-interface SubmodelElementCollectionInterface {
+
+interface ISubmodelElementCollection {
     kind?: KindEnum;
-    semanticId?: Reference;
+    semanticId: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
 }
-class SubmodelElementCollection implements HasModelType, SubmodelElement {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    kind: KindEnum = KindEnum.Instance;
-    semanticId?: Reference;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType = { name: KeyElementsEnum.SubmodelElementCollection };
+interface ISubmodelElementCollectionConstructor {
+    kind?: KindEnum;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType?: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
+    descriptions?: Array<Description>;
+    value?: Array<SubmodelElement>;
+    ordered?: boolean;
+    allowDuplicates?: boolean;
+}
+class SubmodelElementCollection extends SubmodelElement implements ISubmodelElementCollection {
     value: Array<SubmodelElement> = [];
     ordered: boolean = false;
     allowDuplicates: boolean = true;
 
-    constructor(obj: SubmodelElementCollectionInterface) {
-        if (obj.kind) this.kind = obj.kind;
-        this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        if (obj.value) this.value = obj.value;
+    constructor(obj: ISubmodelElementCollectionConstructor) {
+        super(obj, { name: KeyElementsEnum.SubmodelElementCollection });
+        if (obj.value) this.setValue(obj.value);
         if (obj.ordered) this.ordered = obj.ordered;
         if (obj.allowDuplicates) this.allowDuplicates = obj.allowDuplicates;
     }
@@ -60,36 +56,46 @@ class SubmodelElementCollection implements HasModelType, SubmodelElement {
         values.forEach(function(value) {
             that.addValue(value);
         });
+        return this;
     }
+
     /*public addValue(value: SubmodelElement) {
     if (this.value.indexOf(value) >= 0 && this.allowDuplicates == false) {
       throw new Error('You can not add an object multiple times with allowDuplicates == false');
     }
     value.parent = this.getReference();
     this.value.push(value);
-  }*/
-
-    public addValue(submodelElement: SubmodelElement) {
+  }
+*/
+    public addValue(submodelElement: ISubmodelElement) {
         submodelElement.parent = this.getReference();
         if (submodelElement.modelType != null) {
-            if (submodelElement.modelType.name === KeyElementsEnum.Property) {
-                let submodelElementTemp: Property = <Property>submodelElement;
-                this.value.push(new Property(submodelElementTemp));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.SubmodelElementCollection) {
-                this.value.push(new SubmodelElementCollection(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.MultiLanguageProperty) {
-                this.value.push(new MultiLanguageProperty(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.Operation) {
-                let submodelElementTemp: Operation = <Operation>submodelElement;
-                this.value.push(new Operation(submodelElementTemp));
-            } else {
-                throw new Error('Only Property and SubmodelElementCollection are supported submodelElements');
+            switch (submodelElement.modelType.name) {
+                case KeyElementsEnum.Property:
+                    this.value.push(new Property(submodelElement as Property));
+                    break;
+                case KeyElementsEnum.SubmodelElementCollection:
+                    this.value.push(new SubmodelElementCollection(submodelElement as SubmodelElementCollection));
+                    break;
+                case KeyElementsEnum.MultiLanguageProperty:
+                    this.value.push(new MultiLanguageProperty(submodelElement as MultiLanguageProperty));
+                    break;
+                case KeyElementsEnum.Operation:
+                    this.value.push(new Operation(submodelElement as Operation));
+                    break;
+                default:
+                    throw new Error(
+                        'Could not parse SubmodeElement. ModelType: ' +
+                            submodelElement.modelType.name +
+                            ' is not supported',
+                    );
             }
         } else {
             throw new Error(
                 `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,
             );
         }
+        return this;
     }
 
     public getValueByIdShort(idShort: string): SubmodelElement {
@@ -122,6 +128,5 @@ class SubmodelElementCollection implements HasModelType, SubmodelElement {
         };
     }
 }
-applyMixins(SubmodelElementCollection, [HasModelType, SubmodelElement]);
 
 export { SubmodelElementCollection };

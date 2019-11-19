@@ -1,11 +1,21 @@
 {
   "assetAdministrationShells": [
     {
+      "asset": {
+        "keys": [
+          {
+            "idType": "IRI",
+            "type": "Submodel",
+            "value": "http://sap.com/order/management/om246063-15a0-4361-bfa7-1g817f91434g0",
+            "local": true
+          }
+        ]
+      },
       "embeddedDataSpecifications": [],
       "descriptions": [],
       "identification": {
         "id": "hilscher.com/NIOT-E-TIJCX-GB-RE/1321.300/6534235",
-        "idType": "URI"
+        "idType": "IRI"
       },
       "modelType": {
         "name": "AssetAdministrationShell"
@@ -15,7 +25,7 @@
         {
           "keys": [
             {
-              "idType": "URI",
+              "idType": "IRI",
               "type": "Submodel",
               "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
             }
@@ -32,7 +42,7 @@
       "semanticId": {
         "keys": [
           {
-            "idType": "URI",
+            "idType": "IRI",
             "type": "GlobalReference",
             "value": "opcfoundation.org/specifications-unified-architecture/part-100-device-information-model/",
             "local": false
@@ -44,7 +54,7 @@
       "idShort": "opc-ua-devices",
       "identification": {
         "id": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22",
-        "idType": "URI"
+        "idType": "IRI"
       },
       "modelType": {
         "name": "Submodel"
@@ -55,7 +65,7 @@
           "semanticId": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "GlobalReference",
                 "value": "opcfoundation.org/specifications-unified-architecture/part-100-device-information-model/deviceHealth",
                 "local": false
@@ -73,7 +83,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -107,7 +117,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -131,7 +141,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -165,7 +175,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -199,7 +209,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -233,7 +243,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -267,7 +277,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -291,7 +301,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -315,7 +325,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -348,7 +358,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -377,7 +387,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -401,7 +411,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -425,7 +435,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -459,7 +469,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -495,7 +505,7 @@
                   },
                   {
                     "index": 1,
-                    "idType": "URI",
+                    "idType": "IRI",
                     "type": "Submodel",
                     "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
                   }
@@ -535,7 +545,7 @@
                   },
                   {
                     "index": 1,
-                    "idType": "URI",
+                    "idType": "IRI",
                     "type": "Submodel",
                     "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
                   }
@@ -571,7 +581,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }
@@ -602,7 +612,7 @@
           "parent": {
             "keys": [
               {
-                "idType": "URI",
+                "idType": "IRI",
                 "type": "Submodel",
                 "value": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22"
               }

@@ -1,7 +1,7 @@
-import { Reference } from './Reference';
+import { IReference } from './Reference';
 
 interface EmbeddedDataSpecification {
-    hasDataSpecification: Reference;
+    hasDataSpecification: IReference;
     dataSpecificationContent: object;
 }
 

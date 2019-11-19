@@ -1,6 +1,8 @@
+import { CountryCodeEnum } from '../../types/CountryCodeEnum';
+
 interface LangString {
-    language: string;
-    value: string;
+    language: CountryCodeEnum;
+    text: string;
 }
 
 export { LangString };

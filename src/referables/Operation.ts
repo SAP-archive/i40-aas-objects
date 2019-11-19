@@ -1,58 +1,59 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Referable } from '../characteristics/Referable';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference } from '../characteristics/interfaces/Reference';
 import { Description } from '../characteristics/interfaces/Description';
 import { ModelType } from '../characteristics/interfaces/ModelType';
-import { HasKind } from '../characteristics/HasKind';
-import { HasSemantics } from '../characteristics/HasSemantics';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasModelType } from '../characteristics/HasModelType';
-import { ValueTypeEnum } from '../types/ValueTypeEnum';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { DataType } from '../types/DataType';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { SubmodelElement } from './SubmodelElement';
 import { OperationVariable } from './OperationVariable';
-interface OperationInterface {
+import { Constraint } from '../characteristics/interfaces/Constraint';
+
+interface IOperation {
     kind?: KindEnum;
-    semanticId?: Reference;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType: ModelType;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    descriptions?: Array<Description>;
+    qualifiers?: Array<Constraint>;
+    inputVariable?: Array<OperationVariable>;
+    outputVariable?: Array<OperationVariable>;
+    inoutputVariable?: Array<OperationVariable>;
+}
+interface IOperationConstructor {
+    kind?: KindEnum;
+    semanticId: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType?: ModelType;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
-    in?: Array<OperationVariable>;
-    out?: Array<OperationVariable>;
+    qualifiers?: Array<Constraint>;
+    inputVariable?: Array<OperationVariable>;
+    outputVariable?: Array<OperationVariable>;
+    inoutputVariable?: Array<OperationVariable>;
 }
-class Operation implements HasModelType, SubmodelElement {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
+class Operation extends SubmodelElement implements IOperation {
+    inputVariable?: Array<OperationVariable> = [];
+    outputVariable?: Array<OperationVariable> = [];
+    inoutputVariable?: Array<OperationVariable> = [];
+
+    constructor(obj: IOperationConstructor) {
+        super(obj, { name: KeyElementsEnum.Operation });
+        this.inputVariable = obj.inputVariable;
+        this.outputVariable = obj.outputVariable;
+        this.inoutputVariable = obj.inoutputVariable;
     }
-    semanticId?: Reference;
-    kind: KindEnum = KindEnum.Instance;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType = { name: KeyElementsEnum.Operation };
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    descriptions: Array<Description> = [];
-    in?: Array<OperationVariable>;
-    out?: Array<OperationVariable>;
-    constructor(obj: OperationInterface) {
-        var that = this;
-        if (obj.kind) this.kind = obj.kind;
-        if (obj.semanticId) this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        this.in = obj.in;
-        this.out = obj.out;
+    toJSON(): IOperation {
+        let res: any = super.toJSON();
+        res.inoutputVariable = this.inputVariable;
+        res.outputVariable = this.outputVariable;
+        res.inoutputVariable = this.inoutputVariable;
+        return res;
     }
 }
-applyMixins(Operation, [HasModelType, SubmodelElement]);
 
 export { Operation };
