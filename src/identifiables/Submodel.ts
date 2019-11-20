@@ -61,7 +61,10 @@ class Submodel extends Identifiable implements ISubmodel, HasKind, HasSemantics,
     getSubmodelElements(): Array<SubmodelElement> {
         return this.submodelElements;
     }
-
+    setSemanticId(semanticId: IReference) {
+        this.semanticId = new Reference(semanticId);
+        return this;
+    }
     getSubmodelIdShort(): string {
         return this.idShort;
     }

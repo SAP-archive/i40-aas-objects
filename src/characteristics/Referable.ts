@@ -63,6 +63,7 @@ abstract class Referable implements HasModelType {
     }
 
     toJSON(): IReferable {
+        this._checkRules();
         return {
             idShort: this.idShort,
             parent: this.parent,
@@ -70,6 +71,11 @@ abstract class Referable implements HasModelType {
             descriptions: this.descriptions,
             modelType: this.modelType,
         };
+    }
+    protected _checkRules() {
+        if (!this.modelType) {
+            throw new Error('Missing required attributes in referable class ');
+        }
     }
 }
 

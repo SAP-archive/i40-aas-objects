@@ -15,7 +15,8 @@
     "prepublish": "npm run clean && npm run build && npm run format",
     "clean": "rm -rf ./dist/*",
     "start": "node /dist/index.js",
-    "browserify": "npm run build && browserify ./dist/index.js --standalone aas --outfile aasForBrowser.js"
+    "browserify": "npm run build && browserify ./dist/index.js --standalone aas --outfile aasForBrowser.js",
+    "docs": "typedoc --out ./docs/ ./src"
   },
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
@@ -33,6 +34,7 @@
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.2.0",
+    "typedoc": "^0.15.2",
     "typescript": "^3.4.5"
   }
 }

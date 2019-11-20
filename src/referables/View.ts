@@ -43,6 +43,10 @@ class View extends Referable implements HasSemantics, HasDataSpecification, IVie
         });
         return this;
     }
+    setSemanticId(semanticId: IReference) {
+        this.semanticId = new Reference(semanticId);
+        return this;
+    }
     toJSON(): IView {
         let res: any = super.toJSON();
         res.semanticId = this.semanticId;

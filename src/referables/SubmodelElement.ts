@@ -1,5 +1,5 @@
 import { Referable } from '../characteristics/Referable';
-import { IReference } from '../characteristics/interfaces/Reference';
+import { IReference, Reference } from '../characteristics/interfaces/Reference';
 import { Description } from '../characteristics/interfaces/Description';
 import { ModelType } from '../characteristics/interfaces/ModelType';
 import { HasKind } from '../characteristics/HasKind';
@@ -22,7 +22,7 @@ interface ISubmodelElement {
 }
 interface ISubmodelElementConstructor {
     kind?: KindEnum;
-    semanticId: IReference;
+    semanticId?: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType?: ModelType;
     idShort: string;
@@ -35,22 +35,32 @@ abstract class SubmodelElement extends Referable
     implements ISubmodelElement, HasKind, HasSemantics, Qualifiable, HasDataSpecification {
     qualifiers?: Array<Constraint>;
     kind: KindEnum = KindEnum.Instance;
-    semanticId: IReference;
+    semanticId!: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     constructor(obj: ISubmodelElementConstructor, modelType?: ModelType) {
         super(obj, modelType);
         if (obj.qualifiers) this.qualifiers = obj.qualifiers;
         if (obj.kind) this.kind = obj.kind;
-        this.semanticId = obj.semanticId;
+        if (obj.semanticId) this.semanticId = obj.semanticId;
         if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
     }
-
+    setSemanticId(semanticId: IReference) {
+        this.semanticId = new Reference(semanticId);
+        return this;
+    }
     toJSON(): ISubmodelElement {
+        this._checkRules();
         let res: any = super.toJSON();
         res.kind = this.kind;
         res.semanticId = this.semanticId;
         res.embeddedDataSpecifications = this.embeddedDataSpecifications;
         return res;
+    }
+    protected _checkRules() {
+        super._checkRules();
+        if (!this.semanticId) {
+            throw new Error('Missing required attributes in submodelElement class ');
+        }
     }
 }
 

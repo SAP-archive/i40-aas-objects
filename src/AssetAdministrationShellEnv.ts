@@ -26,12 +26,15 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     conceptDescriptions: Array<ConceptDescription> = [];
     assets: Array<Asset> = [];
 
-    constructor(obj: IAssetAdministrationShellEnv) {
-        this.setAssetAdministrationShells(obj.assetAdministrationShells);
-        this.setSubmodels(obj.submodels);
-        this.setAssets(obj.assets);
-        this.setConceptDescriptions(obj.conceptDescriptions);
+    constructor(obj?: IAssetAdministrationShellEnv) {
+        if (obj) {
+            this.setAssetAdministrationShells(obj.assetAdministrationShells);
+            this.setSubmodels(obj.submodels);
+            this.setAssets(obj.assets);
+            this.setConceptDescriptions(obj.conceptDescriptions);
+        }
     }
+
     setAssetAdministrationShells(assetAdministrationShellsIn: Array<AssetAdministrationShell>) {
         this.assetAdministrationShells = [];
         var that = this;

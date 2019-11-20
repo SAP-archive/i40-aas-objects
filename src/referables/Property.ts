@@ -3,7 +3,7 @@ import { Description } from '../characteristics/interfaces/Description';
 import { ModelType } from '../characteristics/interfaces/ModelType';
 import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { anyAtomicType } from '../types/anyAtomicType';
+import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { SubmodelElement } from './SubmodelElement';
 interface IProperty {
@@ -17,11 +17,11 @@ interface IProperty {
     descriptions?: Array<Description>;
     valueId?: IReference;
     value?: string;
-    valueType: anyAtomicType;
+    valueType: AnyAtomicTypeEnum;
 }
 interface IPropertyConstructor {
     kind?: KindEnum;
-    semanticId: IReference;
+    semanticId?: IReference;
     embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType?: ModelType;
     idShort: string;
@@ -30,12 +30,12 @@ interface IPropertyConstructor {
     descriptions?: Array<Description>;
     valueId?: IReference;
     value?: string;
-    valueType: anyAtomicType;
+    valueType: AnyAtomicTypeEnum;
 }
 class Property extends SubmodelElement implements IProperty {
     valueId?: IReference;
     value?: string;
-    valueType: anyAtomicType;
+    valueType: AnyAtomicTypeEnum;
     constructor(obj: IPropertyConstructor) {
         super(obj, { name: KeyElementsEnum.Property });
         this.valueId = obj.valueId;

@@ -49,6 +49,7 @@ class Identifiable extends Referable implements Identifiable {
         this.administration = obj.administration;
     }
     toJSON(): IIdentifiable {
+        this._checkRules();
         let supersJson = super.toJSON();
         let res: IIdentifiable = {
             identification: this.identification,
@@ -60,6 +61,12 @@ class Identifiable extends Referable implements Identifiable {
             category: supersJson.category,
         };
         return res;
+    }
+    protected _checkRules() {
+        super._checkRules();
+        if (!this.idShort || !this.identification) {
+            throw new Error('Missing required attributes in identifiable class ');
+        }
     }
 }
 

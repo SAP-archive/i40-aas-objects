@@ -45,6 +45,12 @@ class Asset extends Identifiable {
         if (obj.assetIdentificationModel) this.assetIdentificationModel = new Reference(obj.assetIdentificationModel);
         if (obj.kind) this.kind = obj.kind;
     }
+
+    addAssetIdentificationModel(assetIdentificationModel: IReference) {
+        this.assetIdentificationModel = new Reference(assetIdentificationModel);
+        return this;
+    }
+
     toJSON(): IAsset {
         let res: any = super.toJSON();
         res.assetIdentificationModel = this.assetIdentificationModel;

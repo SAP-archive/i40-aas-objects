@@ -9,7 +9,6 @@ import testEnv from './testEnv.json';
 describe('Construct AssetAdministrationShellEnv', function() {
     it('create an AssetAdministrationShellEnv By JSON', function() {
         let aasEnv = new AssetAdministrationShellEnv(testEnv);
-        console.log(JSON.stringify(aasEnv));
         //fs.writeFileSync('./result.json', JSON.stringify(aasEnv, null, 3));
         expect(Object.keys(aasEnv)).to.have.members([
             'assetAdministrationShells',

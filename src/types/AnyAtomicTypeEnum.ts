@@ -1,4 +1,4 @@
-enum anyAtomicType {
+enum AnyAtomicTypeEnum {
     anyURI = 'anyURI',
     base64Binary = 'base64Binary',
     boolean = 'boolean',
@@ -44,4 +44,4 @@ enum anyAtomicType {
     NMTOKEN = 'NMTOKEN',
     time = 'time',
 }
-export { anyAtomicType };
+export { AnyAtomicTypeEnum };

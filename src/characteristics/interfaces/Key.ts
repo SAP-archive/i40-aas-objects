@@ -20,7 +20,7 @@ class Key implements IKey {
         if (this.local == undefined) {
             this.local = true;
         }
-        if (!this.idType || !this.local || !this.type || !this.value) {
+        if (!this.idType || this.local == undefined || !this.type || !this.value) {
             throw new Error('idType,local,type, and value are required.');
         }
     }

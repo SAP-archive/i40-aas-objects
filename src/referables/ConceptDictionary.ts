@@ -9,26 +9,20 @@ import { Constraint } from '../characteristics/interfaces/Constraint';
 
 interface IConceptDictionary {
     kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType: ModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
     conceptDescriptions?: Array<IReference>;
 }
 interface IConceptDictionaryConstructor {
     kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
     modelType?: ModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
     descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
     conceptDescriptions?: Array<IReference>;
 }
 class ConceptDictionary extends Referable {
@@ -54,4 +48,4 @@ class ConceptDictionary extends Referable {
     }
 }
 
-export { ConceptDictionary };
+export { ConceptDictionary, IConceptDictionaryConstructor, IConceptDictionary };

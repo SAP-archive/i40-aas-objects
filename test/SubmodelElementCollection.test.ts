@@ -6,7 +6,7 @@ import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
 import { SubmodelElement } from '../src/referables/SubmodelElement';
 import { Property } from '../src/referables/Property';
 import { SubmodelElementCollection } from '../src/referables/SubmodelElementCollection';
-import { anyAtomicType } from '../src/types/anyAtomicType';
+import { AnyAtomicTypeEnum } from '../src/types/AnyAtomicTypeEnum';
 
 describe('Construct SubmodelElementCollection', function() {
     it('create an Submodel', function() {
@@ -69,7 +69,7 @@ describe('Get SubmodelElement by idShort', function() {
                             },
                         ],
                     },
-                    valueType: anyAtomicType.float,
+                    valueType: AnyAtomicTypeEnum.float,
                 }),
             ],
         });
@@ -99,7 +99,7 @@ describe('Get SubmodelElement by idShort', function() {
                             },
                         ],
                     },
-                    valueType: anyAtomicType.float,
+                    valueType: AnyAtomicTypeEnum.float,
                 }),
             ),
         );
