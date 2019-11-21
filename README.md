@@ -7,14 +7,22 @@ Provide a set of tools to realize the Asset Administration Shell for Industrie 4
 ---
 
 #### Contents:  
-1. [Description](#description)
-1. [Requirements](#requirements)
-1. [Download and Installation](#download-and-installation)
-1. [Known Issues](#known-issues)
-1. [How to obtain support](#how-to-obtain-support)
-1. [Contributing](#contributing)
-1. [Upcoming Changes](#upcoming-changes)
-1. [License](#license)
+- [i40-aas-objects](#i40-aas-objects)
+      - [Contents:](#contents)
+  - [Description](#description)
+  - [Requirements](#requirements)
+  - [Download and Installation](#download-and-installation)
+    - [1. Create an empty Node.js project](#1-create-an-empty-nodejs-project)
+    - [2. Prepare the TypeScript project](#2-prepare-the-typescript-project)
+    - [3. Add i40-aas-objects dependency in your package.json](#3-add-i40-aas-objects-dependency-in-your-packagejson)
+    - [4. Use i40-aas-objects](#4-use-i40-aas-objects)
+  - [Configuration [Optional]](#configuration-optional)
+  - [Limitations [Optional]](#limitations-optional)
+  - [Known Issues](#known-issues)
+  - [How to obtain support](#how-to-obtain-support)
+  - [Contributing](#contributing)
+  - [Upcoming changes](#upcoming-changes)
+  - [License](#license)
 
 ## Description
 
@@ -120,7 +128,63 @@ Or add it manually to your `package.json`. (**NOTE**: You need to run `npm i` af
   "license": "SEE LICENSE IN LICENSE"
 }
 ```
+### 4. Use i40-aas-objects
 
+```typescript
+
+import {
+  AssetAdministrationShellEnv, Asset,AssetAdministrationShell,Submodel,IdTypeEnum,Property,AnyAtomicTypeEnum,Reference,KeyElementsEnum,CountryCodeEnum
+  } from 'i40-aas-objects';
+
+  /* Create a Submodel and add a new Property to it*/
+    var myAssetIdentificationModel = new Submodel({
+        identification: { id: 'http://test.com/submodel/id/identification123', idType: IdTypeEnum.IRDI },
+        idShort: 'identification123',
+    }).addSubmodelElement(
+        new Property({
+            idShort: 'ManufacturerName',
+            descriptions: [
+                {
+                    language: CountryCodeEnum.UnitedStates,
+                    text: '	legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation',
+                },
+            ],
+            valueType: AnyAtomicTypeEnum.string,
+        }).setSemanticId(
+            new Reference({
+                keys: [
+                    {
+                        local: false,
+                        type: KeyElementsEnum.GlobalReference,
+                        idType: IdTypeEnum.IRDI,
+                        value: '0173-1#02-AAO677#002',
+                    },
+                ],
+            }),
+        ),
+    );
+
+    /* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/
+    var myAsset = new Asset({
+        identification: { id: 'http://test.com/asset/123', idType: IdTypeEnum.IRDI },
+        idShort: '123',
+    }).addAssetIdentificationModel(myAssetIdentificationModel.getReference());
+
+    /* Create an AAS and add a reference to the previously created asset as its asset*/
+    var myAas = new AssetAdministrationShell({
+        identification: { id: 'http://test.com/aas/id/aas123', idType: IdTypeEnum.IRDI },
+        idShort: 'identification123',
+    }).setAsset(myAsset.getReference());
+
+    /* Create an environment and add all identifiables */
+    var myNewAasEnv = new AssetAdministrationShellEnv()
+        .addAssetAdministrationShell(myAas)
+        .addAsset(myAsset)
+        .addSubmodel(myAssetIdentificationModel);
+
+    /* print the environment to the console */
+    console.log(JSON.stringify(myNewAasEnv, null, 3));
+```
 <!---
 ## Configuration [Optional]
 

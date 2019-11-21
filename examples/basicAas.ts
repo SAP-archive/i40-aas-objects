@@ -18,11 +18,12 @@ var run = function() {
         idShort: 'identification123',
     }).addSubmodelElement(
         new Property({
-            idShort: 'workingTemperature',
+            idShort: 'ManufacturerName',
             descriptions: [
                 {
                     language: CountryCodeEnum.UnitedStates,
-                    text: 'device temperature which is required for working according to the regulation',
+                    text:
+                        '	legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation',
                 },
             ],
             valueType: AnyAtomicTypeEnum.string,
@@ -33,13 +34,12 @@ var run = function() {
                         local: false,
                         type: KeyElementsEnum.GlobalReference,
                         idType: IdTypeEnum.IRDI,
-                        value: '0173-1#02-AAJ936#003',
+                        value: '0173-1#02-AAO677#002',
                     },
                 ],
             }),
         ),
     );
-
     /* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/
     var myAsset = new Asset({
         identification: { id: 'http://test.com/asset/123', idType: IdTypeEnum.IRDI },
