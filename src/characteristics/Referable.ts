@@ -1,36 +1,37 @@
 import { Reference, IReference } from '../characteristics/interfaces/Reference';
-import { Description } from './interfaces/Description';
-import { HasModelType } from './HasModelType';
-import { ModelType } from './interfaces/ModelType';
+import { IHasModelType } from './HasModelType';
+import { IModelType, IModelTypeConstructor } from './interfaces/ModelType';
 import { IdTypeEnum } from '../types/IdTypeEnum';
 import { Key } from './interfaces/Key';
+import { ILangString } from './interfaces/LangString';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
 interface IReferable {
-    modelType: ModelType;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
 }
 interface IReferableConstructor {
-    modelType?: ModelType;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
 }
-abstract class Referable implements HasModelType {
-    modelType: ModelType;
+abstract class Referable implements IHasModelType {
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
-    constructor(obj: IReferableConstructor, modelType?: ModelType) {
-        let modelTypeTemp: ModelType;
+    descriptions: Array<ILangString> = [];
+    constructor(obj: IReferableConstructor, modelType?: IModelType) {
+        let modelTypeTemp: IModelType;
         if (modelType) {
             modelTypeTemp = modelType;
         } else if (obj.modelType) {
-            modelTypeTemp = obj.modelType;
+            modelTypeTemp = { name: (<any>KeyElementsEnum)[obj.modelType.name] };
         } else {
             throw new Error('A Referable requires a modelType');
         }

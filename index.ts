@@ -18,7 +18,7 @@ import { Reference } from './src/characteristics/interfaces/Reference';
 
 import { Key } from './src/characteristics/interfaces/Key';
 
-import { Identifier } from './src/characteristics/interfaces/Identifier';
+import { IIdentifier } from './src/characteristics/interfaces/Identifier';
 
 import { DataspecificationIEC61360 } from './src/dataspecifications/DataSpecificationIEC61360';
 
@@ -31,8 +31,6 @@ import { OperationVariable } from './src/referables/OperationVariable';
 import { validate } from './src/validator';
 
 import { Frame, IFrame } from './src/interaction/Frame';
-
-import { Interaction } from './src/interaction/Interaction';
 
 import { ConversationMember, IConversationMember } from './src/interaction/ConversationMember';
 
@@ -69,7 +67,6 @@ export {
     MultiLanguageProperty,
     IFrame,
     Frame,
-    Interaction,
     ConversationMember,
     AssetAdministrationShellEnv,
     validate,
@@ -85,6 +82,6 @@ export {
     IdTypeEnum,
     Reference,
     Key,
-    Identifier,
+    IIdentifier,
     DataspecificationIEC61360,
 };

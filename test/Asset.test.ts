@@ -84,7 +84,7 @@ describe('Add an assetIdentficationModel to the Asset', function() {
         });
 
         expect(
-            asset.addAssetIdentificationModel({
+            asset.setAssetIdentificationModel({
                 keys: [{ idType: IdTypeEnum.IRI, value: 'asda/adjea', type: KeyElementsEnum.Submodel, local: true }],
             }),
         ).to.have.keys(
@@ -95,6 +95,7 @@ describe('Add an assetIdentficationModel to the Asset', function() {
             'administration',
             'category',
             'descriptions',
+            'kind',
         );
     });
 });

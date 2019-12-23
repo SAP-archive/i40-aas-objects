@@ -1,7 +1,11 @@
 import { KeyElementsEnum } from '../../types/KeyElementsEnum';
 
-interface ModelType {
+interface IModelType {
     name: KeyElementsEnum;
 }
 
-export { ModelType };
+interface IModelTypeConstructor {
+    name: string;
+}
+
+export { IModelType, IModelTypeConstructor };

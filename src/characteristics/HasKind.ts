@@ -1,9 +1,12 @@
 import { KindEnum } from '../types/KindEnum';
 
-class HasKind {
+interface IHasKind {
+    kind: KindEnum;
+}
+class HasKind implements IHasKind {
     kind: KindEnum;
     constructor(obj: HasKind) {
         this.kind = obj.kind;
     }
 }
-export { HasKind };
+export { HasKind, IHasKind };

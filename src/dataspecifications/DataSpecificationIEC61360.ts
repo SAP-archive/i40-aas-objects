@@ -1,31 +1,36 @@
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference } from '../characteristics/interfaces/Reference';
+import { ILangString } from '../characteristics/interfaces/LangString';
 
-interface DataspecificationIEC61360Interface {
-    preferredName?: string;
-    shortName?: string;
+interface IDataspecificationIEC61360 {
+    preferredName: Array<ILangString>;
+    shortName?: Array<ILangString>;
     unit?: string;
-    unitId?: Reference;
-    sourceOfDefinition?: Reference;
+    unitId?: IReference;
+    sourceOfDefinition?: string;
     symbol?: string;
     dataType?: string;
-    definition?: string;
+    definition?: Array<ILangString>;
     valueFormat?: string;
     valueList?: string;
-    code?: string;
+    value?: string;
+    valueId?: IReference;
+    levelType?: Array<object>;
 }
-class DataspecificationIEC61360 implements DataspecificationIEC61360Interface {
-    preferredName?: string | undefined;
-    shortName?: string | undefined;
-    unit?: string | undefined;
-    unitId?: Reference | undefined;
-    sourceOfDefinition?: Reference | undefined;
-    symbol: string | undefined;
-    dataType: string | undefined;
-    definition?: string | undefined;
-    valueFormat?: string | undefined;
-    valueList?: string | undefined;
-    code?: string | undefined;
-    constructor(obj: DataspecificationIEC61360Interface) {
+class DataspecificationIEC61360 implements IDataspecificationIEC61360 {
+    preferredName: Array<ILangString>;
+    shortName?: Array<ILangString>;
+    unit?: string;
+    unitId?: IReference;
+    sourceOfDefinition?: string;
+    symbol?: string;
+    dataType?: string;
+    definition?: Array<ILangString>;
+    valueFormat?: string;
+    valueList?: string;
+    value?: string;
+    valueId?: IReference;
+    levelType?: Array<object>;
+    constructor(obj: IDataspecificationIEC61360) {
         this.preferredName = obj.preferredName;
         this.shortName = obj.shortName;
         this.unit = obj.unit;
@@ -36,8 +41,10 @@ class DataspecificationIEC61360 implements DataspecificationIEC61360Interface {
         this.definition = obj.definition;
         this.valueFormat = obj.valueFormat;
         this.valueList = obj.valueList;
-        this.code = obj.valueList;
+        this.value = obj.value;
+        this.valueId = obj.valueId;
+        this.levelType = obj.levelType;
     }
 }
 
-export { DataspecificationIEC61360 };
+export { DataspecificationIEC61360, IDataspecificationIEC61360 };

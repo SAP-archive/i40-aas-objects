@@ -1,23 +1,23 @@
 import { IReference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement, ISubmodelElementConstructor } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { Property } from './Property';
+import { Property, IPropertyConstructor } from './Property';
 import { MultiLanguageProperty } from './MultiLanguageProperty';
 import { Operation } from './Operation';
+import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface ISubmodelElementCollection {
     kind?: KindEnum;
     semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
@@ -25,12 +25,12 @@ interface ISubmodelElementCollection {
 interface ISubmodelElementCollectionConstructor {
     kind?: KindEnum;
     semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType?: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
@@ -67,12 +67,12 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     this.value.push(value);
   }
 */
-    public addValue(submodelElement: ISubmodelElement) {
+    public addValue(submodelElement: ISubmodelElementConstructor) {
         submodelElement.parent = this.getReference();
         if (submodelElement.modelType != null) {
             switch (submodelElement.modelType.name) {
                 case KeyElementsEnum.Property:
-                    this.value.push(new Property(submodelElement as Property));
+                    this.value.push(new Property(submodelElement as IPropertyConstructor));
                     break;
                 case KeyElementsEnum.SubmodelElementCollection:
                     this.value.push(new SubmodelElementCollection(submodelElement as SubmodelElementCollection));

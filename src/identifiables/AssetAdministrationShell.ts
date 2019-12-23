@@ -2,38 +2,38 @@ import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Identifiable } from '../characteristics/Identifiable';
 import { ConceptDictionary, IConceptDictionaryConstructor, IConceptDictionary } from '../referables/ConceptDictionary';
 import { View } from '../referables/View';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { Identifier } from '../characteristics/interfaces/Identifier';
-import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { ModelType } from '../characteristics/interfaces/ModelType';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IIdentifier } from '../characteristics/interfaces/Identifier';
+import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { Description } from '../characteristics/interfaces/Description';
+import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IAssetAdministrationShell {
-    modelType: ModelType;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType: IModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     derivedFrom?: IReference;
     security?: any;
     submodels?: Array<IReference>;
-    conceptDictionaries?: Array<IConceptDictionary>;
+    conceptDictionaries?: Array<ConceptDictionary>;
     views?: Array<View>;
     asset: IReference;
 }
 interface IAssetAdministrationShellConstructor {
-    modelType?: ModelType;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     derivedFrom?: IReference;
     security?: any;
     submodels?: Array<IReference>;
@@ -45,7 +45,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
     public derivedFrom?: IReference;
     public security?: any;
     public submodels: Array<IReference> = [];
-    public conceptDictionaries?: Array<IConceptDictionary>;
+    public conceptDictionaries?: Array<ConceptDictionary>;
     public views?: Array<View>;
     public asset!: IReference;
 

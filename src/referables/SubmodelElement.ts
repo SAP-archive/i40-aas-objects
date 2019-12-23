@@ -1,43 +1,43 @@
 import { Referable } from '../characteristics/Referable';
 import { IReference, Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { ModelType } from '../characteristics/interfaces/ModelType';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
 import { HasKind } from '../characteristics/HasKind';
 import { HasSemantics } from '../characteristics/HasSemantics';
 import { HasDataSpecification } from '../characteristics/HasDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { Qualifiable } from '../characteristics/Qualifiable';
-import { Constraint } from '../characteristics/interfaces/Constraint';
+import { IConstraint } from '../characteristics/interfaces/Constraint';
+import { ILangString } from '../characteristics/interfaces/LangString';
 interface ISubmodelElement {
     kind?: KindEnum;
     semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
+    descriptions?: Array<ILangString>;
+    qualifiers?: Array<IConstraint>;
 }
 interface ISubmodelElementConstructor {
     kind?: KindEnum;
     semanticId?: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType?: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
+    descriptions?: Array<ILangString>;
+    qualifiers?: Array<IConstraint>;
 }
 abstract class SubmodelElement extends Referable
     implements ISubmodelElement, HasKind, HasSemantics, Qualifiable, HasDataSpecification {
-    qualifiers?: Array<Constraint>;
+    qualifiers?: Array<IConstraint>;
     kind: KindEnum = KindEnum.Instance;
     semanticId!: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    constructor(obj: ISubmodelElementConstructor, modelType?: ModelType) {
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    constructor(obj: ISubmodelElementConstructor, modelType?: IModelType) {
         super(obj, modelType);
         if (obj.qualifiers) this.qualifiers = obj.qualifiers;
         if (obj.kind) this.kind = obj.kind;
@@ -59,9 +59,11 @@ abstract class SubmodelElement extends Referable
     protected _checkRules() {
         super._checkRules();
         if (!this.semanticId) {
-            throw new Error('Missing required attributes in submodelElement class ');
+            throw new Error(
+                'Missing required attributes in submodelElement class. Instance with IdShort: ' + this.idShort,
+            );
         }
     }
 }
 
-export { SubmodelElement, ISubmodelElement };
+export { SubmodelElement, ISubmodelElement, ISubmodelElementConstructor };

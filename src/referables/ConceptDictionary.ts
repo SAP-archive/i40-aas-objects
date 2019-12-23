@@ -1,32 +1,27 @@
 import { Referable } from '../characteristics/Referable';
 import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { KindEnum } from '../types/KindEnum';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { Description } from '../characteristics/interfaces/Description';
-import { Constraint } from '../characteristics/interfaces/Constraint';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
+import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IConceptDictionary {
-    kind?: KindEnum;
-    modelType: ModelType;
+    modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
-    descriptions?: Array<Description>;
-    conceptDescriptions?: Array<IReference>;
+    descriptions?: Array<ILangString>;
+    conceptDescriptions?: Array<Reference>;
 }
 interface IConceptDictionaryConstructor {
-    kind?: KindEnum;
-    modelType?: ModelType;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
     conceptDescriptions?: Array<IReference>;
 }
 class ConceptDictionary extends Referable {
-    conceptDescriptions: Array<IReference> = [];
+    conceptDescriptions: Array<Reference> = [];
     constructor(obj: IConceptDictionaryConstructor) {
         super(obj, { name: KeyElementsEnum.ConceptDictionary });
         if (obj.conceptDescriptions) this.setConceptDescriptions(obj.conceptDescriptions);

@@ -1,34 +1,34 @@
 import { Referable } from '../characteristics/Referable';
 import { IReference, Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
 import { HasDataSpecification } from '../characteristics/HasDataSpecification';
 import { HasSemantics } from '../characteristics/HasSemantics';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { ILangString } from '../characteristics/interfaces/LangString';
 interface IView {
-    modelType: ModelType;
+    modelType: IModelType;
     semanticId?: IReference;
-    embeddedDataSpecifications?: EmbeddedDataSpecification[];
+    embeddedDataSpecifications?: IEmbeddedDataSpecification[];
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
 }
 interface IViewConstructor {
-    modelType?: ModelType;
+    modelType?: IModelTypeConstructor;
     semanticId?: IReference;
-    embeddedDataSpecifications?: EmbeddedDataSpecification[];
+    embeddedDataSpecifications?: IEmbeddedDataSpecification[];
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
+    descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
 }
 class View extends Referable implements HasSemantics, HasDataSpecification, IView {
     semanticId?: IReference;
-    embeddedDataSpecifications: EmbeddedDataSpecification[] = [];
+    embeddedDataSpecifications: IEmbeddedDataSpecification[] = [];
     containedElements: Array<IReference> = [];
     constructor(obj: IViewConstructor) {
         super(obj, { name: KeyElementsEnum.View });

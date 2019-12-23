@@ -1,8 +1,8 @@
 import { IdTypeEnum } from '../../types/IdTypeEnum';
 
-interface Identifier {
+interface IIdentifier {
     id: string;
     idType: IdTypeEnum;
 }
 
-export { Identifier };
+export { IIdentifier };

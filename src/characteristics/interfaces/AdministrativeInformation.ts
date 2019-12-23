@@ -1,6 +1,6 @@
-interface AdministrativeInformation {
+interface IAdministrativeInformation {
     version: string;
     revision: string;
 }
 
-export { AdministrativeInformation };
+export { IAdministrativeInformation };

@@ -25,7 +25,7 @@ describe('Construct ConceptDescription', function() {
                         ],
                     },
                     dataSpecificationContent: {
-                        shortName: 'throughput',
+                        preferredName: [{ language: CountryCodeEnum.UnitedStates, text: 'throughput' }],
                         unit: 'pcs',
                     },
                 },

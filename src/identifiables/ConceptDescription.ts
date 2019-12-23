@@ -1,34 +1,32 @@
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasModelType } from '../characteristics/HasModelType';
 import { Identifiable } from '../characteristics/Identifiable';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { ModelType } from '../characteristics/interfaces/ModelType';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
 import { Reference, IReference } from '../characteristics/interfaces/Reference';
-import { Identifier } from '../characteristics/interfaces/Identifier';
-import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { Description } from '../characteristics/interfaces/Description';
+import { IIdentifier } from '../characteristics/interfaces/Identifier';
+import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IConceptDescription {
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     isCaseOf?: IReference;
 }
 interface IConceptDescriptionConstructor {
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType?: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     isCaseOf?: IReference;
 }
 class ConceptDescription extends Identifiable implements IConceptDescription {

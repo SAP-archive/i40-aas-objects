@@ -19,13 +19,13 @@ class Frame implements IFrame {
     sender: ConversationMember;
     conversationId: string;
 
-    constructor(obj: Frame) {
+    constructor(obj: IFrame) {
         this.semanticProtocol = obj.semanticProtocol;
         this.type = obj.type;
         this.messageId = obj.messageId;
         this.replyBy = +obj.conversationId; //parse to number
-        this.receiver = obj.receiver;
-        this.sender = obj.sender;
+        this.receiver = new ConversationMember(obj.receiver);
+        this.sender = new ConversationMember(obj.sender);
         this.conversationId = obj.conversationId;
     }
 }

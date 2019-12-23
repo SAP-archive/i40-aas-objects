@@ -1,11 +1,11 @@
-import { ModelType } from './ModelType';
-import { Reference } from './Reference';
+import { IModelType } from './ModelType';
+import { IReference } from './Reference';
 
-interface Qualifier {
-    modelType: ModelType;
+interface IQualifier {
+    modelType: IModelType;
     qualifierType: any;
     qualifierValue: any;
-    qualifierValueId: Reference;
+    qualifierValueId: IReference;
 }
 
-export { Qualifier };
+export { IQualifier };

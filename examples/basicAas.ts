@@ -44,7 +44,7 @@ var run = function() {
     var myAsset = new Asset({
         identification: { id: 'http://test.com/asset/123', idType: IdTypeEnum.IRDI },
         idShort: '123',
-    }).addAssetIdentificationModel(myAssetIdentificationModel.getReference());
+    }).setAssetIdentificationModel(myAssetIdentificationModel.getReference());
 
     /* Create an AAS and add a reference to the previously created asset as its asset*/
     var myAas = new AssetAdministrationShell({

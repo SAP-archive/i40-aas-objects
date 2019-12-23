@@ -1,7 +1,7 @@
-import { ModelType } from './ModelType';
+import { IModelType } from './ModelType';
 
-interface Constraint {
-    modelType: ModelType;
+interface IConstraint {
+    modelType: IModelType;
 }
 
-export { Constraint };
+export { IConstraint };

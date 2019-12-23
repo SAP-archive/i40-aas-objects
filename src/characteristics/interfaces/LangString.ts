@@ -1,8 +1,8 @@
 import { CountryCodeEnum } from '../../types/CountryCodeEnum';
 
-interface LangString {
+interface ILangString {
     language: CountryCodeEnum;
     text: string;
 }
 
-export { LangString };
+export { ILangString };

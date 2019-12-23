@@ -11,22 +11,30 @@ import {
 import { Asset, IAssetConstructor, IAsset } from './identifiables/Asset';
 import { IReference, Reference } from './characteristics/interfaces/Reference';
 import { Referable } from './characteristics/Referable';
-import { ModelType } from './characteristics/interfaces/ModelType';
+import { IModelType } from './characteristics/interfaces/ModelType';
 import { IKey } from './characteristics/interfaces/Key';
 import { Identifiable } from './characteristics/Identifiable';
+interface IAssetAdministrationShellEnvConstructor {
+    assetAdministrationShells: Array<IAssetAdministrationShellConstructor>;
+    submodels: Array<ISubmodelConstructor>;
+    conceptDescriptions: Array<IConceptDescriptionConstructor>;
+    assets: Array<IAssetConstructor>;
+}
+
 interface IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell>;
     submodels: Array<Submodel>;
     conceptDescriptions: Array<ConceptDescription>;
     assets: Array<Asset>;
 }
+
 class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell> = [];
     submodels: Array<Submodel> = [];
     conceptDescriptions: Array<ConceptDescription> = [];
     assets: Array<Asset> = [];
 
-    constructor(obj?: IAssetAdministrationShellEnv) {
+    constructor(obj?: IAssetAdministrationShellEnvConstructor) {
         if (obj) {
             this.setAssetAdministrationShells(obj.assetAdministrationShells);
             this.setSubmodels(obj.submodels);
@@ -35,11 +43,11 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
         }
     }
 
-    setAssetAdministrationShells(assetAdministrationShellsIn: Array<AssetAdministrationShell>) {
+    setAssetAdministrationShells(assetAdministrationShellsIn: Array<IAssetAdministrationShellConstructor>) {
         this.assetAdministrationShells = [];
         var that = this;
         assetAdministrationShellsIn.forEach(assetAdministrationShell => {
-            that.addAssetAdministrationShell(assetAdministrationShell);
+            that.addAssetAdministrationShell(new AssetAdministrationShell(assetAdministrationShell));
         });
         return this;
     }
@@ -47,38 +55,38 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     getAssetAdministrationShells(): Array<AssetAdministrationShell> {
         return this.assetAdministrationShells;
     }
-    addAssetAdministrationShell(assetAdministrationShell: IAssetAdministrationShellConstructor) {
-        this.assetAdministrationShells.push(new AssetAdministrationShell(assetAdministrationShell));
+    addAssetAdministrationShell(assetAdministrationShell: AssetAdministrationShell) {
+        this.assetAdministrationShells.push(assetAdministrationShell);
         return this;
     }
     getSubmodels() {
         return this.submodels;
     }
-    setSubmodels(submodels: Array<ISubmodel>) {
+    setSubmodels(submodels: Array<ISubmodelConstructor>) {
         this.submodels = [];
         var that = this;
         submodels.forEach(submodel => {
-            that.addSubmodel(submodel);
+            that.addSubmodel(new Submodel(submodel));
         });
         return this;
     }
-    addSubmodel(submodel: ISubmodelConstructor) {
-        this.submodels.push(new Submodel(submodel));
+    addSubmodel(submodel: Submodel) {
+        this.submodels.push(submodel);
         return this;
     }
     getConceptDescriptions() {
         return this.conceptDescriptions;
     }
-    setConceptDescriptions(conceptDescriptions: Array<IConceptDescription>) {
+    setConceptDescriptions(conceptDescriptions: Array<IConceptDescriptionConstructor>) {
         this.conceptDescriptions = [];
         var that = this;
         conceptDescriptions.forEach(conceptDescription => {
-            that.addConceptDescription(conceptDescription);
+            that.addConceptDescription(new ConceptDescription(conceptDescription));
         });
         return this;
     }
-    addConceptDescription(conceptDescription: IConceptDescriptionConstructor) {
-        this.conceptDescriptions.push(new ConceptDescription(conceptDescription));
+    addConceptDescription(conceptDescription: ConceptDescription) {
+        this.conceptDescriptions.push(conceptDescription);
         return this;
     }
 
@@ -86,15 +94,15 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
         return this.assets;
     }
 
-    setAssets(assets: Array<IAsset>) {
+    setAssets(assets: Array<IAssetConstructor>) {
         this.assets = [];
         var that = this;
         assets.forEach(asset => {
-            that.addAsset(asset);
+            that.addAsset(new Asset(asset));
         });
     }
-    addAsset(asset: IAssetConstructor) {
-        this.assets.push(new Asset(asset));
+    addAsset(asset: Asset) {
+        this.assets.push(asset);
         return this;
     }
     getInstance(ref: IReference): Referable {
@@ -119,7 +127,7 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
         });
         return structure;
     }
-    getStructureAggregationName(key: IKey, structureModelType?: ModelType): string {
+    private getStructureAggregationName(key: IKey, structureModelType?: IModelType): string {
         var structureModelTypeName = 'AssetAdministrationShellEnv';
         if (structureModelType) {
             structureModelTypeName = structureModelType.name;
@@ -209,4 +217,4 @@ class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     }
 }
 
-export { AssetAdministrationShellEnv };
+export { AssetAdministrationShellEnv, IAssetAdministrationShellEnvConstructor, IAssetAdministrationShellEnv };

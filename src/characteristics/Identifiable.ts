@@ -1,28 +1,27 @@
 import { IReference, Reference } from '../characteristics/interfaces/Reference';
 import { Referable } from './Referable';
-import { Identifier } from './interfaces/Identifier';
-import { AdministrativeInformation } from './interfaces/AdministrativeInformation';
-import { ModelType } from './interfaces/ModelType';
-import { Description } from './interfaces/Description';
-
-import { Key, IKey } from './interfaces/Key';
+import { IIdentifier } from './interfaces/Identifier';
+import { IAdministrativeInformation } from './interfaces/AdministrativeInformation';
+import { IModelType, IModelTypeConstructor } from './interfaces/ModelType';
+import { IKey } from './interfaces/Key';
+import { ILangString } from './interfaces/LangString';
 interface IIdentifiable {
-    modelType: ModelType;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Description[];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: ILangString[];
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
 }
 interface IIdentifiableConstructor {
-    modelType?: ModelType;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Description[];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: ILangString[];
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
 }
 class Identifiable extends Referable implements Identifiable {
     getReference(): Reference {
@@ -41,9 +40,9 @@ class Identifiable extends Referable implements Identifiable {
         });
     }
 
-    identification: Identifier;
-    administration?: AdministrativeInformation;
-    constructor(obj: IIdentifiableConstructor, modelType: ModelType) {
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
+    constructor(obj: IIdentifiableConstructor, modelType: IModelType) {
         super(obj, modelType);
         this.identification = obj.identification;
         this.administration = obj.administration;

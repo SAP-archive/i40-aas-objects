@@ -1,4 +1,4 @@
-import { CountryCodeEnum } from '../../types/CountryCodeEnum';
+/*import { CountryCodeEnum } from '../../types/CountryCodeEnum';
 
 interface Description {
     language: CountryCodeEnum;
@@ -6,3 +6,4 @@ interface Description {
 }
 
 export { Description };
+*/

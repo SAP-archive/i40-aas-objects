@@ -1,39 +1,38 @@
 import { IReference } from '../characteristics/interfaces/Reference';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { LangString } from '../characteristics/interfaces/LangString';
+import { ILangString } from '../characteristics/interfaces/LangString';
 import { KindEnum } from '../types/KindEnum';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { Description } from '../characteristics/interfaces/Description';
-import { Constraint } from '../characteristics/interfaces/Constraint';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
+import { IConstraint } from '../characteristics/interfaces/Constraint';
 
 interface IMultiLanguageProperty {
     kind?: KindEnum;
     semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
-    value?: Array<LangString>;
+    descriptions?: Array<ILangString>;
+    qualifiers?: Array<IConstraint>;
+    value?: Array<ILangString>;
 }
 interface IMultiLanguagePropertyConstructor {
     kind?: KindEnum;
     semanticId: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType?: ModelType;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    qualifiers?: Array<Constraint>;
-    value?: Array<LangString>;
+    descriptions?: Array<ILangString>;
+    qualifiers?: Array<IConstraint>;
+    value?: Array<ILangString>;
 }
 class MultiLanguageProperty extends SubmodelElement implements IMultiLanguageProperty {
-    value: Array<LangString> = [];
+    value: Array<ILangString> = [];
 
     constructor(obj: IMultiLanguagePropertyConstructor) {
         super(obj, { name: KeyElementsEnum.MultiLanguageProperty });
@@ -43,7 +42,7 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
     getValue() {
         return this.value;
     }
-    setValue(values: Array<LangString>) {
+    setValue(values: Array<ILangString>) {
         this.value = [];
         var that = this;
         values.forEach(function(value) {
@@ -51,7 +50,7 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
         });
         return this;
     }
-    public addValue(value: LangString) {
+    public addValue(value: ILangString) {
         this.value.push(value);
         return this;
     }

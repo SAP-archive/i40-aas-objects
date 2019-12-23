@@ -1,54 +1,52 @@
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
 import { HasKind } from '../characteristics/HasKind';
-import { HasModelType } from '../characteristics/HasModelType';
 import { HasSemantics } from '../characteristics/HasSemantics';
 import { Identifiable } from '../characteristics/Identifiable';
-import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { Constraint } from '../characteristics/interfaces/Constraint';
-import { Description } from '../characteristics/interfaces/Description';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { Identifier } from '../characteristics/interfaces/Identifier';
-import { ModelType } from '../characteristics/interfaces/ModelType';
+import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
+import { IConstraint } from '../characteristics/interfaces/Constraint';
+import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
+import { IIdentifier } from '../characteristics/interfaces/Identifier';
+import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
 import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { Qualifiable } from '../characteristics/Qualifiable';
 import { Property } from '../referables/Property';
-import { SubmodelElement } from '../referables/SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from '../referables/SubmodelElement';
 import { SubmodelElementCollection } from '../referables/SubmodelElementCollection';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { KindEnum } from '../types/KindEnum';
 import { MultiLanguageProperty } from '../referables/MultiLanguageProperty';
 import { Operation } from '../referables/Operation';
+import { ILangString } from '../characteristics/interfaces/LangString';
+import { KindEnum } from '../types/KindEnum';
 
 interface ISubmodel {
-    qualifiers?: Array<Constraint>;
-    modelType: ModelType;
+    qualifiers?: Array<IConstraint>;
+    modelType: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     kind: KindEnum;
     semanticId?: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     submodelElements?: Array<SubmodelElement>;
 }
 interface ISubmodelConstructor {
-    qualifiers?: Array<Constraint>;
-    modelType?: ModelType;
+    qualifiers?: Array<IConstraint>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    descriptions?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
     kind?: KindEnum;
     semanticId?: IReference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    submodelElements?: Array<SubmodelElement>;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    submodelElements?: Array<ISubmodelElement>;
 }
 class Submodel extends Identifiable implements ISubmodel, HasKind, HasSemantics, Qualifiable {
-    qualifiers?: Array<Constraint>;
+    qualifiers?: Array<IConstraint>;
     kind: KindEnum = KindEnum.Instance;
     semanticId?: IReference;
     submodelElements: Array<SubmodelElement> = [];
@@ -68,15 +66,15 @@ class Submodel extends Identifiable implements ISubmodel, HasKind, HasSemantics,
     getSubmodelIdShort(): string {
         return this.idShort;
     }
-    setSubmodelElements(submodelElements: Array<SubmodelElement>) {
+    setSubmodelElements(submodelElements: Array<ISubmodelElement>) {
         var that = this;
         this.submodelElements = [];
-        submodelElements.forEach(function(submodelElement: SubmodelElement) {
+        submodelElements.forEach(function(submodelElement: ISubmodelElement) {
             that.addSubmodelElement(submodelElement);
         });
         return this;
     }
-    public addSubmodelElement(submodelElement: SubmodelElement) {
+    public addSubmodelElement(submodelElement: ISubmodelElement) {
         submodelElement.parent = this.getReference();
         if (submodelElement.modelType != null) {
             switch (submodelElement.modelType.name) {

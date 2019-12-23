@@ -1,5 +1,8 @@
 import { IReference } from './interfaces/Reference';
-abstract class HasSemantics {
+interface IHasSemantics {
+    semanticId?: IReference;
+}
+abstract class HasSemantics implements IHasSemantics {
     semanticId?: IReference;
     constructor(obj: HasSemantics) {
         this.semanticId = obj.semanticId;
