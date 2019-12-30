@@ -1,12 +1,12 @@
-import { IReference } from '../characteristics/interfaces/Reference';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { SubmodelElement } from './SubmodelElement';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { ILangString } from '../baseClasses/LangString';
+import { IConstraint } from '../baseClasses/Constraint';
 import { OperationVariable } from './OperationVariable';
-import { IConstraint } from '../characteristics/interfaces/Constraint';
-import { ILangString } from '../characteristics/interfaces/LangString';
+import { SubmodelElement } from './SubmodelElement';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
 interface IOperation {
     kind?: KindEnum;
@@ -14,7 +14,7 @@ interface IOperation {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;

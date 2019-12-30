@@ -1,19 +1,19 @@
-import { Reference, IReference } from '../characteristics/interfaces/Reference';
-import { Identifiable } from '../characteristics/Identifiable';
-import { ConceptDictionary, IConceptDictionaryConstructor, IConceptDictionary } from '../referables/ConceptDictionary';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
+import { IIdentifier } from '../baseClasses/Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
+import { ConceptDictionary, IConceptDictionary, IConceptDictionaryConstructor } from '../referables/ConceptDictionary';
 import { View } from '../referables/View';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { IIdentifier } from '../characteristics/interfaces/Identifier';
-import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
+import { Identifiable } from '../characteristics/Identifiable';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IAssetAdministrationShell {
     modelType: IModelType;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     identification: IIdentifier;

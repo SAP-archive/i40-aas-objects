@@ -1,18 +1,19 @@
-import { IReference } from '../characteristics/interfaces/Reference';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { ILangString } from '../baseClasses/LangString';
 import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { SubmodelElement } from './SubmodelElement';
-import { ILangString } from '../characteristics/interfaces/LangString';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
+
 interface IProperty {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     valueId?: IReference;

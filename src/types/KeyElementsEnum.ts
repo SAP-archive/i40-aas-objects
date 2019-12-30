@@ -19,5 +19,7 @@ enum KeyElementsEnum {
     ConceptDescription = 'ConceptDescription',
     Submodel = 'Submodel',
     MultiLanguageProperty = 'MultiLanguageProperty',
+    Entity = 'Entity',
+    AnnotatedRelationshipElement = 'AnnotatedRelationshipElement',
 }
 export { KeyElementsEnum };

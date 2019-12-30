@@ -1,14 +1,14 @@
-import { IReference, Reference } from '../characteristics/interfaces/Reference';
+import { IReference, Reference } from '../baseClasses/Reference';
 import { Referable } from './Referable';
-import { IIdentifier } from './interfaces/Identifier';
-import { IAdministrativeInformation } from './interfaces/AdministrativeInformation';
-import { IModelType, IModelTypeConstructor } from './interfaces/ModelType';
-import { IKey } from './interfaces/Key';
-import { ILangString } from './interfaces/LangString';
+import { IIdentifier } from '../baseClasses//Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IKey } from '../baseClasses/Key';
+import { ILangString } from '../baseClasses/LangString';
 interface IIdentifiable {
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: ILangString[];
     identification: IIdentifier;
@@ -23,7 +23,7 @@ interface IIdentifiableConstructor {
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
 }
-class Identifiable extends Referable implements Identifiable {
+abstract class Identifiable extends Referable implements Identifiable {
     getReference(): Reference {
         super.getReference();
         let keys: Array<IKey> = [];

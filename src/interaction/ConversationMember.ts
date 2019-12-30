@@ -1,4 +1,4 @@
-import { IIdentifier } from '../characteristics/interfaces/Identifier';
+import { IIdentifier } from '../baseClasses/Identifier';
 
 interface IConversationMember {
     identification?: IIdentifier;

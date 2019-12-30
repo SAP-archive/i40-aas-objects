@@ -52,9 +52,9 @@
             "keys": [
                {
                   "idType": "IRI",
+                  "local": false,
                   "type": "GlobalReference",
-                  "value": "opcfoundation.org/specifications-unified-architecture/part-100-device-information-model/",
-                  "local": false
+                  "value": "opcfoundation.org/specifications-unified-architecture/part-100-device-information-model/"
                }
             ]
          },

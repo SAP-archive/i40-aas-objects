@@ -1,5 +1,5 @@
 import { IReference } from './Reference';
-import { IDataspecificationIEC61360 } from '../../dataspecifications/DataSpecificationIEC61360';
+import { IDataspecificationIEC61360 } from '../dataspecifications/DataSpecificationIEC61360';
 
 interface IEmbeddedDataSpecification {
     hasDataSpecification: IReference;

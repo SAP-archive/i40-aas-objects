@@ -1,21 +1,22 @@
-import { Referable } from '../characteristics/Referable';
-import { IReference, Reference } from '../characteristics/interfaces/Reference';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { HasKind } from '../characteristics/HasKind';
-import { HasSemantics } from '../characteristics/HasSemantics';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { Qualifiable } from '../characteristics/Qualifiable';
-import { IConstraint } from '../characteristics/interfaces/Constraint';
-import { ILangString } from '../characteristics/interfaces/LangString';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { ILangString } from '../baseClasses/LangString';
+import { IConstraint } from '../baseClasses/Constraint';
+import { Referable } from '../characteristics/Referable';
+import { IHasKind } from '../characteristics/HasKind';
+import { IHasSemantics } from '../characteristics/HasSemantics';
+import { IQualifiable } from '../characteristics/Qualifiable';
+import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
+
 interface ISubmodelElement {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
@@ -32,7 +33,7 @@ interface ISubmodelElementConstructor {
     qualifiers?: Array<IConstraint>;
 }
 abstract class SubmodelElement extends Referable
-    implements ISubmodelElement, HasKind, HasSemantics, Qualifiable, HasDataSpecification {
+    implements ISubmodelElement, IHasKind, IHasSemantics, IQualifiable, IHasDataSpecification {
     qualifiers?: Array<IConstraint>;
     kind: KindEnum = KindEnum.Instance;
     semanticId!: IReference;

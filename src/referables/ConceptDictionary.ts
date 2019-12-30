@@ -1,8 +1,8 @@
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { Reference, IReference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { Reference, IReference } from '../characteristics/interfaces/Reference';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IConceptDictionary {
     modelType: IModelType;

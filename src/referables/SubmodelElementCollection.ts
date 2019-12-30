@@ -1,13 +1,13 @@
-import { IReference } from '../characteristics/interfaces/Reference';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
-import { SubmodelElement, ISubmodelElement, ISubmodelElementConstructor } from './SubmodelElement';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { ILangString } from '../baseClasses/LangString';
+import { ISubmodelElementConstructor, SubmodelElement } from './SubmodelElement';
+import { IPropertyConstructor, Property } from './Property';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { Property, IPropertyConstructor } from './Property';
 import { MultiLanguageProperty } from './MultiLanguageProperty';
 import { Operation } from './Operation';
-import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface ISubmodelElementCollection {
     kind?: KindEnum;
@@ -15,7 +15,7 @@ interface ISubmodelElementCollection {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     value?: Array<SubmodelElement>;

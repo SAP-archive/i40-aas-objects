@@ -1,15 +1,15 @@
-import { Reference, IReference } from '../characteristics/interfaces/Reference';
+import { Reference, IReference } from '../baseClasses/Reference';
 import { IHasModelType } from './HasModelType';
-import { IModelType, IModelTypeConstructor } from './interfaces/ModelType';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { IdTypeEnum } from '../types/IdTypeEnum';
-import { Key } from './interfaces/Key';
-import { ILangString } from './interfaces/LangString';
+import { Key } from '../baseClasses/Key';
+import { ILangString } from '../baseClasses/LangString';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
 interface IReferable {
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
 }
@@ -23,7 +23,7 @@ interface IReferableConstructor {
 abstract class Referable implements IHasModelType {
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions: Array<ILangString> = [];
     constructor(obj: IReferableConstructor, modelType?: IModelType) {

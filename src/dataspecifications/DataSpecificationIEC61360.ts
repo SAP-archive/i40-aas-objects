@@ -1,5 +1,5 @@
-import { IReference } from '../characteristics/interfaces/Reference';
-import { ILangString } from '../characteristics/interfaces/LangString';
+import { IReference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
 
 interface IDataspecificationIEC61360 {
     preferredName: Array<ILangString>;

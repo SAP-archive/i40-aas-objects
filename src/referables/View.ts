@@ -1,17 +1,18 @@
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { IReference, Reference } from '../characteristics/interfaces/Reference';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasSemantics } from '../characteristics/HasSemantics';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { ILangString } from '../characteristics/interfaces/LangString';
+import { IHasSemantics } from '../characteristics/HasSemantics';
+import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
+
 interface IView {
     modelType: IModelType;
     semanticId?: IReference;
     embeddedDataSpecifications?: IEmbeddedDataSpecification[];
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
@@ -26,7 +27,7 @@ interface IViewConstructor {
     descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
 }
-class View extends Referable implements HasSemantics, HasDataSpecification, IView {
+class View extends Referable implements IHasSemantics, IHasDataSpecification, IView {
     semanticId?: IReference;
     embeddedDataSpecifications: IEmbeddedDataSpecification[] = [];
     containedElements: Array<IReference> = [];

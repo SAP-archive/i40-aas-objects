@@ -1,4 +1,4 @@
-import { KeyElementsEnum } from '../../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
 interface IModelType {
     name: KeyElementsEnum;

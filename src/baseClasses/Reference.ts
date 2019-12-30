@@ -1,5 +1,4 @@
 import { Key, IKey } from './Key';
-import { throws } from 'assert';
 
 interface IReference {
     keys: Array<IKey>;

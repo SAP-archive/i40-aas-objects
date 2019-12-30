@@ -1,5 +1,5 @@
-import { IdTypeEnum } from '../../types/IdTypeEnum';
-import { KeyElementsEnum } from '../../types/KeyElementsEnum';
+import { IdTypeEnum } from '../types/IdTypeEnum';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
 interface IKey {
     idType: IdTypeEnum;

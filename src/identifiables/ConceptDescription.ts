@@ -1,22 +1,22 @@
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
+import { IIdentifier } from '../baseClasses/Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
 import { Identifiable } from '../characteristics/Identifiable';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { Reference, IReference } from '../characteristics/interfaces/Reference';
-import { IIdentifier } from '../characteristics/interfaces/Identifier';
-import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { ILangString } from '../characteristics/interfaces/LangString';
 
 interface IConceptDescription {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-    isCaseOf?: IReference;
+    isCaseOf?: Reference;
 }
 interface IConceptDescriptionConstructor {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -30,7 +30,7 @@ interface IConceptDescriptionConstructor {
     isCaseOf?: IReference;
 }
 class ConceptDescription extends Identifiable implements IConceptDescription {
-    isCaseOf?: IReference;
+    isCaseOf?: Reference;
     constructor(obj: IConceptDescriptionConstructor) {
         super(obj, { name: KeyElementsEnum.ConceptDescription });
         if (obj.isCaseOf) this.isCaseOf = new Reference(obj.isCaseOf);

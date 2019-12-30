@@ -1,4 +1,4 @@
-import { IdTypeEnum } from '../../types/IdTypeEnum';
+import { IdTypeEnum } from '../types/IdTypeEnum';
 
 interface IIdentifier {
     id: string;

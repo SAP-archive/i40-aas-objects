@@ -1,8 +1,6 @@
-import { IEmbeddedDataSpecification } from './interfaces/EmbeddedDataSpecification';
-class HasDataSpecification {
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+
+interface IHasDataSpecification {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    constructor(obj: HasDataSpecification) {
-        this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-    }
 }
-export { HasDataSpecification };
+export { IHasDataSpecification };

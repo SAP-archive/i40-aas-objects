@@ -1,19 +1,16 @@
 import {
-    AssetAdministrationShell,
     IAssetAdministrationShellConstructor,
+    AssetAdministrationShell,
 } from './identifiables/AssetAdministrationShell';
-import { Submodel, ISubmodel, ISubmodelConstructor } from './identifiables/Submodel';
-import {
-    ConceptDescription,
-    IConceptDescription,
-    IConceptDescriptionConstructor,
-} from './identifiables/ConceptDescription';
-import { Asset, IAssetConstructor, IAsset } from './identifiables/Asset';
-import { IReference, Reference } from './characteristics/interfaces/Reference';
+import { ISubmodelConstructor, Submodel } from './identifiables/Submodel';
+import { IConceptDescriptionConstructor, ConceptDescription } from './identifiables/ConceptDescription';
+import { IAssetConstructor, Asset } from './identifiables/Asset';
+import { IReference, Reference } from './baseClasses/Reference';
 import { Referable } from './characteristics/Referable';
-import { IModelType } from './characteristics/interfaces/ModelType';
-import { IKey } from './characteristics/interfaces/Key';
 import { Identifiable } from './characteristics/Identifiable';
+import { IKey } from './baseClasses/Key';
+import { IModelType } from './baseClasses/ModelType';
+
 interface IAssetAdministrationShellEnvConstructor {
     assetAdministrationShells: Array<IAssetAdministrationShellConstructor>;
     submodels: Array<ISubmodelConstructor>;

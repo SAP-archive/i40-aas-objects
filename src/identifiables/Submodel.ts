@@ -1,33 +1,33 @@
-import { HasKind } from '../characteristics/HasKind';
-import { HasSemantics } from '../characteristics/HasSemantics';
+import { IConstraint } from '../baseClasses/Constraint';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
+import { IIdentifier } from '../baseClasses/Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
+import { KindEnum } from '../types/KindEnum';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { ISubmodelElement, SubmodelElement } from '../referables/SubmodelElement';
 import { Identifiable } from '../characteristics/Identifiable';
-import { IAdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { IConstraint } from '../characteristics/interfaces/Constraint';
-import { IEmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { IIdentifier } from '../characteristics/interfaces/Identifier';
-import { IModelType, IModelTypeConstructor } from '../characteristics/interfaces/ModelType';
-import { Reference, IReference } from '../characteristics/interfaces/Reference';
-import { Qualifiable } from '../characteristics/Qualifiable';
-import { Property } from '../referables/Property';
-import { SubmodelElement, ISubmodelElement } from '../referables/SubmodelElement';
-import { SubmodelElementCollection } from '../referables/SubmodelElementCollection';
+import { IHasKind } from '../characteristics/HasKind';
+import { IHasSemantics } from '../characteristics/HasSemantics';
+import { IQualifiable } from '../characteristics/Qualifiable';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { Property } from '../referables/Property';
+import { SubmodelElementCollection } from '../referables/SubmodelElementCollection';
 import { MultiLanguageProperty } from '../referables/MultiLanguageProperty';
 import { Operation } from '../referables/Operation';
-import { ILangString } from '../characteristics/interfaces/LangString';
-import { KindEnum } from '../types/KindEnum';
 
 interface ISubmodel {
     qualifiers?: Array<IConstraint>;
     modelType: IModelType;
     idShort: string;
-    parent?: IReference;
+    parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     kind: KindEnum;
-    semanticId?: IReference;
+    semanticId?: Reference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     submodelElements?: Array<SubmodelElement>;
 }
@@ -45,14 +45,14 @@ interface ISubmodelConstructor {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     submodelElements?: Array<ISubmodelElement>;
 }
-class Submodel extends Identifiable implements ISubmodel, HasKind, HasSemantics, Qualifiable {
+class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantics, IQualifiable {
     qualifiers?: Array<IConstraint>;
     kind: KindEnum = KindEnum.Instance;
-    semanticId?: IReference;
+    semanticId?: Reference;
     submodelElements: Array<SubmodelElement> = [];
     constructor(obj: ISubmodelConstructor) {
         super(obj, { name: KeyElementsEnum.Submodel });
-        this.semanticId = obj.semanticId;
+        if (obj.semanticId) this.semanticId = new Reference(obj.semanticId);
         if (obj.kind) this.kind = obj.kind;
         if (obj.submodelElements) this.setSubmodelElements(obj.submodelElements);
     }
