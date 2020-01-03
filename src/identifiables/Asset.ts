@@ -23,7 +23,7 @@ interface IAsset {
     billOfMaterial?: Reference;
 }
 
-interface IAssetConstructor {
+interface TAssetJSON {
     modelType?: IModelTypeConstructor;
     kind?: AssetKindEnum;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -38,18 +38,47 @@ interface IAssetConstructor {
 }
 
 class Asset extends Identifiable implements IAsset {
-    kind?: AssetKindEnum;
+    static fromJSON(obj: TAssetJSON) {
+        var asset = new Asset(
+            obj.identification,
+            obj.idShort,
+            obj.administration,
+            undefined,
+            undefined,
+            obj.descriptions,
+            obj.category,
+            obj.parent ? new Reference(obj.parent) : undefined,
+            undefined, //embeddedDataSpecifications
+            obj.kind,
+        );
+        if (obj.assetIdentificationModel) asset.assetIdentificationModel = new Reference(obj.assetIdentificationModel);
+        if (obj.billOfMaterial) asset.billOfMaterial = new Reference(obj.billOfMaterial);
+        if (obj.embeddedDataSpecifications) asset.embeddedDataSpecifications = obj.embeddedDataSpecifications;
+        return asset;
+    }
+
+    kind: AssetKindEnum = AssetKindEnum.Instance;
     assetIdentificationModel?: Reference;
     billOfMaterial?: Reference;
-    constructor(obj: IAssetConstructor) {
-        super(obj, { name: KeyElementsEnum.Asset });
-        if (obj.assetIdentificationModel) this.assetIdentificationModel = new Reference(obj.assetIdentificationModel);
-        if (obj.billOfMaterial) this.billOfMaterial = new Reference(obj.billOfMaterial);
-        if (obj.kind) {
-            this.kind = obj.kind;
-        } else {
-            this.kind = AssetKindEnum.Instance;
-        }
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification> = [];
+
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        administration?: IAdministrativeInformation,
+        assetIdentificationModel?: Reference,
+        billOfMaterial?: Reference,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: Reference,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        kind?: AssetKindEnum,
+    ) {
+        super(identification, idShort, { name: KeyElementsEnum.Asset }, administration, descriptions, category, parent);
+        this.embeddedDataSpecifications = embeddedDataSpecifications || [];
+        this.kind = kind || AssetKindEnum.Instance;
+        this.assetIdentificationModel = assetIdentificationModel;
+        this.billOfMaterial = billOfMaterial;
     }
 
     setAssetIdentificationModel(assetIdentificationModel: IReference) {
@@ -66,4 +95,4 @@ class Asset extends Identifiable implements IAsset {
     }
 }
 
-export { Asset, IAssetConstructor, IAsset };
+export { Asset, TAssetJSON, IAsset };

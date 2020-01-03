@@ -9,6 +9,8 @@ import { IHasKind } from '../characteristics/HasKind';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IQualifiable } from '../characteristics/Qualifiable';
 import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
+import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { TSubmodelElements } from '../types/SubmodelElementTypes';
 
 interface ISubmodelElement {
     kind?: KindEnum;
@@ -38,27 +40,36 @@ abstract class SubmodelElement extends Referable
     kind: KindEnum = KindEnum.Instance;
     semanticId!: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    constructor(obj: ISubmodelElementConstructor, modelType?: IModelType) {
-        super(obj, modelType);
-        if (obj.qualifiers) this.qualifiers = obj.qualifiers;
-        if (obj.kind) this.kind = obj.kind;
-        if (obj.semanticId) this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
+    constructor(
+        idShort: string,
+        modelType: IModelType,
+        semanticId: IReference,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(idShort, modelType, descriptions, category, parent);
+        if (qualifiers) this.qualifiers = qualifiers;
+        if (kind) this.kind = kind;
+        if (semanticId) this.semanticId = semanticId;
+        if (embeddedDataSpecifications) this.embeddedDataSpecifications = embeddedDataSpecifications;
     }
     setSemanticId(semanticId: IReference) {
         this.semanticId = new Reference(semanticId);
         return this;
     }
     toJSON(): ISubmodelElement {
-        this._checkRules();
         let res: any = super.toJSON();
         res.kind = this.kind;
         res.semanticId = this.semanticId;
         res.embeddedDataSpecifications = this.embeddedDataSpecifications;
         return res;
     }
-    protected _checkRules() {
-        super._checkRules();
+    checkRules() {
+        super.checkRules();
         if (!this.semanticId) {
             throw new Error(
                 'Missing required attributes in submodelElement class. Instance with IdShort: ' + this.idShort,

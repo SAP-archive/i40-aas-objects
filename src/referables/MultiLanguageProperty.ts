@@ -19,7 +19,7 @@ interface IMultiLanguageProperty {
     qualifiers?: Array<IConstraint>;
     value?: Array<ILangString>;
 }
-interface IMultiLanguagePropertyConstructor {
+type TMultiLanguagePropertyJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -30,13 +30,45 @@ interface IMultiLanguagePropertyConstructor {
     descriptions?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
     value?: Array<ILangString>;
-}
+};
 class MultiLanguageProperty extends SubmodelElement implements IMultiLanguageProperty {
+    static fromJSON(obj: TMultiLanguagePropertyJSON): MultiLanguageProperty {
+        return new MultiLanguageProperty(
+            obj.idShort,
+            obj.semanticId,
+            obj.value,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
+    }
     value: Array<ILangString> = [];
-
-    constructor(obj: IMultiLanguagePropertyConstructor) {
-        super(obj, { name: KeyElementsEnum.MultiLanguageProperty });
-        if (obj.value) this.value = obj.value;
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        value?: Array<ILangString>,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.MultiLanguageProperty },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        if (value) this.value = value;
     }
 
     getValue() {
@@ -62,4 +94,4 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
     }
 }
 
-export { MultiLanguageProperty };
+export { MultiLanguageProperty, TMultiLanguagePropertyJSON, IMultiLanguageProperty };

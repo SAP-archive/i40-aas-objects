@@ -5,7 +5,7 @@ import { ILangString } from '../baseClasses/LangString';
 import { IIdentifier } from '../baseClasses/Identifier';
 import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
 import { ConceptDictionary, IConceptDictionary, IConceptDictionaryConstructor } from '../referables/ConceptDictionary';
-import { View } from '../referables/View';
+import { View, IView } from '../referables/View';
 import { Identifiable } from '../characteristics/Identifiable';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 
@@ -18,14 +18,14 @@ interface IAssetAdministrationShell {
     descriptions?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-    derivedFrom?: IReference;
+    derivedFrom?: Reference;
     security?: any;
-    submodels?: Array<IReference>;
+    submodels?: Array<Reference>;
     conceptDictionaries?: Array<ConceptDictionary>;
     views?: Array<View>;
-    asset: IReference;
+    asset: Reference;
 }
-interface IAssetAdministrationShellConstructor {
+interface TAssetAdministrationShellJSON {
     modelType?: IModelTypeConstructor;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;
@@ -42,21 +42,73 @@ interface IAssetAdministrationShellConstructor {
     asset?: IReference;
 }
 class AssetAdministrationShell extends Identifiable implements IAssetAdministrationShell {
-    public derivedFrom?: IReference;
+    public derivedFrom?: Reference;
     public security?: any;
-    public submodels: Array<IReference> = [];
+    public submodels: Array<Reference> = [];
     public conceptDictionaries?: Array<ConceptDictionary>;
-    public views?: Array<View>;
-    public asset!: IReference;
-
-    constructor(obj: IAssetAdministrationShellConstructor) {
-        super(obj, { name: KeyElementsEnum.AssetAdministrationShell });
-        this.derivedFrom = obj.derivedFrom;
-        this.security = obj.security;
-        if (obj.submodels) this.setSubmodels(obj.submodels);
-        if (obj.conceptDictionaries) this.setConceptDictionaries(obj.conceptDictionaries);
-        if (obj.views) this.views = obj.views;
-        if (obj.asset) this.setAsset(obj.asset);
+    public views?: Array<View> = [];
+    public asset!: Reference;
+    public embeddedDataSpecifications: Array<IEmbeddedDataSpecification> = [];
+    static fromJSON(obj: TAssetAdministrationShellJSON) {
+        var aas = new AssetAdministrationShell(
+            obj.identification,
+            obj.idShort,
+            obj.administration,
+            undefined, //asset
+            undefined, //submodels
+            undefined, //conceptDictionaries
+            undefined, //views
+            undefined, //derivedFrom
+            obj.descriptions,
+            obj.category,
+            undefined, //security
+            obj.parent ? new Reference(obj.parent) : undefined,
+            undefined, //embeddedDataSpecifications
+        );
+        if (obj.asset) aas.setAsset(obj.asset);
+        if (obj.submodels) aas.setSubmodels(obj.submodels);
+        if (obj.conceptDictionaries) aas.setConceptDictionaries(obj.conceptDictionaries);
+        if (obj.views) aas.setViews(obj.views);
+        if (obj.derivedFrom) aas.derivedFrom = new Reference(obj.derivedFrom);
+        if (obj.security) aas.security = obj.security;
+        if (obj.embeddedDataSpecifications) aas.embeddedDataSpecifications = obj.embeddedDataSpecifications;
+        return aas;
+    }
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        administration?: IAdministrativeInformation,
+        asset?: Reference,
+        submodels?: Array<Reference>,
+        conceptDictionaries?: Array<ConceptDictionary>,
+        views?: Array<View>,
+        derivedFrom?: Reference,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        security?: any,
+        parent?: Reference,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+    ) {
+        super(
+            identification,
+            idShort,
+            { name: KeyElementsEnum.AssetAdministrationShell },
+            administration,
+            descriptions,
+            category,
+            parent,
+        );
+        this.derivedFrom = derivedFrom;
+        this.security = security;
+        this.submodels = submodels || [];
+        this.conceptDictionaries = conceptDictionaries || [];
+        this.views = views || [];
+        this.embeddedDataSpecifications = embeddedDataSpecifications || [];
+        if (asset) {
+            this.asset = asset;
+        } else {
+            console.warn('Missing required attribute asset');
+        }
     }
     setSubmodels(submodels: Array<IReference>) {
         var that = this;
@@ -86,11 +138,37 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
         if (!this.conceptDictionaries) {
             this.conceptDictionaries = [];
         }
-        this.conceptDictionaries.push(new ConceptDictionary(conceptDictionary));
+        this.conceptDictionaries.push(
+            new ConceptDictionary(
+                conceptDictionary.idShort,
+                conceptDictionary.conceptDescriptions,
+                conceptDictionary.descriptions,
+                conceptDictionary.category,
+                conceptDictionary.parent,
+            ),
+        );
         return this;
     }
+
+    setViews(views: Array<IView>) {
+        var that = this;
+        this.views = [];
+        views.forEach(function(view: IView) {
+            that.addView(view);
+        });
+        return this;
+    }
+    addView(view: IView) {
+        if (!this.views) {
+            this.views = [];
+        }
+        this.views.push(
+            new View(view.idShort, view.containedElements, view.semanticId, view.descriptions, view.category),
+        );
+        return this;
+    }
+
     toJSON(): IAssetAdministrationShell {
-        this._checkRules();
         let res: any = super.toJSON();
         res.derivedFrom = this.derivedFrom;
         res.security = this.security;
@@ -100,11 +178,11 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
         res.asset = this.asset;
         return res;
     }
-    protected _checkRules() {
-        super._checkRules();
+    checkRules() {
+        super.checkRules();
         if (!this.asset) {
             throw new Error('Missing required attributes in AssetAdministrtionShell class');
         }
     }
 }
-export { AssetAdministrationShell, IAssetAdministrationShellConstructor, IAssetAdministrationShell };
+export { AssetAdministrationShell, TAssetAdministrationShellJSON, IAssetAdministrationShell };

@@ -13,33 +13,33 @@ interface IReferable {
     category?: string;
     descriptions?: Array<ILangString>;
 }
-interface IReferableConstructor {
+interface IReferableJSON {
     modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
     descriptions?: Array<ILangString>;
 }
+
 abstract class Referable implements IHasModelType {
     modelType: IModelType;
     idShort: string;
     parent?: Reference;
     category?: string;
     descriptions: Array<ILangString> = [];
-    constructor(obj: IReferableConstructor, modelType?: IModelType) {
-        let modelTypeTemp: IModelType;
-        if (modelType) {
-            modelTypeTemp = modelType;
-        } else if (obj.modelType) {
-            modelTypeTemp = { name: (<any>KeyElementsEnum)[obj.modelType.name] };
-        } else {
-            throw new Error('A Referable requires a modelType');
-        }
-        this.modelType = modelTypeTemp;
-        this.idShort = obj.idShort;
-        if (obj.parent) this.parent = new Reference(obj.parent);
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
+
+    constructor(
+        idShort: string,
+        modelType: IModelType,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        this.modelType = modelType;
+        this.idShort = idShort;
+        this.parent = parent ? new Reference(parent) : undefined;
+        this.category = category;
+        this.descriptions = descriptions || [];
     }
 
     getReference(): Reference {
@@ -64,7 +64,6 @@ abstract class Referable implements IHasModelType {
     }
 
     toJSON(): IReferable {
-        this._checkRules();
         return {
             idShort: this.idShort,
             parent: this.parent,
@@ -73,7 +72,7 @@ abstract class Referable implements IHasModelType {
             modelType: this.modelType,
         };
     }
-    protected _checkRules() {
+    checkRules() {
         if (!this.modelType) {
             throw new Error('Missing required attributes in referable class ');
         }

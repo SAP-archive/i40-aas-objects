@@ -1,7 +1,4 @@
-import {
-    AssetAdministrationShellEnv,
-    IAssetAdministrationShellEnvConstructor,
-} from '../src/AssetAdministrationShellEnv';
+import { AssetAdministrationShellEnv, TAssetAdministrationShellEnvJSON } from '../src/AssetAdministrationShellEnv';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
 import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
@@ -9,7 +6,7 @@ import * as fs from 'fs';
 import testEnv from './testEnv.json';
 describe('Construct AssetAdministrationShellEnv', function() {
     it('create an AssetAdministrationShellEnv By JSON', function() {
-        let aasEnv = new AssetAdministrationShellEnv(<IAssetAdministrationShellEnvConstructor>(<unknown>testEnv));
+        let aasEnv = AssetAdministrationShellEnv.fromJSON(<TAssetAdministrationShellEnvJSON>(<unknown>testEnv));
         fs.writeFileSync('./result.json', JSON.stringify(aasEnv, null, 3));
         expect(Object.keys(aasEnv)).to.have.members([
             'assetAdministrationShells',
@@ -24,7 +21,7 @@ describe('Construct AssetAdministrationShellEnv', function() {
 
 describe('Get Instance', function() {
     it('Get the instance by its reference', function() {
-        let aasEnv = new AssetAdministrationShellEnv(<IAssetAdministrationShellEnvConstructor>(<unknown>testEnv));
+        let aasEnv = AssetAdministrationShellEnv.fromJSON(<TAssetAdministrationShellEnvJSON>(<unknown>testEnv));
         let submodel = aasEnv.getInstance({
             keys: [
                 {

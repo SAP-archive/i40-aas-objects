@@ -5,11 +5,10 @@ import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { SubmodelElementCollection } from './SubmodelElementCollection';
-import { Operation } from './Operation';
-import { MultiLanguageProperty } from './MultiLanguageProperty';
 import { EntityTypeEnum } from '../types/EntityTypeEnum';
-import { Property } from './Property';
+import { TSubmodelElements, TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
+import { IConstraint } from '../baseClasses/Constraint';
+import { SubmodelElementFactory } from './SubmodelElementFactory';
 
 interface IEntity {
     kind: KindEnum;
@@ -20,11 +19,12 @@ interface IEntity {
     parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
-    statements?: Array<Property | SubmodelElementCollection | Operation | MultiLanguageProperty>;
+    statements?: Array<TSubmodelElements>;
     entityType: EntityTypeEnum;
     asset?: Reference;
+    qualifiers?: Array<IConstraint>;
 }
-interface IEntityConstructor {
+type TEntityJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -33,27 +33,81 @@ interface IEntityConstructor {
     parent?: IReference;
     category?: string;
     descriptions?: Array<ILangString>;
-    statements?: Array<Property | SubmodelElementCollection | Operation | MultiLanguageProperty>;
+    statements?: Array<TSubmodelElementsJSON>;
     entityType: EntityTypeEnum;
     asset?: IReference;
-}
+    qualifiers?: Array<IConstraint>;
+};
 class Entity extends SubmodelElement implements IEntity {
-    statements?: Array<Property | SubmodelElementCollection | Operation | MultiLanguageProperty>;
+    static fromJSON(obj: TEntityJSON): Entity {
+        return new Entity(
+            obj.idShort,
+            obj.semanticId,
+            obj.entityType,
+            obj.statements,
+            obj.asset,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
+    }
+    statements?: Array<TSubmodelElements> = [];
     entityType: EntityTypeEnum;
     asset?: Reference;
-    constructor(obj: IEntityConstructor) {
-        super(obj, { name: KeyElementsEnum.Entity });
-        this.entityType = obj.entityType;
-        if (obj.statements) this.statements = obj.statements;
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        entityType: EntityTypeEnum,
+        statements?: Array<TSubmodelElementsJSON>,
+        asset?: IReference,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.Entity },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        this.entityType = entityType;
+        if (statements) this.setStatements(statements);
         if (this.entityType == EntityTypeEnum.SelfManaged) {
-            if (obj.asset) {
-                this.asset = new Reference(obj.asset);
+            if (asset) {
+                this.asset = new Reference(asset);
             } else {
                 throw new Error(
                     'Constraint AASd-014: The asset attribute must be set if entityType is set to <<SelfManagedEntity>>. It is empty otherwise.',
                 );
             }
         }
+    }
+    setStatements(statements: Array<TSubmodelElementsJSON>) {
+        this.statements = [];
+        var that = this;
+        statements.forEach(function(statement) {
+            that.addStatement(statement);
+        });
+        return this;
+    }
+    public addStatement(statement: TSubmodelElementsJSON) {
+        if (!this.statements) {
+            this.statements = [];
+        }
+        statement.parent = this.getReference();
+        this.statements.push(SubmodelElementFactory.createSubmodelElement(statement));
+        return this;
     }
     toJSON(): IEntity {
         let res: any = super.toJSON();
@@ -64,4 +118,4 @@ class Entity extends SubmodelElement implements IEntity {
     }
 }
 
-export { Entity, IEntity, IEntityConstructor };
+export { Entity, IEntity, TEntityJSON };

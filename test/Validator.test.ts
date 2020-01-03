@@ -5,7 +5,7 @@ import testEnv from './testEnv.json';
 
 describe('Validate JSON data', function() {
     it('returns no error if the validation was successfull', function() {
-        const aasenv = new AAS_OBJECTS.AssetAdministrationShellEnv({
+        const aasenv = AAS_OBJECTS.AssetAdministrationShellEnv.fromJSON({
             submodels: [],
             assetAdministrationShells: [],
             conceptDescriptions: [],

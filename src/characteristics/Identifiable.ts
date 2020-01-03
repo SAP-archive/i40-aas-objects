@@ -5,6 +5,7 @@ import { IAdministrativeInformation } from '../baseClasses/AdministrativeInforma
 import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { IKey } from '../baseClasses/Key';
 import { ILangString } from '../baseClasses/LangString';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 interface IIdentifiable {
     modelType: IModelType;
     idShort: string;
@@ -42,13 +43,21 @@ abstract class Identifiable extends Referable implements Identifiable {
 
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-    constructor(obj: IIdentifiableConstructor, modelType: IModelType) {
-        super(obj, modelType);
-        this.identification = obj.identification;
-        this.administration = obj.administration;
+
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        modelType: IModelType,
+        administration?: IAdministrativeInformation,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: Reference,
+    ) {
+        super(idShort, modelType, descriptions, category, parent);
+        this.identification = identification;
+        this.administration = administration;
     }
     toJSON(): IIdentifiable {
-        this._checkRules();
         let supersJson = super.toJSON();
         let res: IIdentifiable = {
             identification: this.identification,
@@ -61,8 +70,8 @@ abstract class Identifiable extends Referable implements Identifiable {
         };
         return res;
     }
-    protected _checkRules() {
-        super._checkRules();
+    checkRules() {
+        super.checkRules();
         if (!this.idShort || !this.identification) {
             throw new Error('Missing required attributes in identifiable class ');
         }

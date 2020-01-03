@@ -22,7 +22,7 @@ interface IOperation {
     outputVariable?: Array<OperationVariable>;
     inoutputVariable?: Array<OperationVariable>;
 }
-interface IOperationConstructor {
+type TOperationJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -35,18 +35,55 @@ interface IOperationConstructor {
     inputVariable?: Array<OperationVariable>;
     outputVariable?: Array<OperationVariable>;
     inoutputVariable?: Array<OperationVariable>;
-}
+};
 class Operation extends SubmodelElement implements IOperation {
     inputVariable?: Array<OperationVariable> = [];
     outputVariable?: Array<OperationVariable> = [];
     inoutputVariable?: Array<OperationVariable> = [];
-
-    constructor(obj: IOperationConstructor) {
-        super(obj, { name: KeyElementsEnum.Operation });
-        this.inputVariable = obj.inputVariable;
-        this.outputVariable = obj.outputVariable;
-        this.inoutputVariable = obj.inoutputVariable;
+    static fromJSON(obj: TOperationJSON): Operation {
+        return new Operation(
+            obj.idShort,
+            obj.semanticId,
+            obj.inputVariable,
+            obj.outputVariable,
+            obj.inoutputVariable,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
     }
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        inputVariable?: Array<OperationVariable>,
+        outputVariable?: Array<OperationVariable>,
+        inoutputVariable?: Array<OperationVariable>,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.Operation },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        this.inputVariable = inputVariable;
+        this.outputVariable = outputVariable;
+        this.inoutputVariable = inoutputVariable;
+    }
+
     toJSON(): IOperation {
         let res: any = super.toJSON();
         res.inoutputVariable = this.inputVariable;
@@ -56,4 +93,4 @@ class Operation extends SubmodelElement implements IOperation {
     }
 }
 
-export { Operation };
+export { Operation, TOperationJSON, IOperation };

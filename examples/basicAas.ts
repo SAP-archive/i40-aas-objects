@@ -13,21 +13,12 @@ import {
 
 var run = function() {
     /* Create a Submodel and add a new Property to it*/
-    var myAssetIdentificationModel = new Submodel({
+    var myAssetIdentificationModel = Submodel.fromJSON({
         identification: { id: 'http://test.com/submodel/id/identification123', idType: IdTypeEnum.IRDI },
         idShort: 'identification123',
     }).addSubmodelElement(
-        new Property({
-            idShort: 'ManufacturerName',
-            descriptions: [
-                {
-                    language: CountryCodeEnum.UnitedStates,
-                    text:
-                        '	legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation',
-                },
-            ],
-            valueType: AnyAtomicTypeEnum.string,
-        }).setSemanticId(
+        new Property(
+            'ManufacturerName',
             new Reference({
                 keys: [
                     {
@@ -38,19 +29,20 @@ var run = function() {
                     },
                 ],
             }),
+            AnyAtomicTypeEnum.string,
         ),
     );
     /* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/
-    var myAsset = new Asset({
-        identification: { id: 'http://test.com/asset/123', idType: IdTypeEnum.IRDI },
-        idShort: '123',
-    }).setAssetIdentificationModel(myAssetIdentificationModel.getReference());
+    var myAsset = new Asset(
+        { id: 'http://test.com/asset/123', idType: IdTypeEnum.IRDI },
+        '123',
+    ).setAssetIdentificationModel(myAssetIdentificationModel.getReference());
 
     /* Create an AAS and add a reference to the previously created asset as its asset*/
-    var myAas = new AssetAdministrationShell({
-        identification: { id: 'http://test.com/aas/id/aas123', idType: IdTypeEnum.IRDI },
-        idShort: 'identification123',
-    }).setAsset(myAsset.getReference());
+    var myAas = new AssetAdministrationShell(
+        { id: 'http://test.com/aas/id/aas123', idType: IdTypeEnum.IRDI },
+        'identification123',
+    ).setAsset(myAsset.getReference());
 
     /* Create an environment and add all identifiables */
     var myNewAasEnv = new AssetAdministrationShellEnv()

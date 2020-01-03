@@ -18,7 +18,7 @@ interface IConceptDescription {
     administration?: IAdministrativeInformation;
     isCaseOf?: Reference;
 }
-interface IConceptDescriptionConstructor {
+interface TConceptDescriptionJSON {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType?: IModelTypeConstructor;
     idShort: string;
@@ -30,15 +30,50 @@ interface IConceptDescriptionConstructor {
     isCaseOf?: IReference;
 }
 class ConceptDescription extends Identifiable implements IConceptDescription {
-    isCaseOf?: Reference;
-    constructor(obj: IConceptDescriptionConstructor) {
-        super(obj, { name: KeyElementsEnum.ConceptDescription });
-        if (obj.isCaseOf) this.isCaseOf = new Reference(obj.isCaseOf);
+    static fromJSON(obj: TConceptDescriptionJSON) {
+        var cd = new ConceptDescription(
+            obj.identification,
+            obj.idShort,
+            obj.administration,
+            undefined, //isCaseOf
+            obj.descriptions,
+            obj.category,
+            obj.parent ? new Reference(obj.parent) : undefined,
+            undefined, //embeddedDataSpecifications
+        );
+        if (obj.isCaseOf) cd.isCaseOf = new Reference(obj.isCaseOf);
+        if (obj.embeddedDataSpecifications) cd.embeddedDataSpecifications = obj.embeddedDataSpecifications;
+        return cd;
     }
+    isCaseOf?: Reference;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        administration?: IAdministrativeInformation,
+        isCaseOf?: IReference,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: Reference,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+    ) {
+        super(
+            identification,
+            idShort,
+            { name: KeyElementsEnum.ConceptDescription },
+            administration,
+            descriptions,
+            category,
+            parent,
+        );
+        this.embeddedDataSpecifications = embeddedDataSpecifications || [];
+        if (isCaseOf) this.isCaseOf = new Reference(isCaseOf);
+    }
+
     toJSON(): IConceptDescription {
         let res: any = super.toJSON();
         res.isCaseOf = this.isCaseOf;
         return res;
     }
 }
-export { ConceptDescription, IConceptDescriptionConstructor, IConceptDescription };
+export { ConceptDescription, TConceptDescriptionJSON, IConceptDescription };

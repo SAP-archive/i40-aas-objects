@@ -5,46 +5,33 @@ import { IdTypeEnum } from '../src/types/IdTypeEnum';
 import { Asset, Submodel } from '../index';
 describe('Construct an minimal Asset', function() {
     it('Create an minimal Asset', function() {
-        let asset = new Asset({
-            identification: {
+        let asset = new Asset(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Asset,
-            },
-            idShort: 'customer2',
-        });
+            'myAsset',
+        );
         expect(Object.keys(asset)).to.include.members(['identification', 'idShort', 'modelType']);
     });
 });
 describe('Add an assetIdentficationModel to the Asset', function() {
     it('Add in Construcor', function() {
-        let asset = new Asset({
-            identification: {
+        let asset = new Asset(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Asset,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
+            'myAsset',
+            undefined,
+            new Submodel(
                 {
-                    language: CountryCodeEnum.Germany,
-                    text: 'Asset eines Kundensystems',
+                    id: 'http://sap.com/customer/2',
+                    idType: IdTypeEnum.IRI,
                 },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
-            },
-            assetIdentificationModel: new Submodel({
-                identification: { id: 'http://test123', idType: IdTypeEnum.IRI },
-                idShort: 'myNewSubmodel',
-            }).getReference(),
-        });
+                'myAsset',
+            ).getReference(),
+        );
 
         expect(Object.keys(asset)).to.include.members([
             'identification',
@@ -60,34 +47,29 @@ describe('Add an assetIdentficationModel to the Asset', function() {
         expect(asset.assetIdentificationModel!.keys[0]).to.have.all.keys('idType', 'value', 'type', 'local');
     });
 
-    it('Add via addAssetIdentificationModel', function() {
-        let asset = new Asset({
-            identification: {
+    it('Add via setAssetIdentificationModel', function() {
+        let asset = new Asset(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Asset,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
+            'myAsset',
+        );
+        asset.setAssetIdentificationModel(
+            new Submodel(
                 {
-                    language: CountryCodeEnum.Germany,
-                    text: 'Asset eines Kundensystems',
+                    id: 'http://sap.com/customer/2',
+                    idType: IdTypeEnum.IRI,
                 },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
-            },
-        });
+                'myAsset',
+            ).getReference(),
+        );
 
         expect(
             asset.setAssetIdentificationModel({
                 keys: [{ idType: IdTypeEnum.IRI, value: 'asda/adjea', type: KeyElementsEnum.Submodel, local: true }],
             }),
-        ).to.have.keys(
+        ).to.contain.keys(
             'identification',
             'idShort',
             'modelType',
@@ -101,31 +83,13 @@ describe('Add an assetIdentficationModel to the Asset', function() {
 });
 describe('Get a Reference to the asset', function() {
     it('Generate a Reference', function() {
-        let asset = new Asset({
-            identification: {
+        let asset = new Asset(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Asset,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
-                {
-                    language: CountryCodeEnum.Germany,
-                    text: 'Asset eines Kundensystems',
-                },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
-            },
-            assetIdentificationModel: new Submodel({
-                identification: { id: 'test123', idType: IdTypeEnum.IRI },
-                idShort: 'myNewSubmodel',
-            }).getReference(),
-        });
+            'myAsset',
+        );
         expect(Object.keys(asset.getReference())).to.have.members(['keys']);
     });
 });

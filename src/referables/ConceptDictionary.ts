@@ -22,9 +22,16 @@ interface IConceptDictionaryConstructor {
 }
 class ConceptDictionary extends Referable {
     conceptDescriptions: Array<Reference> = [];
-    constructor(obj: IConceptDictionaryConstructor) {
-        super(obj, { name: KeyElementsEnum.ConceptDictionary });
-        if (obj.conceptDescriptions) this.setConceptDescriptions(obj.conceptDescriptions);
+
+    constructor(
+        idShort: string,
+        conceptDescriptions?: Array<IReference>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(idShort, { name: KeyElementsEnum.View }, descriptions, category, parent);
+        if (conceptDescriptions) this.setConceptDescriptions(conceptDescriptions);
     }
 
     setConceptDescriptions(cds: Array<IReference>) {

@@ -9,44 +9,13 @@ import { AnyAtomicTypeEnum } from '../src/types/AnyAtomicTypeEnum';
 
 describe('Construct Submodel', function() {
     it('create an Submodel', function() {
-        let submodel = new Submodel({
-            identification: {
+        let submodel = new Submodel(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Submodel,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
-                {
-                    language: CountryCodeEnum.Germany,
-                    text: 'VWS eines Kundensystems',
-                },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
-            },
-            submodelElements: [
-                new Property({
-                    modelType: { name: KeyElementsEnum.Property },
-                    idShort: 'test',
-                    semanticId: {
-                        keys: [
-                            {
-                                idType: IdTypeEnum.IRI,
-                                local: true,
-                                value: '123.vom',
-                                type: KeyElementsEnum.GlobalReference,
-                            },
-                        ],
-                    },
-                    valueType: AnyAtomicTypeEnum.float,
-                }),
-            ],
-        });
+            'test',
+        );
         expect(Object.keys(submodel)).to.include.members([
             'identification',
             'idShort',
@@ -57,47 +26,73 @@ describe('Construct Submodel', function() {
     });
 });
 
-describe('Access submodelElements via getter', function() {
-    it('gets submodelElements', function() {
-        let submodel = new Submodel({
-            identification: {
+describe('Set submodelElements', function() {
+    it('sets submodelElements', function() {
+        let submodel = new Submodel(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Submodel,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
+            'test',
+        );
+        submodel.setSubmodelElements([
+            new Property(
+                'test',
                 {
-                    language: CountryCodeEnum.Germany,
-                    text: 'VWS eines Kundensystems',
+                    keys: [
+                        {
+                            idType: IdTypeEnum.IRI,
+                            local: true,
+                            value: '123.com',
+                            type: KeyElementsEnum.GlobalReference,
+                        },
+                    ],
                 },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
+                AnyAtomicTypeEnum.float,
+            ),
+            new Property(
+                'test2',
+                {
+                    keys: [
+                        {
+                            idType: IdTypeEnum.IRI,
+                            local: true,
+                            value: '123.com',
+                            type: KeyElementsEnum.GlobalReference,
+                        },
+                    ],
+                },
+                AnyAtomicTypeEnum.float,
+            ),
+        ]);
+        expect(submodel.submodelElements)
+            .to.be.an('array')
+            .with.length(2);
+    });
+    it('sets submodelElements', function() {
+        let submodel = new Submodel(
+            {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
             },
-            submodelElements: [
-                new Property({
-                    modelType: { name: KeyElementsEnum.Property },
-                    idShort: 'test',
-                    semanticId: {
-                        keys: [
-                            {
-                                idType: IdTypeEnum.IRI,
-                                local: true,
-                                value: '123.vom',
-                                type: KeyElementsEnum.GlobalReference,
-                            },
-                        ],
-                    },
-                    valueType: AnyAtomicTypeEnum.float,
-                }),
-            ],
-        });
-        console.log(submodel);
+            'test',
+        );
+        submodel.addSubmodelElement(
+            new Property(
+                'test',
+                {
+                    keys: [
+                        {
+                            idType: IdTypeEnum.IRI,
+                            local: true,
+                            value: '123.com',
+                            type: KeyElementsEnum.GlobalReference,
+                        },
+                    ],
+                },
+                AnyAtomicTypeEnum.float,
+            ),
+        );
         expect(submodel.submodelElements)
             .to.be.an('array')
             .with.length(1);
@@ -106,71 +101,45 @@ describe('Access submodelElements via getter', function() {
 
 describe('Get SubmodelElement by idShort', function() {
     it('returns a submodelElement by idShort', function() {
-        let submodel = new Submodel({
-            identification: {
+        let submodel = new Submodel(
+            {
                 id: 'http://sap.com/customer/2',
                 idType: IdTypeEnum.IRI,
             },
-            modelType: {
-                name: KeyElementsEnum.Submodel,
-            },
-            embeddedDataSpecifications: [],
-            descriptions: [
+            'test',
+        );
+        submodel.addSubmodelElement(
+            new Property(
+                'test',
                 {
-                    language: CountryCodeEnum.Germany,
-                    text: 'VWS eines Kundensystems',
+                    keys: [
+                        {
+                            idType: IdTypeEnum.IRI,
+                            local: true,
+                            value: '123.com',
+                            type: KeyElementsEnum.GlobalReference,
+                        },
+                    ],
                 },
-            ],
-            idShort: 'customer2',
-            administration: {
-                revision: '0.0.0',
-                version: '0.0.1',
-            },
-            submodelElements: [
-                new Property({
-                    modelType: { name: KeyElementsEnum.Property },
-                    idShort: 'test',
-                    semanticId: {
-                        keys: [
-                            {
-                                idType: IdTypeEnum.IRI,
-                                local: true,
-                                value: '123.vom',
-                                type: KeyElementsEnum.GlobalReference,
-                            },
-                        ],
-                    },
-                    valueType: AnyAtomicTypeEnum.float,
-                }),
-            ],
-        });
+                AnyAtomicTypeEnum.float,
+            ),
+        );
         expect(submodel.getSubmodelElementByIdShort('test')).to.have.all.keys(
             Object.keys(
-                new Property({
-                    modelType: { name: KeyElementsEnum.Property },
-                    idShort: 'test',
-                    semanticId: {
+                new Property(
+                    'test',
+                    {
                         keys: [
                             {
                                 idType: IdTypeEnum.IRI,
                                 local: true,
-                                value: '123.vom',
+                                value: '123.com',
                                 type: KeyElementsEnum.GlobalReference,
                             },
                         ],
                     },
-                    parent: {
-                        keys: [
-                            {
-                                idType: IdTypeEnum.IRI,
-                                local: true,
-                                value: '123.vom',
-                                type: KeyElementsEnum.GlobalReference,
-                            },
-                        ],
-                    },
-                    valueType: AnyAtomicTypeEnum.float,
-                }),
+                    AnyAtomicTypeEnum.float,
+                ),
             ),
         );
     });

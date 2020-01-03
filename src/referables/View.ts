@@ -17,7 +17,7 @@ interface IView {
     descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
 }
-interface IViewConstructor {
+type TViewJSON = {
     modelType?: IModelTypeConstructor;
     semanticId?: IReference;
     embeddedDataSpecifications?: IEmbeddedDataSpecification[];
@@ -26,15 +26,22 @@ interface IViewConstructor {
     category?: string;
     descriptions?: Array<ILangString>;
     containedElements?: Array<IReference>;
-}
+};
 class View extends Referable implements IHasSemantics, IHasDataSpecification, IView {
     semanticId?: IReference;
     embeddedDataSpecifications: IEmbeddedDataSpecification[] = [];
     containedElements: Array<IReference> = [];
-    constructor(obj: IViewConstructor) {
-        super(obj, { name: KeyElementsEnum.View });
-        this.semanticId = obj.semanticId;
-        if (obj.containedElements) this.setContainedElements(obj.containedElements);
+    constructor(
+        idShort: string,
+        containedElements?: Array<IReference>,
+        semanticId?: IReference,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(idShort, { name: KeyElementsEnum.View }, descriptions, category, parent);
+        this.semanticId = semanticId;
+        if (containedElements) this.setContainedElements(containedElements);
     }
     setContainedElements(ces: Array<IReference>) {
         var that = this;
@@ -57,4 +64,4 @@ class View extends Referable implements IHasSemantics, IHasDataSpecification, IV
     }
 }
 
-export { View };
+export { View, IView, TViewJSON };

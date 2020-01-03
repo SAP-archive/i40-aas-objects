@@ -3,11 +3,11 @@ import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { ISubmodelElementConstructor, SubmodelElement } from './SubmodelElement';
-import { IPropertyConstructor, Property } from './Property';
+import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { MultiLanguageProperty } from './MultiLanguageProperty';
-import { Operation } from './Operation';
+import { IConstraint } from '../baseClasses/Constraint';
+import { TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
+import { SubmodelElementFactory } from './SubmodelElementFactory';
 
 interface ISubmodelElementCollection {
     kind?: KindEnum;
@@ -21,8 +21,9 @@ interface ISubmodelElementCollection {
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
+    qualifiers?: Array<IConstraint>;
 }
-interface ISubmodelElementCollectionConstructor {
+type TSubmodelElementCollectionJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -34,17 +35,54 @@ interface ISubmodelElementCollectionConstructor {
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
-}
+    qualifiers?: Array<IConstraint>;
+};
 class SubmodelElementCollection extends SubmodelElement implements ISubmodelElementCollection {
     value: Array<SubmodelElement> = [];
     ordered: boolean = false;
     allowDuplicates: boolean = true;
-
-    constructor(obj: ISubmodelElementCollectionConstructor) {
-        super(obj, { name: KeyElementsEnum.SubmodelElementCollection });
-        if (obj.value) this.setValue(obj.value);
-        if (obj.ordered) this.ordered = obj.ordered;
-        if (obj.allowDuplicates) this.allowDuplicates = obj.allowDuplicates;
+    static fromJSON(obj: TSubmodelElementCollectionJSON): SubmodelElementCollection {
+        return new SubmodelElementCollection(
+            obj.idShort,
+            obj.semanticId,
+            obj.value,
+            obj.ordered,
+            obj.allowDuplicates,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
+    }
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        value?: Array<SubmodelElement>,
+        ordered?: boolean,
+        allowDuplicates?: boolean,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.SubmodelElementCollection },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        if (value) this.setValue(value);
+        if (ordered) this.ordered = ordered;
+        if (allowDuplicates) this.allowDuplicates = allowDuplicates;
     }
 
     getValue() {
@@ -67,34 +105,9 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     this.value.push(value);
   }
 */
-    public addValue(submodelElement: ISubmodelElementConstructor) {
+    public addValue(submodelElement: TSubmodelElementsJSON) {
         submodelElement.parent = this.getReference();
-        if (submodelElement.modelType != null) {
-            switch (submodelElement.modelType.name) {
-                case KeyElementsEnum.Property:
-                    this.value.push(new Property(submodelElement as IPropertyConstructor));
-                    break;
-                case KeyElementsEnum.SubmodelElementCollection:
-                    this.value.push(new SubmodelElementCollection(submodelElement as SubmodelElementCollection));
-                    break;
-                case KeyElementsEnum.MultiLanguageProperty:
-                    this.value.push(new MultiLanguageProperty(submodelElement as MultiLanguageProperty));
-                    break;
-                case KeyElementsEnum.Operation:
-                    this.value.push(new Operation(submodelElement as Operation));
-                    break;
-                default:
-                    throw new Error(
-                        'Could not parse SubmodeElement. ModelType: ' +
-                            submodelElement.modelType.name +
-                            ' is not supported',
-                    );
-            }
-        } else {
-            throw new Error(
-                `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,
-            );
-        }
+        this.value.push(SubmodelElementFactory.createSubmodelElement(submodelElement));
         return this;
     }
 
@@ -129,4 +142,4 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     }
 }
 
-export { SubmodelElementCollection };
+export { SubmodelElementCollection, TSubmodelElementCollectionJSON, ISubmodelElementCollection };

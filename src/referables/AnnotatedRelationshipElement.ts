@@ -5,6 +5,7 @@ import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { RelationShipElement } from './RelationshipElement';
+import { IConstraint } from '../baseClasses/Constraint';
 
 interface IAnnotatedRelationshipElement {
     kind: KindEnum;
@@ -18,8 +19,9 @@ interface IAnnotatedRelationshipElement {
     first: Reference;
     second: Reference;
     annotations: Array<IReference>;
+    qualifiers?: Array<IConstraint>;
 }
-interface IAnnotatedRelationshipElementConstructor {
+type TAnnotatedRelationshipElementJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -31,12 +33,52 @@ interface IAnnotatedRelationshipElementConstructor {
     first: IReference;
     second: IReference;
     annotations: Array<IReference>;
-}
+    qualifiers?: Array<IConstraint>;
+};
 class AnnotatedRelationshipElement extends RelationShipElement implements IAnnotatedRelationshipElement {
     annotations: Array<IReference> = [];
-    constructor(obj: IAnnotatedRelationshipElementConstructor) {
-        super(obj, { name: KeyElementsEnum.AnnotatedRelationshipElement });
-        if (obj.annotations) this.annotations = obj.annotations;
+    static fromJSON(obj: TAnnotatedRelationshipElementJSON): AnnotatedRelationshipElement {
+        return new AnnotatedRelationshipElement(
+            obj.idShort,
+            obj.semanticId,
+            obj.first,
+            obj.second,
+            obj.annotations,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
+    }
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        first: IReference,
+        second: IReference,
+        annotations: Array<IReference>,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            semanticId,
+            first,
+            second,
+            { name: KeyElementsEnum.AnnotatedRelationshipElement },
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        this.annotations = annotations;
     }
     toJSON(): IAnnotatedRelationshipElement {
         let res: any = super.toJSON();
@@ -45,4 +87,4 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
     }
 }
 
-export { AnnotatedRelationshipElement, IAnnotatedRelationshipElement, IAnnotatedRelationshipElementConstructor };
+export { AnnotatedRelationshipElement, IAnnotatedRelationshipElement, TAnnotatedRelationshipElementJSON };

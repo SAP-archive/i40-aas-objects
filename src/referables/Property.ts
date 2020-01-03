@@ -6,6 +6,7 @@ import { ILangString } from '../baseClasses/LangString';
 import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { IConstraint } from '../baseClasses/Constraint';
 
 interface IProperty {
     kind?: KindEnum;
@@ -19,10 +20,11 @@ interface IProperty {
     valueId?: IReference;
     value?: string;
     valueType: AnyAtomicTypeEnum;
+    qualifiers?: Array<IConstraint>;
 }
-interface IPropertyConstructor {
+type TPropertyJSON = {
     kind?: KindEnum;
-    semanticId?: IReference;
+    semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType?: IModelTypeConstructor;
     idShort: string;
@@ -32,17 +34,56 @@ interface IPropertyConstructor {
     valueId?: IReference;
     value?: string;
     valueType: AnyAtomicTypeEnum;
-}
+    qualifiers?: Array<IConstraint>;
+};
 class Property extends SubmodelElement implements IProperty {
     valueId?: IReference;
     value?: string;
     valueType: AnyAtomicTypeEnum;
-    constructor(obj: IPropertyConstructor) {
-        super(obj, { name: KeyElementsEnum.Property });
-        this.valueId = obj.valueId;
-        this.value = obj.value;
-        this.valueType = obj.valueType;
+    static fromJSON(obj: TPropertyJSON): Property {
+        return new Property(
+            obj.idShort,
+            obj.semanticId,
+            obj.valueType,
+            obj.value,
+            obj.valueId,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
     }
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        valueType: AnyAtomicTypeEnum,
+        value?: string,
+        valueId?: IReference,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.Property },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        this.valueId = valueId;
+        this.value = value;
+        this.valueType = valueType;
+    }
+
     toJSON(): IProperty {
         let res: any = super.toJSON();
         res.value = this.value;
@@ -52,4 +93,4 @@ class Property extends SubmodelElement implements IProperty {
     }
 }
 
-export { Property, IProperty, IPropertyConstructor };
+export { Property, IProperty, TPropertyJSON };

@@ -1,16 +1,14 @@
-import { Submodel } from '../src/identifiables/Submodel';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
 import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
 import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
-import { SubmodelElement } from '../src/referables/SubmodelElement';
 import { Property } from '../src/referables/Property';
 import { SubmodelElementCollection } from '../src/referables/SubmodelElementCollection';
 import { AnyAtomicTypeEnum } from '../src/types/AnyAtomicTypeEnum';
 
 describe('Construct SubmodelElementCollection', function() {
     it('create an Submodel', function() {
-        let submodelElementCollection = new SubmodelElementCollection({
+        let submodelElementCollection = SubmodelElementCollection.fromJSON({
             idShort: 'test',
             semanticId: {
                 keys: [
@@ -37,7 +35,7 @@ describe('Construct SubmodelElementCollection', function() {
 
 describe('Get SubmodelElement by idShort', function() {
     it('returns a submodelElement by idShort', function() {
-        let submodelElementCollection = new SubmodelElementCollection({
+        let submodelElementCollection = SubmodelElementCollection.fromJSON({
             semanticId: {
                 keys: [
                     {
@@ -56,7 +54,7 @@ describe('Get SubmodelElement by idShort', function() {
             ],
             idShort: 'testCollection',
             value: [
-                new Property({
+                Property.fromJSON({
                     modelType: { name: KeyElementsEnum.Property },
                     idShort: 'test',
                     semanticId: {
@@ -76,7 +74,7 @@ describe('Get SubmodelElement by idShort', function() {
         console.log(submodelElementCollection.getValueByIdShort('test'));
         expect(submodelElementCollection.getValueByIdShort('test')).to.have.all.keys(
             Object.keys(
-                new Property({
+                Property.fromJSON({
                     modelType: { name: KeyElementsEnum.Property },
                     idShort: 'test',
                     parent: {

@@ -5,6 +5,7 @@ import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { IConstraint } from '../baseClasses/Constraint';
 
 interface IRelationShipElement {
     kind: KindEnum;
@@ -17,8 +18,9 @@ interface IRelationShipElement {
     descriptions?: Array<ILangString>;
     first: Reference;
     second: Reference;
+    qualifiers?: Array<IConstraint>;
 }
-interface IRelationShipElementConstructor {
+type TRelationShipElementJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -29,19 +31,54 @@ interface IRelationShipElementConstructor {
     descriptions?: Array<ILangString>;
     first: IReference;
     second: IReference;
-}
+    qualifiers?: Array<IConstraint>;
+};
 class RelationShipElement extends SubmodelElement implements IRelationShipElement {
     first: Reference;
     second: Reference;
-    constructor(obj: IRelationShipElementConstructor, modelType?: IModelType) {
-        if (modelType) {
-            super(obj, modelType);
-        } else {
-            super(obj, { name: KeyElementsEnum.RelationshipElement });
-        }
-        this.first = new Reference(obj.first);
-        this.second = new Reference(obj.second);
+    static fromJSON(obj: TRelationShipElementJSON): RelationShipElement {
+        return new RelationShipElement(
+            obj.idShort,
+            obj.semanticId,
+            obj.first,
+            obj.second,
+            undefined,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.descriptions,
+            obj.category,
+            obj.parent,
+        );
     }
+    constructor(
+        idShort: string,
+        semanticId: IReference,
+        first: IReference,
+        second: IReference,
+        modelType?: IModelType,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        descriptions?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            modelType ? modelType : { name: KeyElementsEnum.RelationshipElement },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            descriptions,
+            category,
+            parent,
+        );
+        this.first = new Reference(first);
+        this.second = new Reference(second);
+    }
+
     toJSON(): IRelationShipElement {
         let res: any = super.toJSON();
         res.first = this.first;
@@ -50,4 +87,4 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
     }
 }
 
-export { RelationShipElement, IRelationShipElement, IRelationShipElementConstructor };
+export { RelationShipElement, IRelationShipElement, TRelationShipElementJSON };

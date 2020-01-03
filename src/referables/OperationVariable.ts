@@ -1,12 +1,13 @@
 import { SubmodelElement } from './SubmodelElement';
-interface OperationVariableInterface {
-    value?: SubmodelElement;
+import { TSubmodelElements } from '../types/SubmodelElementTypes';
+interface IOperationVariable {
+    value?: TSubmodelElements;
 }
 class OperationVariable {
-    value?: SubmodelElement;
-    constructor(obj: OperationVariableInterface) {
-        this.value = obj.value;
+    value?: TSubmodelElements;
+    constructor(value: TSubmodelElements) {
+        this.value = value;
     }
 }
 
-export { OperationVariable };
+export { OperationVariable, IOperationVariable };
