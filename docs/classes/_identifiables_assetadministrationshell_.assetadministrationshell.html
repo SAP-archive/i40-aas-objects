@@ -85,7 +85,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="_characteristics_hasmodeltype_.hasmodeltype.html" class="tsd-signature-type">HasModelType</a></li>
+					<li><a href="../interfaces/_characteristics_hasmodeltype_.ihasmodeltype.html" class="tsd-signature-type">IHasModelType</a></li>
 					<li><a href="_characteristics_identifiable_.identifiable.html" class="tsd-signature-type">Identifiable</a></li>
 					<li><a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html" class="tsd-signature-type">IAssetAdministrationShell</a></li>
 				</ul>
@@ -109,6 +109,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#conceptdictionaries" class="tsd-kind-icon">concept<wbr>Dictionaries</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#derivedfrom" class="tsd-kind-icon">derived<wbr>From</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#descriptions" class="tsd-kind-icon">descriptions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#embeddeddataspecifications" class="tsd-kind-icon">embedded<wbr>Data<wbr>Specifications</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#idshort" class="tsd-kind-icon">id<wbr>Short</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#identification" class="tsd-kind-icon">identification</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#modeltype" class="tsd-kind-icon">model<wbr>Type</a></li>
@@ -123,9 +124,15 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#addconceptdictionary" class="tsd-kind-icon">add<wbr>Concept<wbr>Dictionary</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#addsubmodel" class="tsd-kind-icon">add<wbr>Submodel</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#addview" class="tsd-kind-icon">add<wbr>View</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setasset" class="tsd-kind-icon">set<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setconceptdictionaries" class="tsd-kind-icon">set<wbr>Concept<wbr>Dictionaries</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setsubmodels" class="tsd-kind-icon">set<wbr>Submodels</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setviews" class="tsd-kind-icon">set<wbr>Views</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#fromjson" class="tsd-kind-icon">fromJSON</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,20 +144,56 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Asset<wbr>Administration<wbr>Shell<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshellconstructor.html" class="tsd-signature-type">IAssetAdministrationShellConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Asset<wbr>Administration<wbr>Shell<span class="tsd-signature-symbol">(</span>identification<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a>, idShort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, administration<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a>, asset<span class="tsd-signature-symbol">?: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a>, submodels<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">&gt;</span>, conceptDictionaries<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_conceptdictionary_.conceptdictionary.html" class="tsd-signature-type">ConceptDictionary</a><span class="tsd-signature-symbol">&gt;</span>, views<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a><span class="tsd-signature-symbol">&gt;</span>, derivedFrom<span class="tsd-signature-symbol">?: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a>, descriptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, category<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, security<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, parent<span class="tsd-signature-symbol">?: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a>, embeddedDataSpecifications<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L50">identifiables/AssetAdministrationShell.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L76">identifiables/AssetAdministrationShell.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshellconstructor.html" class="tsd-signature-type">IAssetAdministrationShellConstructor</a></h5>
+									<h5>identification: <a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a></h5>
+								</li>
+								<li>
+									<h5>idShort: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> administration: <a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> asset: <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> conceptDictionaries: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_conceptdictionary_.conceptdictionary.html" class="tsd-signature-type">ConceptDictionary</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> views: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> derivedFrom: <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> descriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> category: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> security: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> embeddedDataSpecifications: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></h4>
@@ -163,23 +206,23 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="administration" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> administration</h3>
-					<div class="tsd-signature tsd-kind-icon">administration<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_administrativeinformation_.administrativeinformation.html" class="tsd-signature-type">AdministrativeInformation</a></div>
+					<div class="tsd-signature tsd-kind-icon">administration<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#administration">administration</a></p>
 						<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#administration">administration</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L45">characteristics/Identifiable.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L45">characteristics/Identifiable.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="asset" class="tsd-anchor"></a>
 					<h3>asset</h3>
-					<div class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">asset<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#asset">asset</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L50">identifiables/AssetAdministrationShell.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L50">identifiables/AssetAdministrationShell.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +234,7 @@
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#category">category</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#category">category</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L28">characteristics/Referable.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,30 +245,41 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#conceptdictionaries">conceptDictionaries</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L48">identifiables/AssetAdministrationShell.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L48">identifiables/AssetAdministrationShell.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="derivedfrom" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> derived<wbr>From</h3>
-					<div class="tsd-signature tsd-kind-icon">derived<wbr>From<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">derived<wbr>From<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#derivedfrom">derivedFrom</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L45">identifiables/AssetAdministrationShell.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L45">identifiables/AssetAdministrationShell.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="descriptions" class="tsd-anchor"></a>
 					<h3>descriptions</h3>
-					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_description_.description.html" class="tsd-signature-type">Description</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#descriptions">descriptions</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#descriptions">descriptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L29">characteristics/Referable.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+					<a name="embeddeddataspecifications" class="tsd-anchor"></a>
+					<h3>embedded<wbr>Data<wbr>Specifications</h3>
+					<div class="tsd-signature tsd-kind-icon">embedded<wbr>Data<wbr>Specifications<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#embeddeddataspecifications">embeddedDataSpecifications</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L51">identifiables/AssetAdministrationShell.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -237,43 +291,43 @@
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#idshort">idShort</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#idshort">idShort</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L24">characteristics/Referable.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="identification" class="tsd-anchor"></a>
 					<h3>identification</h3>
-					<div class="tsd-signature tsd-kind-icon">identification<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_identifier_.identifier.html" class="tsd-signature-type">Identifier</a></div>
+					<div class="tsd-signature tsd-kind-icon">identification<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#identification">identification</a></p>
 						<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#identification">identification</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L44">characteristics/Identifiable.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L44">characteristics/Identifiable.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="modeltype" class="tsd-anchor"></a>
 					<h3>model<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_modeltype_.modeltype.html" class="tsd-signature-type">ModelType</a></div>
+					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_modeltype_.imodeltype.html" class="tsd-signature-type">IModelType</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#modeltype">modelType</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#modeltype">modelType</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L23">characteristics/Referable.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="parent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> parent</h3>
-					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#parent">parent</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#parent">parent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -284,29 +338,29 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#security">security</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L46">identifiables/AssetAdministrationShell.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L46">identifiables/AssetAdministrationShell.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="submodels" class="tsd-anchor"></a>
 					<h3>submodels</h3>
-					<div class="tsd-signature tsd-kind-icon">submodels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">submodels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#submodels">submodels</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L47">identifiables/AssetAdministrationShell.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L47">identifiables/AssetAdministrationShell.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="views" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> views</h3>
-					<div class="tsd-signature tsd-kind-icon">views<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">views<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html">IAssetAdministrationShell</a>.<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html#views">views</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L49">identifiables/AssetAdministrationShell.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L49">identifiables/AssetAdministrationShell.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,19 +371,19 @@
 					<a name="addconceptdictionary" class="tsd-anchor"></a>
 					<h3>add<wbr>Concept<wbr>Dictionary</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Concept<wbr>Dictionary<span class="tsd-signature-symbol">(</span>conceptDictionary<span class="tsd-signature-symbol">: </span><a href="_referables_conceptdictionary_.conceptdictionary.html" class="tsd-signature-type">ConceptDictionary</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Concept<wbr>Dictionary<span class="tsd-signature-symbol">(</span>conceptDictionary<span class="tsd-signature-symbol">: </span><a href="../interfaces/_referables_conceptdictionary_.iconceptdictionaryconstructor.html" class="tsd-signature-type">IConceptDictionaryConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L76">identifiables/AssetAdministrationShell.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L137">identifiables/AssetAdministrationShell.ts:137</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>conceptDictionary: <a href="_referables_conceptdictionary_.conceptdictionary.html" class="tsd-signature-type">ConceptDictionary</a></h5>
+									<h5>conceptDictionary: <a href="../interfaces/_referables_conceptdictionary_.iconceptdictionaryconstructor.html" class="tsd-signature-type">IConceptDictionaryConstructor</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -340,22 +394,63 @@
 					<a name="addsubmodel" class="tsd-anchor"></a>
 					<h3>add<wbr>Submodel</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<span class="tsd-signature-symbol">(</span>submodel<span class="tsd-signature-symbol">: </span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<span class="tsd-signature-symbol">(</span>submodel<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L72">identifiables/AssetAdministrationShell.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L121">identifiables/AssetAdministrationShell.ts:121</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodel: <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+									<h5>submodel: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="addview" class="tsd-anchor"></a>
+					<h3>add<wbr>View</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>View<span class="tsd-signature-symbol">(</span>view<span class="tsd-signature-symbol">: </span><a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L161">identifiables/AssetAdministrationShell.ts:161</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>view: <a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
+					<a name="checkrules" class="tsd-anchor"></a>
+					<h3>check<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Rules<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#checkrules">checkRules</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L181">identifiables/AssetAdministrationShell.ts:181</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -363,7 +458,7 @@
 					<a name="getreference" class="tsd-anchor"></a>
 					<h3>get<wbr>Reference</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -371,10 +466,56 @@
 								<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#getreference">getReference</a></p>
 								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#getreference">getReference</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L28">characteristics/Identifiable.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L28">characteristics/Identifiable.ts:28</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="setasset" class="tsd-anchor"></a>
+					<h3>set<wbr>Asset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Asset<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L125">identifiables/AssetAdministrationShell.ts:125</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>asset: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="setconceptdictionaries" class="tsd-anchor"></a>
+					<h3>set<wbr>Concept<wbr>Dictionaries</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Concept<wbr>Dictionaries<span class="tsd-signature-symbol">(</span>conceptDictionaries<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_conceptdictionary_.iconceptdictionaryconstructor.html" class="tsd-signature-type">IConceptDictionaryConstructor</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L129">identifiables/AssetAdministrationShell.ts:129</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>conceptDictionaries: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_conceptdictionary_.iconceptdictionaryconstructor.html" class="tsd-signature-type">IConceptDictionaryConstructor</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -382,19 +523,42 @@
 					<a name="setsubmodels" class="tsd-anchor"></a>
 					<h3>set<wbr>Submodels</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodels<span class="tsd-signature-symbol">(</span>submodels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodels<span class="tsd-signature-symbol">(</span>submodels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L64">identifiables/AssetAdministrationShell.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L113">identifiables/AssetAdministrationShell.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="setviews" class="tsd-anchor"></a>
+					<h3>set<wbr>Views</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Views<span class="tsd-signature-symbol">(</span>views<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L153">identifiables/AssetAdministrationShell.ts:153</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>views: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -412,10 +576,33 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/AssetAdministrationShell.ts#L83">identifiables/AssetAdministrationShell.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L171">identifiables/AssetAdministrationShell.ts:171</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html" class="tsd-signature-type">IAssetAdministrationShell</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+					<a name="fromjson" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">fromJSON<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_assetadministrationshell_.tassetadministrationshelljson.html" class="tsd-signature-type">TAssetAdministrationShellJSON</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/AssetAdministrationShell.ts#L52">identifiables/AssetAdministrationShell.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <a href="../interfaces/_identifiables_assetadministrationshell_.tassetadministrationshelljson.html" class="tsd-signature-type">TAssetAdministrationShellJSON</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -460,6 +647,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#descriptions" class="tsd-kind-icon">descriptions</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#embeddeddataspecifications" class="tsd-kind-icon">embedded<wbr>Data<wbr>Specifications</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#idshort" class="tsd-kind-icon">id<wbr>Short</a>
 							</li>
@@ -487,14 +677,32 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#addsubmodel" class="tsd-kind-icon">add<wbr>Submodel</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#addview" class="tsd-kind-icon">add<wbr>View</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setasset" class="tsd-kind-icon">set<wbr>Asset</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setconceptdictionaries" class="tsd-kind-icon">set<wbr>Concept<wbr>Dictionaries</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setsubmodels" class="tsd-kind-icon">set<wbr>Submodels</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#setviews" class="tsd-kind-icon">set<wbr>Views</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
 								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#tojson" class="tsd-kind-icon">toJSON</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_identifiables_assetadministrationshell_.assetadministrationshell.html#fromjson" class="tsd-kind-icon">fromJSON</a>
 							</li>
 						</ul>
 					</li>
@@ -504,7 +712,7 @@
 						<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshell.html" class="tsd-kind-icon">IAsset<wbr>Administration<wbr>Shell</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshellconstructor.html" class="tsd-kind-icon">IAsset<wbr>Administration<wbr>Shell<wbr>Constructor</a>
+						<a href="../interfaces/_identifiables_assetadministrationshell_.tassetadministrationshelljson.html" class="tsd-kind-icon">TAsset<wbr>Administration<wbr>ShellJSON</a>
 					</li>
 				</ul>
 			</nav>

@@ -85,9 +85,9 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="_characteristics_hasmodeltype_.hasmodeltype.html" class="tsd-signature-type">HasModelType</a></li>
-					<li><a href="_characteristics_hassemantics_.hassemantics.html" class="tsd-signature-type">HasSemantics</a></li>
-					<li><a href="_characteristics_hasdataspecification_.hasdataspecification.html" class="tsd-signature-type">HasDataSpecification</a></li>
+					<li><a href="../interfaces/_characteristics_hasmodeltype_.ihasmodeltype.html" class="tsd-signature-type">IHasModelType</a></li>
+					<li><a href="../interfaces/_characteristics_hassemantics_.ihassemantics.html" class="tsd-signature-type">IHasSemantics</a></li>
+					<li><a href="../interfaces/_characteristics_hasdataspecification_.ihasdataspecification.html" class="tsd-signature-type">IHasDataSpecification</a></li>
 					<li><a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a></li>
 				</ul>
 			</section>
@@ -117,8 +117,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_referables_view_.view.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_referables_view_.view.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_referables_view_.view.html#setcontainedelements" class="tsd-kind-icon">set<wbr>Contained<wbr>Elements</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_referables_view_.view.html#setsemanticid" class="tsd-kind-icon">set<wbr>Semantic<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_referables_view_.view.html#tojson" class="tsd-kind-icon">toJSON</a></li>
 							</ul>
 						</section>
@@ -131,20 +133,35 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>View<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_referables_view_.iviewconstructor.html" class="tsd-signature-type">IViewConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>View<span class="tsd-signature-symbol">(</span>idShort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, containedElements<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span>, semanticId<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a>, descriptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, category<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, parent<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_referables_view_.view.html" class="tsd-signature-type">View</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L32">referables/View.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L33">referables/View.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <a href="../interfaces/_referables_view_.iviewconstructor.html" class="tsd-signature-type">IViewConstructor</a></h5>
+									<h5>idShort: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> containedElements: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> semanticId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> descriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> category: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_referables_view_.view.html" class="tsd-signature-type">View</a></h4>
@@ -162,41 +179,41 @@
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#category">category</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#category">category</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L28">characteristics/Referable.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="containedelements" class="tsd-anchor"></a>
 					<h3>contained<wbr>Elements</h3>
-					<div class="tsd-signature tsd-kind-icon">contained<wbr>Elements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">contained<wbr>Elements<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#containedelements">containedElements</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L32">referables/View.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L33">referables/View.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="descriptions" class="tsd-anchor"></a>
 					<h3>descriptions</h3>
-					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_description_.description.html" class="tsd-signature-type">Description</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#descriptions">descriptions</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#descriptions">descriptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L29">characteristics/Referable.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="embeddeddataspecifications" class="tsd-anchor"></a>
 					<h3>embedded<wbr>Data<wbr>Specifications</h3>
-					<div class="tsd-signature tsd-kind-icon">embedded<wbr>Data<wbr>Specifications<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_embeddeddataspecification_.embeddeddataspecification.html" class="tsd-signature-type">EmbeddedDataSpecification</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">embedded<wbr>Data<wbr>Specifications<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#embeddeddataspecifications">embeddedDataSpecifications</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L31">referables/View.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L32">referables/View.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,42 +225,42 @@
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#idshort">idShort</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#idshort">idShort</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L24">characteristics/Referable.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="modeltype" class="tsd-anchor"></a>
 					<h3>model<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_modeltype_.modeltype.html" class="tsd-signature-type">ModelType</a></div>
+					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_modeltype_.imodeltype.html" class="tsd-signature-type">IModelType</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#modeltype">modelType</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#modeltype">modelType</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L23">characteristics/Referable.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="parent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> parent</h3>
-					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#parent">parent</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#parent">parent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="semanticid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> semantic<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">semantic<wbr>Id<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">semantic<wbr>Id<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_view_.iview.html">IView</a>.<a href="../interfaces/_referables_view_.iview.html#semanticid">semanticId</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L30">referables/View.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L31">referables/View.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,20 +268,38 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+					<a name="checkrules" class="tsd-anchor"></a>
+					<h3>check<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Rules<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#checkrules">checkRules</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L75">characteristics/Referable.ts:75</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="getreference" class="tsd-anchor"></a>
 					<h3>get<wbr>Reference</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#getreference">getReference</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L44">characteristics/Referable.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L45">characteristics/Referable.ts:45</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -272,19 +307,42 @@
 					<a name="setcontainedelements" class="tsd-anchor"></a>
 					<h3>set<wbr>Contained<wbr>Elements</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Contained<wbr>Elements<span class="tsd-signature-symbol">(</span>ces<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Contained<wbr>Elements<span class="tsd-signature-symbol">(</span>ces<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L38">referables/View.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L46">referables/View.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ces: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>ces: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="setsemanticid" class="tsd-anchor"></a>
+					<h3>set<wbr>Semantic<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Semantic<wbr>Id<span class="tsd-signature-symbol">(</span>semanticId<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L54">referables/View.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>semanticId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -302,7 +360,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/referables/View.ts#L46">referables/View.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/referables/View.ts#L58">referables/View.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_referables_view_.iview.html" class="tsd-signature-type">IView</a></h4>
@@ -357,10 +415,16 @@
 								<a href="_referables_view_.view.html#semanticid" class="tsd-kind-icon">semantic<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
+								<a href="_referables_view_.view.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_referables_view_.view.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_referables_view_.view.html#setcontainedelements" class="tsd-kind-icon">set<wbr>Contained<wbr>Elements</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_referables_view_.view.html#setsemanticid" class="tsd-kind-icon">set<wbr>Semantic<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
 								<a href="_referables_view_.view.html#tojson" class="tsd-kind-icon">toJSON</a>
@@ -372,8 +436,8 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../interfaces/_referables_view_.iview.html" class="tsd-kind-icon">IView</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_referables_view_.iviewconstructor.html" class="tsd-kind-icon">IView<wbr>Constructor</a>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_referables_view_.html#tviewjson" class="tsd-kind-icon">TViewJSON</a>
 					</li>
 				</ul>
 			</nav>

@@ -8,7 +8,6 @@ import {
     AnyAtomicTypeEnum,
     Reference,
     KeyElementsEnum,
-    CountryCodeEnum,
 } from '../index';
 
 var run = function() {

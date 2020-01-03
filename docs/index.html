@@ -73,16 +73,27 @@
 				<a href="#contents" id="contents" style="color: inherit; text-decoration: none;">
 					<h4>Contents:</h4>
 				</a>
-				<ol>
-					<li><a href="#description">Description</a></li>
-					<li><a href="#requirements">Requirements</a></li>
-					<li><a href="#download-and-installation">Download and Installation</a></li>
-					<li><a href="#known-issues">Known Issues</a></li>
-					<li><a href="#how-to-obtain-support">How to obtain support</a></li>
-					<li><a href="#contributing">Contributing</a></li>
-					<li><a href="#upcoming-changes">Upcoming Changes</a></li>
-					<li><a href="#license">License</a></li>
-				</ol>
+				<ul>
+					<li><a href="#i40-aas-objects">i40-aas-objects</a><pre><code><span class="hljs-bullet">- </span>[<span class="hljs-string">Contents:</span>](<span class="hljs-link">#contents</span>)</code></pre><ul>
+							<li><a href="#description">Description</a></li>
+							<li><a href="#requirements">Requirements</a></li>
+							<li><a href="#download-and-installation">Download and Installation</a><ul>
+									<li><a href="#1-create-an-empty-nodejs-project">1. Create an empty Node.js project</a></li>
+									<li><a href="#2-prepare-the-typescript-project">2. Prepare the TypeScript project</a></li>
+									<li><a href="#3-add-i40-aas-objects-dependency-in-your-packagejson">3. Add i40-aas-objects dependency in your package.json</a></li>
+									<li><a href="#4-use-i40-aas-objects">4. Use i40-aas-objects</a></li>
+								</ul>
+							</li>
+							<li><a href="#configuration-optional">Configuration [Optional]</a></li>
+							<li><a href="#limitations-optional">Limitations [Optional]</a></li>
+							<li><a href="#known-issues">Known Issues</a></li>
+							<li><a href="#how-to-obtain-support">How to obtain support</a></li>
+							<li><a href="#contributing">Contributing</a></li>
+							<li><a href="#upcoming-changes">Upcoming changes</a></li>
+							<li><a href="#license">License</a></li>
+						</ul>
+					</li>
+				</ul>
 				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
 					<h2>Description</h2>
 				</a>
@@ -156,7 +167,64 @@ $ npm --<span class="hljs-keyword">version</span>
   },
   <span class="hljs-string">"author"</span>: <span class="hljs-string">""</span>,
   <span class="hljs-string">"license"</span>: <span class="hljs-string">"SEE LICENSE IN LICENSE"</span>
-}</code></pre><!---
+}</code></pre>
+				<a href="#4-use-i40-aas-objects" id="4-use-i40-aas-objects" style="color: inherit; text-decoration: none;">
+					<h3>4. Use i40-aas-objects</h3>
+				</a>
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">import</span> {
+  AssetAdministrationShellEnv, Asset,AssetAdministrationShell,Submodel,IdTypeEnum,Property,AnyAtomicTypeEnum,Reference,KeyElementsEnum,CountryCodeEnum
+  } <span class="hljs-keyword">from</span> <span class="hljs-string">'i40-aas-objects'</span>;
+
+  <span class="hljs-comment">/* Create a Submodel and add a new Property to it*/</span>
+    <span class="hljs-keyword">var</span> myAssetIdentificationModel = <span class="hljs-keyword">new</span> Submodel({
+        identification: { id: <span class="hljs-string">'http://test.com/submodel/id/identification123'</span>, idType: IdTypeEnum.IRDI },
+        idShort: <span class="hljs-string">'identification123'</span>,
+    }).addSubmodelElement(
+        <span class="hljs-keyword">new</span> Property({
+            idShort: <span class="hljs-string">'ManufacturerName'</span>,
+            descriptions: [
+                {
+                    language: CountryCodeEnum.UnitedStates,
+                    text: <span class="hljs-string">'    legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation'</span>,
+                },
+            ],
+            valueType: AnyAtomicTypeEnum.string,
+        }).setSemanticId(
+            <span class="hljs-keyword">new</span> Reference({
+                keys: [
+                    {
+                        local: <span class="hljs-literal">false</span>,
+                        <span class="hljs-keyword">type</span>: KeyElementsEnum.GlobalReference,
+                        idType: IdTypeEnum.IRDI,
+                        value: <span class="hljs-string">'0173-1#02-AAO677#002'</span>,
+                    },
+                ],
+            }),
+        ),
+    );
+
+    <span class="hljs-comment">/* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/</span>
+    <span class="hljs-keyword">var</span> myAsset = <span class="hljs-keyword">new</span> Asset({
+        identification: { id: <span class="hljs-string">'http://test.com/asset/123'</span>, idType: IdTypeEnum.IRDI },
+        idShort: <span class="hljs-string">'123'</span>,
+    }).addAssetIdentificationModel(myAssetIdentificationModel.getReference());
+
+    <span class="hljs-comment">/* Create an AAS and add a reference to the previously created asset as its asset*/</span>
+    <span class="hljs-keyword">var</span> myAas = <span class="hljs-keyword">new</span> AssetAdministrationShell({
+        identification: { id: <span class="hljs-string">'http://test.com/aas/id/aas123'</span>, idType: IdTypeEnum.IRDI },
+        idShort: <span class="hljs-string">'identification123'</span>,
+    }).setAsset(myAsset.getReference());
+
+    <span class="hljs-comment">/* Create an environment and add all identifiables */</span>
+    <span class="hljs-keyword">var</span> myNewAasEnv = <span class="hljs-keyword">new</span> AssetAdministrationShellEnv()
+        .addAssetAdministrationShell(myAas)
+        .addAsset(myAsset)
+        .addSubmodel(myAssetIdentificationModel);
+
+    <span class="hljs-comment">/* print the environment to the console */</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(myNewAasEnv, <span class="hljs-literal">null</span>, <span class="hljs-number">3</span>));</code></pre>
+				<!---
 ## Configuration [Optional]
 
 *These options may not be part of the installation process, but help configure the source for specific uses.*
@@ -208,6 +276,33 @@ $ npm --<span class="hljs-keyword">version</span>
 						<a href="modules/_assetadministrationshellenv_.html">&quot;<wbr>Asset<wbr>Administration<wbr>Shell<wbr>Env&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_administrativeinformation_.html">&quot;base<wbr>Classes/<wbr>Administrative<wbr>Information&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_constraint_.html">&quot;base<wbr>Classes/<wbr>Constraint&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_embeddeddataspecification_.html">&quot;base<wbr>Classes/<wbr>Embedded<wbr>Data<wbr>Specification&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_identifier_.html">&quot;base<wbr>Classes/<wbr>Identifier&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_key_.html">&quot;base<wbr>Classes/<wbr>Key&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_langstring_.html">&quot;base<wbr>Classes/<wbr>Lang<wbr>String&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_modeltype_.html">&quot;base<wbr>Classes/<wbr>Model<wbr>Type&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_qualifier_.html">&quot;base<wbr>Classes/<wbr>Qualifier&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_baseclasses_reference_.html">&quot;base<wbr>Classes/<wbr>Reference&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_characteristics_hasdataspecification_.html">&quot;characteristics/<wbr>Has<wbr>Data<wbr>Specification&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -227,36 +322,6 @@ $ npm --<span class="hljs-keyword">version</span>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_characteristics_referable_.html">&quot;characteristics/<wbr>Referable&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_administrativeinformation_.html">&quot;characteristics/interfaces/<wbr>Administrative<wbr>Information&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_constraint_.html">&quot;characteristics/interfaces/<wbr>Constraint&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_description_.html">&quot;characteristics/interfaces/<wbr>Description&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_embeddeddataspecification_.html">&quot;characteristics/interfaces/<wbr>Embedded<wbr>Data<wbr>Specification&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_identifier_.html">&quot;characteristics/interfaces/<wbr>Identifier&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_key_.html">&quot;characteristics/interfaces/<wbr>Key&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_langstring_.html">&quot;characteristics/interfaces/<wbr>Lang<wbr>String&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_modeltype_.html">&quot;characteristics/interfaces/<wbr>Model<wbr>Type&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_qualifier_.html">&quot;characteristics/interfaces/<wbr>Qualifier&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_characteristics_interfaces_reference_.html">&quot;characteristics/interfaces/<wbr>Reference&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_dataspecifications_dataspecificationiec61360_.html">&quot;dataspecifications/<wbr>Data<wbr>SpecificationIEC61360&quot;</a>
@@ -280,13 +345,16 @@ $ npm --<span class="hljs-keyword">version</span>
 						<a href="modules/_interaction_frame_.html">&quot;interaction/<wbr>Frame&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_interaction_interaction_.html">&quot;interaction/<wbr>Interaction&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="modules/_interaction_interactionmessage_.html">&quot;interaction/<wbr>Interaction<wbr>Message&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_annotatedrelationshipelement_.html">&quot;referables/<wbr>Annotated<wbr>Relationship<wbr>Element&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_conceptdictionary_.html">&quot;referables/<wbr>Concept<wbr>Dictionary&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_entity_.html">&quot;referables/<wbr>Entity&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_multilanguageproperty_.html">&quot;referables/<wbr>Multi<wbr>Language<wbr>Property&quot;</a>
@@ -301,16 +369,31 @@ $ npm --<span class="hljs-keyword">version</span>
 						<a href="modules/_referables_property_.html">&quot;referables/<wbr>Property&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_relationshipelement_.html">&quot;referables/<wbr>Relationship<wbr>Element&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_submodelelement_.html">&quot;referables/<wbr>Submodel<wbr>Element&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_submodelelementcollection_.html">&quot;referables/<wbr>Submodel<wbr>Element<wbr>Collection&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_submodelelementfactory_.html">&quot;referables/<wbr>Submodel<wbr>Element<wbr>Factory&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_view_.html">&quot;referables/<wbr>View&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_anyatomictypeenum_.html">&quot;types/<wbr>Any<wbr>Atomic<wbr>Type<wbr>Enum&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_assetkindenum_.html">&quot;types/<wbr>Asset<wbr>Kind<wbr>Enum&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_types_countrycodeenum_.html">&quot;types/<wbr>Country<wbr>Code<wbr>Enum&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_entitytypeenum_.html">&quot;types/<wbr>Entity<wbr>Type<wbr>Enum&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_types_idtypeenum_.html">&quot;types/<wbr>IdType<wbr>Enum&quot;</a>
@@ -322,7 +405,7 @@ $ npm --<span class="hljs-keyword">version</span>
 						<a href="modules/_types_kindenum_.html">&quot;types/<wbr>Kind<wbr>Enum&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_anyatomictype_.html">&quot;types/any<wbr>Atomic<wbr>Type&quot;</a>
+						<a href="modules/_types_submodelelementtypes_.html">&quot;types/<wbr>Submodel<wbr>Element<wbr>Types&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_validator_.html">&quot;validator&quot;</a>

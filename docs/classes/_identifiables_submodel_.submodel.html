@@ -85,12 +85,12 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="_characteristics_hasmodeltype_.hasmodeltype.html" class="tsd-signature-type">HasModelType</a></li>
+					<li><a href="../interfaces/_characteristics_hasmodeltype_.ihasmodeltype.html" class="tsd-signature-type">IHasModelType</a></li>
 					<li><a href="_characteristics_identifiable_.identifiable.html" class="tsd-signature-type">Identifiable</a></li>
 					<li><a href="../interfaces/_identifiables_submodel_.isubmodel.html" class="tsd-signature-type">ISubmodel</a></li>
-					<li><a href="_characteristics_haskind_.haskind.html" class="tsd-signature-type">HasKind</a></li>
-					<li><a href="_characteristics_hassemantics_.hassemantics.html" class="tsd-signature-type">HasSemantics</a></li>
-					<li><a href="_characteristics_qualifiable_.qualifiable.html" class="tsd-signature-type">Qualifiable</a></li>
+					<li><a href="../interfaces/_characteristics_haskind_.ihaskind.html" class="tsd-signature-type">IHasKind</a></li>
+					<li><a href="../interfaces/_characteristics_hassemantics_.ihassemantics.html" class="tsd-signature-type">IHasSemantics</a></li>
+					<li><a href="../interfaces/_characteristics_qualifiable_.iqualifiable.html" class="tsd-signature-type">IQualifiable</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -109,6 +109,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#administration" class="tsd-kind-icon">administration</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#category" class="tsd-kind-icon">category</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#descriptions" class="tsd-kind-icon">descriptions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#embeddeddataspecifications" class="tsd-kind-icon">embedded<wbr>Data<wbr>Specifications</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#idshort" class="tsd-kind-icon">id<wbr>Short</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#identification" class="tsd-kind-icon">identification</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#kind" class="tsd-kind-icon">kind</a></li>
@@ -123,12 +124,15 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#addsubmodelelement" class="tsd-kind-icon">add<wbr>Submodel<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#getsubmodelelementbyidshort" class="tsd-kind-icon">get<wbr>Submodel<wbr>Element<wbr>ById<wbr>Short</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#getsubmodelelements" class="tsd-kind-icon">get<wbr>Submodel<wbr>Elements</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#getsubmodelidshort" class="tsd-kind-icon">get<wbr>Submodel<wbr>IdShort</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#setsemanticid" class="tsd-kind-icon">set<wbr>Semantic<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#setsubmodelelements" class="tsd-kind-icon">set<wbr>Submodel<wbr>Elements</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_identifiables_submodel_.submodel.html#fromjson" class="tsd-kind-icon">fromJSON</a></li>
 							</ul>
 						</section>
 					</div>
@@ -140,20 +144,50 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Submodel<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_submodel_.isubmodelconstructor.html" class="tsd-signature-type">ISubmodelConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Submodel<span class="tsd-signature-symbol">(</span>identification<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a>, idShort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, administration<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a>, submodelsElements<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_submodelelement_.isubmodelelement.html" class="tsd-signature-type">ISubmodelElement</a><span class="tsd-signature-symbol">&gt;</span>, qualifiers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_constraint_.iconstraint.html" class="tsd-signature-type">IConstraint</a><span class="tsd-signature-symbol">&gt;</span>, semanticId<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a>, descriptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, category<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, parent<span class="tsd-signature-symbol">?: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a>, embeddedDataSpecifications<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span>, kind<span class="tsd-signature-symbol">?: </span><a href="../enums/_types_kindenum_.kindenum.html" class="tsd-signature-type">KindEnum</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L54">identifiables/Submodel.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L71">identifiables/Submodel.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <a href="../interfaces/_identifiables_submodel_.isubmodelconstructor.html" class="tsd-signature-type">ISubmodelConstructor</a></h5>
+									<h5>identification: <a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a></h5>
+								</li>
+								<li>
+									<h5>idShort: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> administration: <a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> submodelsElements: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_submodelelement_.isubmodelelement.html" class="tsd-signature-type">ISubmodelElement</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> qualifiers: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_constraint_.iconstraint.html" class="tsd-signature-type">IConstraint</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> semanticId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> descriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> category: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parent: <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> embeddedDataSpecifications: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> kind: <a href="../enums/_types_kindenum_.kindenum.html" class="tsd-signature-type">KindEnum</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></h4>
@@ -166,12 +200,12 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="administration" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> administration</h3>
-					<div class="tsd-signature tsd-kind-icon">administration<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_administrativeinformation_.administrativeinformation.html" class="tsd-signature-type">AdministrativeInformation</a></div>
+					<div class="tsd-signature tsd-kind-icon">administration<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_administrativeinformation_.iadministrativeinformation.html" class="tsd-signature-type">IAdministrativeInformation</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#administration">administration</a></p>
 						<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#administration">administration</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L45">characteristics/Identifiable.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L45">characteristics/Identifiable.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,19 +217,30 @@
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#category">category</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#category">category</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L28">characteristics/Referable.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="descriptions" class="tsd-anchor"></a>
 					<h3>descriptions</h3>
-					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_description_.description.html" class="tsd-signature-type">Description</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">descriptions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#descriptions">descriptions</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#descriptions">descriptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L29">characteristics/Referable.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+					<a name="embeddeddataspecifications" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> embedded<wbr>Data<wbr>Specifications</h3>
+					<div class="tsd-signature tsd-kind-icon">embedded<wbr>Data<wbr>Specifications<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#embeddeddataspecifications">embeddedDataSpecifications</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L71">identifiables/Submodel.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -207,19 +252,19 @@
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#idshort">idShort</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#idshort">idShort</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L24">characteristics/Referable.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="identification" class="tsd-anchor"></a>
 					<h3>identification</h3>
-					<div class="tsd-signature tsd-kind-icon">identification<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_identifier_.identifier.html" class="tsd-signature-type">Identifier</a></div>
+					<div class="tsd-signature tsd-kind-icon">identification<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_identifier_.iidentifier.html" class="tsd-signature-type">IIdentifier</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#identification">identification</a></p>
 						<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#identification">identification</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L44">characteristics/Identifiable.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L44">characteristics/Identifiable.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,55 +273,55 @@
 					<h3>kind</h3>
 					<div class="tsd-signature tsd-kind-icon">kind<span class="tsd-signature-symbol">:</span> <a href="../enums/_types_kindenum_.kindenum.html" class="tsd-signature-type">KindEnum</a><span class="tsd-signature-symbol"> =&nbsp;KindEnum.Instance</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#kind">kind</a></p>
+						<p>Implementation of <a href="../interfaces/_characteristics_haskind_.ihaskind.html">IHasKind</a>.<a href="../interfaces/_characteristics_haskind_.ihaskind.html#kind">kind</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L52">identifiables/Submodel.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L68">identifiables/Submodel.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="modeltype" class="tsd-anchor"></a>
 					<h3>model<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_modeltype_.modeltype.html" class="tsd-signature-type">ModelType</a></div>
+					<div class="tsd-signature tsd-kind-icon">model<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_modeltype_.imodeltype.html" class="tsd-signature-type">IModelType</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#modeltype">modelType</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#modeltype">modelType</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L23">characteristics/Referable.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 					<a name="parent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> parent</h3>
-					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#parent">parent</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#parent">parent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="qualifiers" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> qualifiers</h3>
-					<div class="tsd-signature tsd-kind-icon">qualifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_characteristics_interfaces_constraint_.constraint.html" class="tsd-signature-type">Constraint</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">qualifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_constraint_.iconstraint.html" class="tsd-signature-type">IConstraint</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#qualifiers">qualifiers</a></p>
+						<p>Implementation of <a href="../interfaces/_characteristics_qualifiable_.iqualifiable.html">IQualifiable</a>.<a href="../interfaces/_characteristics_qualifiable_.iqualifiable.html#qualifiers">qualifiers</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L51">identifiables/Submodel.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L67">identifiables/Submodel.ts:67</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 					<a name="semanticid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> semantic<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">semantic<wbr>Id<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<div class="tsd-signature tsd-kind-icon">semantic<wbr>Id<span class="tsd-signature-symbol">:</span> <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></div>
 					<aside class="tsd-sources">
-						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#semanticid">semanticId</a></p>
+						<p>Implementation of <a href="../interfaces/_characteristics_hassemantics_.ihassemantics.html">IHasSemantics</a>.<a href="../interfaces/_characteristics_hassemantics_.ihassemantics.html#semanticid">semanticId</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L53">identifiables/Submodel.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L69">identifiables/Submodel.ts:69</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -287,7 +332,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_identifiables_submodel_.isubmodel.html">ISubmodel</a>.<a href="../interfaces/_identifiables_submodel_.isubmodel.html#submodelelements">submodelElements</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L54">identifiables/Submodel.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L70">identifiables/Submodel.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -298,19 +343,19 @@
 					<a name="addsubmodelelement" class="tsd-anchor"></a>
 					<h3>add<wbr>Submodel<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<wbr>Element<span class="tsd-signature-symbol">(</span>submodelElement<span class="tsd-signature-symbol">: </span><a href="_referables_submodelelement_.submodelelement.html" class="tsd-signature-type">SubmodelElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<wbr>Element<span class="tsd-signature-symbol">(</span>submodelElement<span class="tsd-signature-symbol">: </span><a href="../modules/_types_submodelelementtypes_.html#tsubmodelelementsjson" class="tsd-signature-type">TSubmodelElementsJSON</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L76">identifiables/Submodel.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L109">identifiables/Submodel.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodelElement: <a href="_referables_submodelelement_.submodelelement.html" class="tsd-signature-type">SubmodelElement</a></h5>
+									<h5>submodelElement: <a href="../modules/_types_submodelelementtypes_.html#tsubmodelelementsjson" class="tsd-signature-type">TSubmodelElementsJSON</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -318,10 +363,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+					<a name="checkrules" class="tsd-anchor"></a>
+					<h3>check<wbr>Rules</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Rules<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#checkrules">checkRules</a></p>
+								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#checkrules">checkRules</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L73">characteristics/Identifiable.ts:73</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
 					<a name="getreference" class="tsd-anchor"></a>
 					<h3>get<wbr>Reference</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Reference<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -329,10 +393,10 @@
 								<p>Inherited from <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#getreference">getReference</a></p>
 								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#getreference">getReference</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/characteristics/Identifiable.ts#L28">characteristics/Identifiable.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/characteristics/Identifiable.ts#L28">characteristics/Identifiable.ts:28</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -346,7 +410,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L109">identifiables/Submodel.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L115">identifiables/Submodel.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -369,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L61">identifiables/Submodel.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L91">identifiables/Submodel.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_submodelelement_.submodelelement.html" class="tsd-signature-type">SubmodelElement</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -386,7 +450,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L65">identifiables/Submodel.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L98">identifiables/Submodel.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -394,22 +458,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-					<a name="setsubmodelelements" class="tsd-anchor"></a>
-					<h3>set<wbr>Submodel<wbr>Elements</h3>
+					<a name="setsemanticid" class="tsd-anchor"></a>
+					<h3>set<wbr>Semantic<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodel<wbr>Elements<span class="tsd-signature-symbol">(</span>submodelElements<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_submodelelement_.submodelelement.html" class="tsd-signature-type">SubmodelElement</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Semantic<wbr>Id<span class="tsd-signature-symbol">(</span>semanticId<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L68">identifiables/Submodel.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L94">identifiables/Submodel.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodelElements: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_referables_submodelelement_.submodelelement.html" class="tsd-signature-type">SubmodelElement</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>semanticId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="setsubmodelelements" class="tsd-anchor"></a>
+					<h3>set<wbr>Submodel<wbr>Elements</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodel<wbr>Elements<span class="tsd-signature-symbol">(</span>submodelElements<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_submodelelement_.isubmodelelement.html" class="tsd-signature-type">ISubmodelElement</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L101">identifiables/Submodel.ts:101</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>submodelElements: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_referables_submodelelement_.isubmodelelement.html" class="tsd-signature-type">ISubmodelElement</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -427,10 +514,33 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_characteristics_identifiable_.identifiable.html">Identifiable</a>.<a href="_characteristics_identifiable_.identifiable.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/identifiables/Submodel.ts#L124">identifiables/Submodel.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L130">identifiables/Submodel.ts:130</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_identifiables_submodel_.isubmodel.html" class="tsd-signature-type">ISubmodel</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+					<a name="fromjson" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">fromJSON<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_submodel_.tsubmodeljson.html" class="tsd-signature-type">TSubmodelJSON</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/identifiables/Submodel.ts#L48">identifiables/Submodel.ts:48</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <a href="../interfaces/_identifiables_submodel_.tsubmodeljson.html" class="tsd-signature-type">TSubmodelJSON</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -466,6 +576,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_submodel_.submodel.html#descriptions" class="tsd-kind-icon">descriptions</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_submodel_.submodel.html#embeddeddataspecifications" class="tsd-kind-icon">embedded<wbr>Data<wbr>Specifications</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_submodel_.submodel.html#idshort" class="tsd-kind-icon">id<wbr>Short</a>
 							</li>
@@ -494,6 +607,9 @@
 								<a href="_identifiables_submodel_.submodel.html#addsubmodelelement" class="tsd-kind-icon">add<wbr>Submodel<wbr>Element</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+								<a href="_identifiables_submodel_.submodel.html#checkrules" class="tsd-kind-icon">check<wbr>Rules</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
 								<a href="_identifiables_submodel_.submodel.html#getreference" class="tsd-kind-icon">get<wbr>Reference</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
@@ -506,10 +622,16 @@
 								<a href="_identifiables_submodel_.submodel.html#getsubmodelidshort" class="tsd-kind-icon">get<wbr>Submodel<wbr>IdShort</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_identifiables_submodel_.submodel.html#setsemanticid" class="tsd-kind-icon">set<wbr>Semantic<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_identifiables_submodel_.submodel.html#setsubmodelelements" class="tsd-kind-icon">set<wbr>Submodel<wbr>Elements</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
 								<a href="_identifiables_submodel_.submodel.html#tojson" class="tsd-kind-icon">toJSON</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_identifiables_submodel_.submodel.html#fromjson" class="tsd-kind-icon">fromJSON</a>
 							</li>
 						</ul>
 					</li>
@@ -519,7 +641,7 @@
 						<a href="../interfaces/_identifiables_submodel_.isubmodel.html" class="tsd-kind-icon">ISubmodel</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="../interfaces/_identifiables_submodel_.isubmodelconstructor.html" class="tsd-kind-icon">ISubmodel<wbr>Constructor</a>
+						<a href="../interfaces/_identifiables_submodel_.tsubmodeljson.html" class="tsd-kind-icon">TSubmodelJSON</a>
 					</li>
 				</ul>
 			</nav>

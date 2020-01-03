@@ -116,7 +116,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getconceptdescriptionsbyidshort" class="tsd-kind-icon">get<wbr>Concept<wbr>Descriptions<wbr>ById<wbr>Short</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getinstance" class="tsd-kind-icon">get<wbr>Instance</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getshortestref" class="tsd-kind-icon">get<wbr>Shortest<wbr>Ref</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getstructureaggregationname" class="tsd-kind-icon">get<wbr>Structure<wbr>Aggregation<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getstructureaggregationname" class="tsd-kind-icon">get<wbr>Structure<wbr>Aggregation<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getsubmodels" class="tsd-kind-icon">get<wbr>Submodels</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getsubmodelsbyidshort" class="tsd-kind-icon">get<wbr>Submodels<wbr>ById<wbr>Short</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getsubmodelsbysemanticid" class="tsd-kind-icon">get<wbr>Submodels<wbr>BySemantic<wbr>Id</a></li>
@@ -125,6 +125,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#setconceptdescriptions" class="tsd-kind-icon">set<wbr>Concept<wbr>Descriptions</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#setsubmodels" class="tsd-kind-icon">set<wbr>Submodels</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported"><a href="_assetadministrationshellenv_.assetadministrationshellenv.html#fromjson" class="tsd-kind-icon">fromJSON</a></li>
 							</ul>
 						</section>
 					</div>
@@ -136,19 +137,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Asset<wbr>Administration<wbr>Shell<wbr>Env<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html" class="tsd-signature-type">IAssetAdministrationShellEnv</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_assetadministrationshellenv_.assetadministrationshellenv.html" class="tsd-signature-type">AssetAdministrationShellEnv</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Asset<wbr>Administration<wbr>Shell<wbr>Env<span class="tsd-signature-symbol">(</span>assetAdministrationShells<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">&gt;</span>, submodels<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">&gt;</span>, assets<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_asset_.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span>, conceptDescriptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_conceptdescription_.conceptdescription.html" class="tsd-signature-type">ConceptDescription</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_assetadministrationshellenv_.assetadministrationshellenv.html" class="tsd-signature-type">AssetAdministrationShellEnv</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L27">AssetAdministrationShellEnv.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L38">AssetAdministrationShellEnv.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html" class="tsd-signature-type">IAssetAdministrationShellEnv</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> assetAdministrationShells: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> assets: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_asset_.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> conceptDescriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_conceptdescription_.conceptdescription.html" class="tsd-signature-type">ConceptDescription</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_assetadministrationshellenv_.assetadministrationshellenv.html" class="tsd-signature-type">AssetAdministrationShellEnv</a></h4>
@@ -165,7 +175,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html">IAssetAdministrationShellEnv</a>.<a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html#assetadministrationshells">assetAdministrationShells</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L24">AssetAdministrationShellEnv.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L26">AssetAdministrationShellEnv.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -176,7 +186,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html">IAssetAdministrationShellEnv</a>.<a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html#assets">assets</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L27">AssetAdministrationShellEnv.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L29">AssetAdministrationShellEnv.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -187,7 +197,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html">IAssetAdministrationShellEnv</a>.<a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html#conceptdescriptions">conceptDescriptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L26">AssetAdministrationShellEnv.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L28">AssetAdministrationShellEnv.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -198,7 +208,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html">IAssetAdministrationShellEnv</a>.<a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html#submodels">submodels</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L25">AssetAdministrationShellEnv.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L27">AssetAdministrationShellEnv.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,19 +219,19 @@
 					<a name="addasset" class="tsd-anchor"></a>
 					<h3>add<wbr>Asset</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Asset<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_asset_.iassetconstructor.html" class="tsd-signature-type">IAssetConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Asset<span class="tsd-signature-symbol">(</span>asset<span class="tsd-signature-symbol">: </span><a href="_identifiables_asset_.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L93">AssetAdministrationShellEnv.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L109">AssetAdministrationShellEnv.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>asset: <a href="../interfaces/_identifiables_asset_.iassetconstructor.html" class="tsd-signature-type">IAssetConstructor</a></h5>
+									<h5>asset: <a href="_identifiables_asset_.asset.html" class="tsd-signature-type">Asset</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -232,19 +242,19 @@
 					<a name="addassetadministrationshell" class="tsd-anchor"></a>
 					<h3>add<wbr>Asset<wbr>Administration<wbr>Shell</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Asset<wbr>Administration<wbr>Shell<span class="tsd-signature-symbol">(</span>assetAdministrationShell<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshellconstructor.html" class="tsd-signature-type">IAssetAdministrationShellConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Asset<wbr>Administration<wbr>Shell<span class="tsd-signature-symbol">(</span>assetAdministrationShell<span class="tsd-signature-symbol">: </span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L47">AssetAdministrationShellEnv.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L63">AssetAdministrationShellEnv.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>assetAdministrationShell: <a href="../interfaces/_identifiables_assetadministrationshell_.iassetadministrationshellconstructor.html" class="tsd-signature-type">IAssetAdministrationShellConstructor</a></h5>
+									<h5>assetAdministrationShell: <a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -255,19 +265,19 @@
 					<a name="addconceptdescription" class="tsd-anchor"></a>
 					<h3>add<wbr>Concept<wbr>Description</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Concept<wbr>Description<span class="tsd-signature-symbol">(</span>conceptDescription<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_conceptdescription_.iconceptdescriptionconstructor.html" class="tsd-signature-type">IConceptDescriptionConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Concept<wbr>Description<span class="tsd-signature-symbol">(</span>conceptDescription<span class="tsd-signature-symbol">: </span><a href="_identifiables_conceptdescription_.conceptdescription.html" class="tsd-signature-type">ConceptDescription</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L77">AssetAdministrationShellEnv.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L93">AssetAdministrationShellEnv.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>conceptDescription: <a href="../interfaces/_identifiables_conceptdescription_.iconceptdescriptionconstructor.html" class="tsd-signature-type">IConceptDescriptionConstructor</a></h5>
+									<h5>conceptDescription: <a href="_identifiables_conceptdescription_.conceptdescription.html" class="tsd-signature-type">ConceptDescription</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -278,19 +288,19 @@
 					<a name="addsubmodel" class="tsd-anchor"></a>
 					<h3>add<wbr>Submodel</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<span class="tsd-signature-symbol">(</span>submodel<span class="tsd-signature-symbol">: </span><a href="../interfaces/_identifiables_submodel_.isubmodelconstructor.html" class="tsd-signature-type">ISubmodelConstructor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Submodel<span class="tsd-signature-symbol">(</span>submodel<span class="tsd-signature-symbol">: </span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L62">AssetAdministrationShellEnv.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L78">AssetAdministrationShellEnv.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodel: <a href="../interfaces/_identifiables_submodel_.isubmodelconstructor.html" class="tsd-signature-type">ISubmodelConstructor</a></h5>
+									<h5>submodel: <a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -307,7 +317,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L44">AssetAdministrationShellEnv.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L60">AssetAdministrationShellEnv.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -324,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L82">AssetAdministrationShellEnv.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L98">AssetAdministrationShellEnv.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_identifiables_asset_.asset.html" class="tsd-signature-type">Asset</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -341,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L190">AssetAdministrationShellEnv.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L206">AssetAdministrationShellEnv.ts:206</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -364,7 +374,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L66">AssetAdministrationShellEnv.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L82">AssetAdministrationShellEnv.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_identifiables_conceptdescription_.conceptdescription.html" class="tsd-signature-type">ConceptDescription</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -381,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L180">AssetAdministrationShellEnv.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L196">AssetAdministrationShellEnv.ts:196</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -398,19 +408,19 @@
 					<a name="getinstance" class="tsd-anchor"></a>
 					<h3>get<wbr>Instance</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Instance<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_characteristics_referable_.referable.html" class="tsd-signature-type">Referable</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Instance<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_characteristics_referable_.referable.html" class="tsd-signature-type">Referable</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L97">AssetAdministrationShellEnv.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L113">AssetAdministrationShellEnv.ts:113</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ref: <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+									<h5>ref: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_characteristics_referable_.referable.html" class="tsd-signature-type">Referable</a></h4>
@@ -421,45 +431,45 @@
 					<a name="getshortestref" class="tsd-anchor"></a>
 					<h3>get<wbr>Shortest<wbr>Ref</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Shortest<wbr>Ref<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Shortest<wbr>Ref<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L142">AssetAdministrationShellEnv.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L158">AssetAdministrationShellEnv.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ref: <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
+									<h5>ref: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_characteristics_interfaces_reference_.ireference.html" class="tsd-signature-type">IReference</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
 					<a name="getstructureaggregationname" class="tsd-anchor"></a>
-					<h3>get<wbr>Structure<wbr>Aggregation<wbr>Name</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Structure<wbr>Aggregation<wbr>Name<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><a href="../interfaces/_characteristics_interfaces_key_.ikey.html" class="tsd-signature-type">IKey</a>, structureModelType<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_characteristics_interfaces_modeltype_.modeltype.html" class="tsd-signature-type">ModelType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Structure<wbr>Aggregation<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Structure<wbr>Aggregation<wbr>Name<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><a href="../interfaces/_baseclasses_key_.ikey.html" class="tsd-signature-type">IKey</a>, structureModelType<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_modeltype_.imodeltype.html" class="tsd-signature-type">IModelType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L119">AssetAdministrationShellEnv.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L135">AssetAdministrationShellEnv.ts:135</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>key: <a href="../interfaces/_characteristics_interfaces_key_.ikey.html" class="tsd-signature-type">IKey</a></h5>
+									<h5>key: <a href="../interfaces/_baseclasses_key_.ikey.html" class="tsd-signature-type">IKey</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> structureModelType: <a href="../interfaces/_characteristics_interfaces_modeltype_.modeltype.html" class="tsd-signature-type">ModelType</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> structureModelType: <a href="../interfaces/_baseclasses_modeltype_.imodeltype.html" class="tsd-signature-type">IModelType</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -476,7 +486,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L51">AssetAdministrationShellEnv.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L67">AssetAdministrationShellEnv.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -493,7 +503,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L157">AssetAdministrationShellEnv.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L173">AssetAdministrationShellEnv.ts:173</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -510,19 +520,19 @@
 					<a name="getsubmodelsbysemanticid" class="tsd-anchor"></a>
 					<h3>get<wbr>Submodels<wbr>BySemantic<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Submodels<wbr>BySemantic<wbr>Id<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Submodels<wbr>BySemantic<wbr>Id<span class="tsd-signature-symbol">(</span>ref<span class="tsd-signature-symbol">: </span><a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L166">AssetAdministrationShellEnv.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L182">AssetAdministrationShellEnv.ts:182</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ref: <a href="_characteristics_interfaces_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
+									<h5>ref: <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -533,19 +543,19 @@
 					<a name="setassetadministrationshells" class="tsd-anchor"></a>
 					<h3>set<wbr>Asset<wbr>Administration<wbr>Shells</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Asset<wbr>Administration<wbr>Shells<span class="tsd-signature-symbol">(</span>assetAdministrationShellsIn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Asset<wbr>Administration<wbr>Shells<span class="tsd-signature-symbol">(</span>assetAdministrationShellsIn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_assetadministrationshell_.tassetadministrationshelljson.html" class="tsd-signature-type">TAssetAdministrationShellJSON</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L35">AssetAdministrationShellEnv.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L51">AssetAdministrationShellEnv.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>assetAdministrationShellsIn: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_identifiables_assetadministrationshell_.assetadministrationshell.html" class="tsd-signature-type">AssetAdministrationShell</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>assetAdministrationShellsIn: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_assetadministrationshell_.tassetadministrationshelljson.html" class="tsd-signature-type">TAssetAdministrationShellJSON</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -556,19 +566,19 @@
 					<a name="setassets" class="tsd-anchor"></a>
 					<h3>set<wbr>Assets</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Assets<span class="tsd-signature-symbol">(</span>assets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_asset_.iasset.html" class="tsd-signature-type">IAsset</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Assets<span class="tsd-signature-symbol">(</span>assets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_asset_.tassetjson.html" class="tsd-signature-type">TAssetJSON</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L86">AssetAdministrationShellEnv.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L102">AssetAdministrationShellEnv.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>assets: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_asset_.iasset.html" class="tsd-signature-type">IAsset</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>assets: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_asset_.tassetjson.html" class="tsd-signature-type">TAssetJSON</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -579,19 +589,19 @@
 					<a name="setconceptdescriptions" class="tsd-anchor"></a>
 					<h3>set<wbr>Concept<wbr>Descriptions</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Concept<wbr>Descriptions<span class="tsd-signature-symbol">(</span>conceptDescriptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_conceptdescription_.iconceptdescription.html" class="tsd-signature-type">IConceptDescription</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Concept<wbr>Descriptions<span class="tsd-signature-symbol">(</span>conceptDescriptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_conceptdescription_.tconceptdescriptionjson.html" class="tsd-signature-type">TConceptDescriptionJSON</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L69">AssetAdministrationShellEnv.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L85">AssetAdministrationShellEnv.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>conceptDescriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_conceptdescription_.iconceptdescription.html" class="tsd-signature-type">IConceptDescription</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>conceptDescriptions: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_conceptdescription_.tconceptdescriptionjson.html" class="tsd-signature-type">TConceptDescriptionJSON</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -602,19 +612,19 @@
 					<a name="setsubmodels" class="tsd-anchor"></a>
 					<h3>set<wbr>Submodels</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodels<span class="tsd-signature-symbol">(</span>submodels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_submodel_.isubmodel.html" class="tsd-signature-type">ISubmodel</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Submodels<span class="tsd-signature-symbol">(</span>submodels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_submodel_.tsubmodeljson.html" class="tsd-signature-type">TSubmodelJSON</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L54">AssetAdministrationShellEnv.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L70">AssetAdministrationShellEnv.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_submodel_.isubmodel.html" class="tsd-signature-type">ISubmodel</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>submodels: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_identifiables_submodel_.tsubmodeljson.html" class="tsd-signature-type">TSubmodelJSON</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -631,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/435dbb0/src/AssetAdministrationShellEnv.ts#L199">AssetAdministrationShellEnv.ts:199</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L215">AssetAdministrationShellEnv.ts:215</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -649,6 +659,29 @@
 									<h5>submodels<span class="tsd-signature-symbol">: </span><a href="_identifiables_submodel_.submodel.html" class="tsd-signature-type">Submodel</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+					<a name="fromjson" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> fromJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">fromJSON<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><a href="../modules/_assetadministrationshellenv_.html#tassetadministrationshellenvjson" class="tsd-signature-type">TAssetAdministrationShellEnvJSON</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_assetadministrationshellenv_.assetadministrationshellenv.html" class="tsd-signature-type">AssetAdministrationShellEnv</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/39a5394/src/AssetAdministrationShellEnv.ts#L31">AssetAdministrationShellEnv.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <a href="../modules/_assetadministrationshellenv_.html#tassetadministrationshellenvjson" class="tsd-signature-type">TAssetAdministrationShellEnvJSON</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_assetadministrationshellenv_.assetadministrationshellenv.html" class="tsd-signature-type">AssetAdministrationShellEnv</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -720,7 +753,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getshortestref" class="tsd-kind-icon">get<wbr>Shortest<wbr>Ref</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-not-exported">
 								<a href="_assetadministrationshellenv_.assetadministrationshellenv.html#getstructureaggregationname" class="tsd-kind-icon">get<wbr>Structure<wbr>Aggregation<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
@@ -747,12 +780,18 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_assetadministrationshellenv_.assetadministrationshellenv.html#tojson" class="tsd-kind-icon">toJSON</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-not-exported">
+								<a href="_assetadministrationshellenv_.assetadministrationshellenv.html#fromjson" class="tsd-kind-icon">fromJSON</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="../interfaces/_assetadministrationshellenv_.iassetadministrationshellenv.html" class="tsd-kind-icon">IAsset<wbr>Administration<wbr>Shell<wbr>Env</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_assetadministrationshellenv_.html#tassetadministrationshellenvjson" class="tsd-kind-icon">TAsset<wbr>Administration<wbr>Shell<wbr>EnvJSON</a>
 					</li>
 				</ul>
 			</nav>
