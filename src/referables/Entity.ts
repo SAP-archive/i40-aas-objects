@@ -42,10 +42,11 @@ class Entity extends SubmodelElement implements IEntity {
     static fromJSON(obj: TEntityJSON): Entity {
         return new Entity(
             obj.idShort,
-            obj.semanticId,
             obj.entityType,
             obj.statements,
             obj.asset,
+            obj.semanticId,
+
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -59,10 +60,10 @@ class Entity extends SubmodelElement implements IEntity {
     asset?: Reference;
     constructor(
         idShort: string,
-        semanticId: IReference,
         entityType: EntityTypeEnum,
         statements?: Array<TSubmodelElementsJSON>,
         asset?: IReference,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,

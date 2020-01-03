@@ -2,8 +2,6 @@ import { Submodel } from '../src/identifiables/Submodel';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
 import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
-import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
-import { SubmodelElement } from '../src/referables/SubmodelElement';
 import { Property } from '../src/referables/Property';
 import { AnyAtomicTypeEnum } from '../src/types/AnyAtomicTypeEnum';
 
@@ -36,34 +34,26 @@ describe('Set submodelElements', function() {
             'test',
         );
         submodel.setSubmodelElements([
-            new Property(
-                'test',
-                {
-                    keys: [
-                        {
-                            idType: IdTypeEnum.IRI,
-                            local: true,
-                            value: '123.com',
-                            type: KeyElementsEnum.GlobalReference,
-                        },
-                    ],
-                },
-                AnyAtomicTypeEnum.float,
-            ),
-            new Property(
-                'test2',
-                {
-                    keys: [
-                        {
-                            idType: IdTypeEnum.IRI,
-                            local: true,
-                            value: '123.com',
-                            type: KeyElementsEnum.GlobalReference,
-                        },
-                    ],
-                },
-                AnyAtomicTypeEnum.float,
-            ),
+            new Property('test', AnyAtomicTypeEnum.float, '9.10', undefined, {
+                keys: [
+                    {
+                        idType: IdTypeEnum.IRI,
+                        local: true,
+                        value: '123.com',
+                        type: KeyElementsEnum.GlobalReference,
+                    },
+                ],
+            }),
+            new Property('test', AnyAtomicTypeEnum.float, '9.10', undefined, {
+                keys: [
+                    {
+                        idType: IdTypeEnum.IRI,
+                        local: true,
+                        value: '123.com',
+                        type: KeyElementsEnum.GlobalReference,
+                    },
+                ],
+            }),
         ]);
         expect(submodel.submodelElements)
             .to.be.an('array')
@@ -78,20 +68,16 @@ describe('Set submodelElements', function() {
             'test',
         );
         submodel.addSubmodelElement(
-            new Property(
-                'test',
-                {
-                    keys: [
-                        {
-                            idType: IdTypeEnum.IRI,
-                            local: true,
-                            value: '123.com',
-                            type: KeyElementsEnum.GlobalReference,
-                        },
-                    ],
-                },
-                AnyAtomicTypeEnum.float,
-            ),
+            new Property('test', AnyAtomicTypeEnum.float, '9.10', undefined, {
+                keys: [
+                    {
+                        idType: IdTypeEnum.IRI,
+                        local: true,
+                        value: '123.com',
+                        type: KeyElementsEnum.GlobalReference,
+                    },
+                ],
+            }),
         );
         expect(submodel.submodelElements)
             .to.be.an('array')
@@ -109,9 +95,20 @@ describe('Get SubmodelElement by idShort', function() {
             'test',
         );
         submodel.addSubmodelElement(
-            new Property(
-                'test',
-                {
+            new Property('test', AnyAtomicTypeEnum.float, '9.10', undefined, {
+                keys: [
+                    {
+                        idType: IdTypeEnum.IRI,
+                        local: true,
+                        value: '123.com',
+                        type: KeyElementsEnum.GlobalReference,
+                    },
+                ],
+            }),
+        );
+        expect(submodel.getSubmodelElementByIdShort('test')).to.have.all.keys(
+            Object.keys(
+                new Property('test', AnyAtomicTypeEnum.float, '9.10', undefined, {
                     keys: [
                         {
                             idType: IdTypeEnum.IRI,
@@ -120,26 +117,7 @@ describe('Get SubmodelElement by idShort', function() {
                             type: KeyElementsEnum.GlobalReference,
                         },
                     ],
-                },
-                AnyAtomicTypeEnum.float,
-            ),
-        );
-        expect(submodel.getSubmodelElementByIdShort('test')).to.have.all.keys(
-            Object.keys(
-                new Property(
-                    'test',
-                    {
-                        keys: [
-                            {
-                                idType: IdTypeEnum.IRI,
-                                local: true,
-                                value: '123.com',
-                                type: KeyElementsEnum.GlobalReference,
-                            },
-                        ],
-                    },
-                    AnyAtomicTypeEnum.float,
-                ),
+                }),
             ),
         );
     });

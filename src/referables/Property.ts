@@ -43,10 +43,10 @@ class Property extends SubmodelElement implements IProperty {
     static fromJSON(obj: TPropertyJSON): Property {
         return new Property(
             obj.idShort,
-            obj.semanticId,
             obj.valueType,
             obj.value,
             obj.valueId,
+            obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -57,10 +57,10 @@ class Property extends SubmodelElement implements IProperty {
     }
     constructor(
         idShort: string,
-        semanticId: IReference,
         valueType: AnyAtomicTypeEnum,
         value?: string,
         valueId?: IReference,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,

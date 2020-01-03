@@ -1,14 +1,14 @@
 import { KindEnum } from '../types/KindEnum';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType } from '../baseClasses/ModelType';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/KeyElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
-
-interface IRelationShipElement {
-    kind: KindEnum;
+import * as mime from 'mime-types';
+interface IFile {
+    kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
@@ -16,32 +16,31 @@ interface IRelationShipElement {
     parent?: Reference;
     category?: string;
     descriptions?: Array<ILangString>;
-    first: Reference;
-    second: Reference;
+    value?: string;
+    mimeType: string;
     qualifiers?: Array<IConstraint>;
 }
-type TRelationShipElementJSON = {
+type TFileJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
+    modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
     descriptions?: Array<ILangString>;
-    first: IReference;
-    second: IReference;
+    value?: string;
+    mimeType?: string;
     qualifiers?: Array<IConstraint>;
 };
-class RelationShipElement extends SubmodelElement implements IRelationShipElement {
-    first: Reference;
-    second: Reference;
-    static fromJSON(obj: TRelationShipElementJSON): RelationShipElement {
-        return new RelationShipElement(
+class File extends SubmodelElement implements IFile {
+    value?: string;
+    mimeType: string;
+    static fromJSON(obj: TFileJSON): File {
+        return new File(
             obj.idShort,
-            obj.first,
-            obj.second,
-            undefined,
+            obj.mimeType,
+            obj.value,
             obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
@@ -53,9 +52,8 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
     }
     constructor(
         idShort: string,
-        first: IReference,
-        second: IReference,
-        modelType?: IModelType,
+        mimeType?: string,
+        value?: string,
         semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
@@ -66,7 +64,7 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
     ) {
         super(
             idShort,
-            modelType ? modelType : { name: KeyElementsEnum.RelationshipElement },
+            { name: KeyElementsEnum.File },
             semanticId,
             kind,
             embeddedDataSpecifications,
@@ -75,16 +73,19 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
             category,
             parent,
         );
-        this.first = new Reference(first);
-        this.second = new Reference(second);
+        this.mimeType = mimeType || mime.lookup('' + value) || 'application/octet-stream';
+        if (value) this.value = value;
     }
-
-    toJSON(): IRelationShipElement {
+    checkRules() {
+        if (!this.mimeType) {
+            throw new Error('Attribute MimeType is required for a File.');
+        }
+    }
+    toJSON(): IFile {
         let res: any = super.toJSON();
-        res.first = this.first;
-        res.second = this.second;
+        res.value = this.value;
+        res.mimeType = this.mimeType;
         return res;
     }
 }
-
-export { RelationShipElement, IRelationShipElement, TRelationShipElementJSON };
+export { File, IFile, TFileJSON };

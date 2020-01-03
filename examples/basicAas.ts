@@ -18,6 +18,9 @@ var run = function() {
     }).addSubmodelElement(
         new Property(
             'ManufacturerName',
+            AnyAtomicTypeEnum.string,
+            'SAP SE',
+            undefined,
             new Reference({
                 keys: [
                     {
@@ -28,7 +31,6 @@ var run = function() {
                     },
                 ],
             }),
-            AnyAtomicTypeEnum.string,
         ),
     );
     /* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/

@@ -35,8 +35,8 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
     static fromJSON(obj: TMultiLanguagePropertyJSON): MultiLanguageProperty {
         return new MultiLanguageProperty(
             obj.idShort,
-            obj.semanticId,
             obj.value,
+            obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -48,8 +48,8 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
     value: Array<ILangString> = [];
     constructor(
         idShort: string,
-        semanticId: IReference,
         value?: Array<ILangString>,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,

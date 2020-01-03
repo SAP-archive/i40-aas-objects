@@ -43,10 +43,10 @@ class Operation extends SubmodelElement implements IOperation {
     static fromJSON(obj: TOperationJSON): Operation {
         return new Operation(
             obj.idShort,
-            obj.semanticId,
             obj.inputVariable,
             obj.outputVariable,
             obj.inoutputVariable,
+            obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -57,10 +57,10 @@ class Operation extends SubmodelElement implements IOperation {
     }
     constructor(
         idShort: string,
-        semanticId: IReference,
         inputVariable?: Array<OperationVariable>,
         outputVariable?: Array<OperationVariable>,
         inoutputVariable?: Array<OperationVariable>,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,

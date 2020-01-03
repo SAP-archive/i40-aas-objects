@@ -40,10 +40,10 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
     static fromJSON(obj: TAnnotatedRelationshipElementJSON): AnnotatedRelationshipElement {
         return new AnnotatedRelationshipElement(
             obj.idShort,
-            obj.semanticId,
             obj.first,
             obj.second,
             obj.annotations,
+            obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -54,10 +54,10 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
     }
     constructor(
         idShort: string,
-        semanticId: IReference,
         first: IReference,
         second: IReference,
         annotations: Array<IReference>,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
@@ -67,10 +67,10 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
     ) {
         super(
             idShort,
-            semanticId,
             first,
             second,
             { name: KeyElementsEnum.AnnotatedRelationshipElement },
+            semanticId,
             kind,
             embeddedDataSpecifications,
             qualifiers,

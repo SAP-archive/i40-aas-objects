@@ -44,10 +44,10 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     static fromJSON(obj: TSubmodelElementCollectionJSON): SubmodelElementCollection {
         return new SubmodelElementCollection(
             obj.idShort,
-            obj.semanticId,
             obj.value,
             obj.ordered,
             obj.allowDuplicates,
+            obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
@@ -58,10 +58,10 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     }
     constructor(
         idShort: string,
-        semanticId: IReference,
         value?: Array<SubmodelElement>,
         ordered?: boolean,
         allowDuplicates?: boolean,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,

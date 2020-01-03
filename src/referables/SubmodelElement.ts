@@ -23,7 +23,7 @@ interface ISubmodelElement {
     descriptions?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
 }
-interface ISubmodelElementConstructor {
+type TSubmodelElementJSON = {
     kind?: KindEnum;
     semanticId?: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -33,7 +33,7 @@ interface ISubmodelElementConstructor {
     category?: string;
     descriptions?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
-}
+};
 abstract class SubmodelElement extends Referable
     implements ISubmodelElement, IHasKind, IHasSemantics, IQualifiable, IHasDataSpecification {
     qualifiers?: Array<IConstraint>;
@@ -43,7 +43,7 @@ abstract class SubmodelElement extends Referable
     constructor(
         idShort: string,
         modelType: IModelType,
-        semanticId: IReference,
+        semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
@@ -78,4 +78,4 @@ abstract class SubmodelElement extends Referable
     }
 }
 
-export { SubmodelElement, ISubmodelElement, ISubmodelElementConstructor };
+export { SubmodelElement, ISubmodelElement, TSubmodelElementJSON };
