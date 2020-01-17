@@ -21,5 +21,8 @@ enum KeyElementsEnum {
     MultiLanguageProperty = 'MultiLanguageProperty',
     Entity = 'Entity',
     AnnotatedRelationshipElement = 'AnnotatedRelationshipElement',
+    Range = 'Range',
+    Capability = 'Capability',
+    BasicEvent = 'BasicEvent',
 }
 export { KeyElementsEnum };

@@ -54,5 +54,4 @@ var run = function() {
     /* print the environment to the console */
     console.log(JSON.stringify(myNewAasEnv, null, 3));
 };
-
 export { run };

@@ -16,7 +16,7 @@ interface IConceptDescription {
     descriptions?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-    isCaseOf?: Reference;
+    isCaseOf?: Array<IReference>;
 }
 interface TConceptDescriptionJSON {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -27,7 +27,7 @@ interface TConceptDescriptionJSON {
     descriptions?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-    isCaseOf?: IReference;
+    isCaseOf?: Array<IReference>;
 }
 class ConceptDescription extends Identifiable implements IConceptDescription {
     static fromJSON(obj: TConceptDescriptionJSON) {
@@ -35,23 +35,21 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
             obj.identification,
             obj.idShort,
             obj.administration,
-            undefined, //isCaseOf
+            obj.isCaseOf, //isCaseOf
             obj.descriptions,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
-            undefined, //embeddedDataSpecifications
+            obj.embeddedDataSpecifications, //embeddedDataSpecifications
         );
-        if (obj.isCaseOf) cd.isCaseOf = new Reference(obj.isCaseOf);
-        if (obj.embeddedDataSpecifications) cd.embeddedDataSpecifications = obj.embeddedDataSpecifications;
         return cd;
     }
-    isCaseOf?: Reference;
+    isCaseOf?: Array<IReference> = [];
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     constructor(
         identification: IIdentifier,
         idShort: string,
         administration?: IAdministrativeInformation,
-        isCaseOf?: IReference,
+        isCaseOf?: Array<IReference>,
         descriptions?: Array<ILangString>,
         category?: string,
         parent?: Reference,
@@ -67,7 +65,22 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
             parent,
         );
         this.embeddedDataSpecifications = embeddedDataSpecifications || [];
-        if (isCaseOf) this.isCaseOf = new Reference(isCaseOf);
+        if (isCaseOf) this.setIsCaseOf(isCaseOf);
+    }
+    setIsCaseOf(isCaseOf: Array<IReference>) {
+        var that = this;
+        this.isCaseOf = [];
+        isCaseOf.forEach(function(isCaseOfinstance: IReference) {
+            that.addIsCaseOf(isCaseOfinstance);
+        });
+        return this;
+    }
+    addIsCaseOf(isCaseOfinstance: IReference) {
+        if (!this.isCaseOf) {
+            this.isCaseOf = [];
+        }
+        this.isCaseOf.push(new Reference(isCaseOfinstance));
+        return this;
     }
 
     toJSON(): IConceptDescription {

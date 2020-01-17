@@ -1,4 +1,4 @@
-import { run } from '../examples/basicAas';
+import { run } from '../examples/readFromJson';
 
 import { expect } from 'chai';
 

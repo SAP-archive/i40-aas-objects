@@ -56,7 +56,7 @@ class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantic
             obj.descriptions,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
-            undefined, //embeddedDataSpecifications
+            obj.embeddedDataSpecifications,
             obj.kind,
         );
         if (obj.submodelElements) sm.setSubmodelElements(obj.submodelElements);

@@ -46,7 +46,6 @@ class Entity extends SubmodelElement implements IEntity {
             obj.statements,
             obj.asset,
             obj.semanticId,
-
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
