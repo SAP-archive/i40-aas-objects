@@ -74,7 +74,7 @@
 					<h4>Contents:</h4>
 				</a>
 				<ul>
-					<li><a href="#i40-aas-objects">i40-aas-objects</a><pre><code><span class="hljs-bullet">- </span>[<span class="hljs-string">Contents:</span>](<span class="hljs-link">#contents</span>)</code></pre><ul>
+					<li><a href="#i40-aas-objects">i40-aas-objects</a> - <a href="#contents">Contents:</a><ul>
 							<li><a href="#description">Description</a></li>
 							<li><a href="#requirements">Requirements</a></li>
 							<li><a href="#download-and-installation">Download and Installation</a><ul>
@@ -99,7 +99,7 @@
 				</a>
 				<!--- Describe your project, why it exists, what it should provide to the user, and what differentiates it from any other project available. --->
 				<p><em>i40-aas-objects</em> is a typescript implementation of the specification <a href="https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html">&quot;Details of the AssetAdministrationShell&quot;</a> part 1 version 1.0.</p>
-				<p>It implements all required classes to build an AAS-JSON-file. It is also possible to use it in the browser as it is JavaScript.  </p>
+				<p>It implements all required classes to build an AAS-JSON-file. It is also possible to use it in the browser as it is JavaScript.</p>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
 				</a>
@@ -112,7 +112,7 @@
 // min <span class="hljs-keyword">version</span>: v8.<span class="hljs-number">12.0</span>
 
 $ npm --<span class="hljs-keyword">version</span>
-// min <span class="hljs-keyword">version</span>: <span class="hljs-number">6.4</span>.<span class="hljs-number">1</span></code></pre><p>Download and install the <a href="https://www.npmjs.com/package/typescript">TypeScriptCompiler (tsc)</a>.  </p>
+// min <span class="hljs-keyword">version</span>: <span class="hljs-number">6.4</span>.<span class="hljs-number">1</span></code></pre><p>Download and install the <a href="https://www.npmjs.com/package/typescript">TypeScriptCompiler (tsc)</a>.</p>
 				<pre><code>$ npm <span class="hljs-keyword">install</span> -g typescript</code></pre><p>Check your installation with <code>tsc --version</code>.
 				You should see:</p>
 				<pre><code>$ tsc <span class="hljs-params">--version</span>
@@ -151,7 +151,7 @@ $ npm --<span class="hljs-keyword">version</span>
 				<a href="#3-add-i40-aas-objects-dependency-in-your-packagejson" id="3-add-i40-aas-objects-dependency-in-your-packagejson" style="color: inherit; text-decoration: none;">
 					<h3>3. Add i40-aas-objects dependency in your package.json</h3>
 				</a>
-				<p>Let it be added by the package manager:  </p>
+				<p>Let it be added by the package manager:</p>
 				<pre><code>$ npm i --save git:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/SAP/i</span>40-aas-objects.git</code></pre><p>Or add it manually to your <code>package.json</code>. (<strong>NOTE</strong>: You need to run <code>npm i</code> after you have edited your <code>package.json</code>.)</p>
 				<pre><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"testaas"</span>,
@@ -171,26 +171,26 @@ $ npm --<span class="hljs-keyword">version</span>
 				<a href="#4-use-i40-aas-objects" id="4-use-i40-aas-objects" style="color: inherit; text-decoration: none;">
 					<h3>4. Use i40-aas-objects</h3>
 				</a>
-				<pre><code class="language-typescript">
-<span class="hljs-keyword">import</span> {
-  AssetAdministrationShellEnv, Asset,AssetAdministrationShell,Submodel,IdTypeEnum,Property,AnyAtomicTypeEnum,Reference,KeyElementsEnum,CountryCodeEnum
-  } <span class="hljs-keyword">from</span> <span class="hljs-string">'i40-aas-objects'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
+    AssetAdministrationShellEnv,
+    Asset,
+    AssetAdministrationShell,
+    Submodel,
+    IdTypeEnum,
+    Property,
+    AnyAtomicTypeEnum,
+    Reference,
+    KeyElementsEnum,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'i40-aas-objects'</span>;
 
-  <span class="hljs-comment">/* Create a Submodel and add a new Property to it*/</span>
-    <span class="hljs-keyword">var</span> myAssetIdentificationModel = <span class="hljs-keyword">new</span> Submodel({
+<span class="hljs-keyword">var</span> run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">/* Create a Submodel and add a new Property to it*/</span>
+    <span class="hljs-keyword">var</span> myAssetIdentificationModel = Submodel.fromJSON({
         identification: { id: <span class="hljs-string">'http://test.com/submodel/id/identification123'</span>, idType: IdTypeEnum.IRDI },
         idShort: <span class="hljs-string">'identification123'</span>,
     }).addSubmodelElement(
-        <span class="hljs-keyword">new</span> Property({
-            idShort: <span class="hljs-string">'ManufacturerName'</span>,
-            descriptions: [
-                {
-                    language: CountryCodeEnum.UnitedStates,
-                    text: <span class="hljs-string">'    legally valid designation of the natural or judicial person which is directly responsible for the design, production, packaging and labeling of a product in respect to its being brought into circulation'</span>,
-                },
-            ],
-            valueType: AnyAtomicTypeEnum.string,
-        }).setSemanticId(
+        <span class="hljs-keyword">new</span> Property(
+            <span class="hljs-string">'ManufacturerName'</span>,
             <span class="hljs-keyword">new</span> Reference({
                 keys: [
                     {
@@ -201,20 +201,20 @@ $ npm --<span class="hljs-keyword">version</span>
                     },
                 ],
             }),
+            AnyAtomicTypeEnum.string,
         ),
     );
-
     <span class="hljs-comment">/* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/</span>
-    <span class="hljs-keyword">var</span> myAsset = <span class="hljs-keyword">new</span> Asset({
-        identification: { id: <span class="hljs-string">'http://test.com/asset/123'</span>, idType: IdTypeEnum.IRDI },
-        idShort: <span class="hljs-string">'123'</span>,
-    }).addAssetIdentificationModel(myAssetIdentificationModel.getReference());
+    <span class="hljs-keyword">var</span> myAsset = <span class="hljs-keyword">new</span> Asset(
+        { id: <span class="hljs-string">'http://test.com/asset/123'</span>, idType: IdTypeEnum.IRDI },
+        <span class="hljs-string">'123'</span>,
+    ).setAssetIdentificationModel(myAssetIdentificationModel.getReference());
 
     <span class="hljs-comment">/* Create an AAS and add a reference to the previously created asset as its asset*/</span>
-    <span class="hljs-keyword">var</span> myAas = <span class="hljs-keyword">new</span> AssetAdministrationShell({
-        identification: { id: <span class="hljs-string">'http://test.com/aas/id/aas123'</span>, idType: IdTypeEnum.IRDI },
-        idShort: <span class="hljs-string">'identification123'</span>,
-    }).setAsset(myAsset.getReference());
+    <span class="hljs-keyword">var</span> myAas = <span class="hljs-keyword">new</span> AssetAdministrationShell(
+        { id: <span class="hljs-string">'http://test.com/aas/id/aas123'</span>, idType: IdTypeEnum.IRDI },
+        <span class="hljs-string">'identification123'</span>,
+    ).setAsset(myAsset.getReference());
 
     <span class="hljs-comment">/* Create an environment and add all identifiables */</span>
     <span class="hljs-keyword">var</span> myNewAasEnv = <span class="hljs-keyword">new</span> AssetAdministrationShellEnv()
@@ -223,7 +223,10 @@ $ npm --<span class="hljs-keyword">version</span>
         .addSubmodel(myAssetIdentificationModel);
 
     <span class="hljs-comment">/* print the environment to the console */</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(myNewAasEnv, <span class="hljs-literal">null</span>, <span class="hljs-number">3</span>));</code></pre>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(myNewAasEnv, <span class="hljs-literal">null</span>, <span class="hljs-number">3</span>));
+};
+
+run();</code></pre>
 				<!---
 ## Configuration [Optional]
 
@@ -251,14 +254,14 @@ $ npm --<span class="hljs-keyword">version</span>
 					<h2>Contributing</h2>
 				</a>
 				<!--- Details on how external developers can contribute to your code should be posted here. You can also link to a dedicated CONTRIBUTING.md file. See further details here. --->
-				<p>You are welcome to join us in our efforts to improve and increase the set of tools to realize the Asset Administration Shell for Industrie 4.0!  </p>
+				<p>You are welcome to join us in our efforts to improve and increase the set of tools to realize the Asset Administration Shell for Industrie 4.0!</p>
 				<p>Simply check the <a href="CONTRIBUTING.md">Contribution Guidelines</a>.</p>
 				<a href="#upcoming-changes" id="upcoming-changes" style="color: inherit; text-decoration: none;">
 					<h2>Upcoming changes</h2>
 				</a>
 				<!--- Details on any expected changes in later versions. If your project is released "as-is", or you know of no upcoming changes, this section can be omitted. --->
 				<p>This project follows the specification <a href="https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html">&quot;Details of the AssetAdministrationShell&quot;</a> part 1 version 1.0, which is work in progress. As the specification changes, so will this project.</p>
-				<p>For upcoming changes under development, please refer to the <a href="https://github.com/SAP/i40-aas-objects/issues">Github issue board</a>. </p>
+				<p>For upcoming changes under development, please refer to the <a href="https://github.com/SAP/i40-aas-objects/issues">Github issue board</a>.</p>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
@@ -351,10 +354,22 @@ $ npm --<span class="hljs-keyword">version</span>
 						<a href="modules/_referables_annotatedrelationshipelement_.html">&quot;referables/<wbr>Annotated<wbr>Relationship<wbr>Element&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_basicevent_.html">&quot;referables/<wbr>Basic<wbr>Event&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_blob_.html">&quot;referables/<wbr>Blob&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_capability_.html">&quot;referables/<wbr>Capability&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_conceptdictionary_.html">&quot;referables/<wbr>Concept<wbr>Dictionary&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_entity_.html">&quot;referables/<wbr>Entity&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_file_.html">&quot;referables/<wbr>File&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_multilanguageproperty_.html">&quot;referables/<wbr>Multi<wbr>Language<wbr>Property&quot;</a>
@@ -367,6 +382,12 @@ $ npm --<span class="hljs-keyword">version</span>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_property_.html">&quot;referables/<wbr>Property&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_range_.html">&quot;referables/<wbr>Range&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_referables_referenceelement_.html">&quot;referables/<wbr>Reference<wbr>Element&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_referables_relationshipelement_.html">&quot;referables/<wbr>Relationship<wbr>Element&quot;</a>
