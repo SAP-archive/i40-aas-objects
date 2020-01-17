@@ -9,7 +9,7 @@ interface IConceptDictionary {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     conceptDescriptions?: Array<Reference>;
 }
 interface IConceptDictionaryConstructor {
@@ -17,7 +17,7 @@ interface IConceptDictionaryConstructor {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     conceptDescriptions?: Array<IReference>;
 }
 class ConceptDictionary extends Referable {
@@ -26,11 +26,11 @@ class ConceptDictionary extends Referable {
     constructor(
         idShort: string,
         conceptDescriptions?: Array<IReference>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
-        super(idShort, { name: KeyElementsEnum.View }, descriptions, category, parent);
+        super(idShort, { name: KeyElementsEnum.ConceptDictionary }, description, category, parent);
         if (conceptDescriptions) this.setConceptDescriptions(conceptDescriptions);
     }
 

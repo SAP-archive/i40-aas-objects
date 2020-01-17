@@ -15,7 +15,7 @@ interface IBlob {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: string;
     mimeType: string;
     qualifiers?: Array<IConstraint>;
@@ -28,7 +28,7 @@ type TBlobJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: string;
     mimeType: string;
     qualifiers?: Array<IConstraint>;
@@ -45,7 +45,7 @@ class Blob extends SubmodelElement implements IBlob {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -58,7 +58,7 @@ class Blob extends SubmodelElement implements IBlob {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -69,7 +69,7 @@ class Blob extends SubmodelElement implements IBlob {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

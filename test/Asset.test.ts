@@ -76,7 +76,7 @@ describe('Add an assetIdentficationModel to the Asset', function() {
             'assetIdentificationModel',
             'administration',
             'category',
-            'descriptions',
+            'description',
             'kind',
         );
     });

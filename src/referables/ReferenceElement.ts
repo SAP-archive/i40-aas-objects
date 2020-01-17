@@ -15,7 +15,7 @@ interface IReferenceElement {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: IReference;
     qualifiers?: Array<IConstraint>;
 }
@@ -27,7 +27,7 @@ type TReferenceElementJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: IReference;
     qualifiers?: Array<IConstraint>;
 };
@@ -41,7 +41,7 @@ class ReferenceElement extends SubmodelElement implements IReferenceElement {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -53,7 +53,7 @@ class ReferenceElement extends SubmodelElement implements IReferenceElement {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -64,7 +64,7 @@ class ReferenceElement extends SubmodelElement implements IReferenceElement {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

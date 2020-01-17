@@ -15,7 +15,7 @@ interface ICapability {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
 }
 type TCapabilityJSON = {
@@ -26,7 +26,7 @@ type TCapabilityJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
 };
 class Capability extends SubmodelElement implements ICapability {
@@ -37,7 +37,7 @@ class Capability extends SubmodelElement implements ICapability {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -48,7 +48,7 @@ class Capability extends SubmodelElement implements ICapability {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -59,7 +59,7 @@ class Capability extends SubmodelElement implements ICapability {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

@@ -13,7 +13,7 @@ interface IConceptDescription {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     isCaseOf?: Array<IReference>;
@@ -24,7 +24,7 @@ interface TConceptDescriptionJSON {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     isCaseOf?: Array<IReference>;
@@ -36,7 +36,7 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
             obj.idShort,
             obj.administration,
             obj.isCaseOf, //isCaseOf
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
             obj.embeddedDataSpecifications, //embeddedDataSpecifications
@@ -50,7 +50,7 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
         idShort: string,
         administration?: IAdministrativeInformation,
         isCaseOf?: Array<IReference>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: Reference,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
@@ -60,7 +60,7 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
             idShort,
             { name: KeyElementsEnum.ConceptDescription },
             administration,
-            descriptions,
+            description,
             category,
             parent,
         );

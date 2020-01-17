@@ -11,14 +11,14 @@ interface IReferable {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
 }
 interface IReferableJSON {
     modelType?: IModelTypeConstructor;
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
 }
 
 abstract class Referable implements IHasModelType {
@@ -26,12 +26,12 @@ abstract class Referable implements IHasModelType {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions: Array<ILangString> = [];
+    description: Array<ILangString> = [];
 
     constructor(
         idShort: string,
         modelType: IModelType,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -39,7 +39,7 @@ abstract class Referable implements IHasModelType {
         this.idShort = idShort;
         this.parent = parent ? new Reference(parent) : undefined;
         this.category = category;
-        this.descriptions = descriptions || [];
+        this.description = description || [];
     }
 
     getReference(): Reference {
@@ -68,7 +68,7 @@ abstract class Referable implements IHasModelType {
             idShort: this.idShort,
             parent: this.parent,
             category: this.category,
-            descriptions: this.descriptions,
+            description: this.description,
             modelType: this.modelType,
         };
     }

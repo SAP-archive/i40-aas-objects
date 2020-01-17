@@ -20,7 +20,7 @@ interface ISubmodelElement {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
 }
 type TSubmodelElementJSON = {
@@ -31,7 +31,7 @@ type TSubmodelElementJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
 };
 abstract class SubmodelElement extends Referable
@@ -47,11 +47,11 @@ abstract class SubmodelElement extends Referable
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
-        super(idShort, modelType, descriptions, category, parent);
+        super(idShort, modelType, description, category, parent);
         if (qualifiers) this.qualifiers = qualifiers;
         if (kind) this.kind = kind;
         if (semanticId) this.semanticId = semanticId;

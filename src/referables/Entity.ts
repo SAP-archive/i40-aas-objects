@@ -18,7 +18,7 @@ interface IEntity {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     statements?: Array<TSubmodelElements>;
     entityType: EntityTypeEnum;
     asset?: Reference;
@@ -32,7 +32,7 @@ type TEntityJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     statements?: Array<TSubmodelElementsJSON>;
     entityType: EntityTypeEnum;
     asset?: IReference;
@@ -49,7 +49,7 @@ class Entity extends SubmodelElement implements IEntity {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -66,7 +66,7 @@ class Entity extends SubmodelElement implements IEntity {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -77,7 +77,7 @@ class Entity extends SubmodelElement implements IEntity {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

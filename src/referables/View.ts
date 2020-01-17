@@ -14,7 +14,7 @@ interface IView {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     containedElements?: Array<IReference>;
 }
 type TViewJSON = {
@@ -24,7 +24,7 @@ type TViewJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     containedElements?: Array<IReference>;
 };
 class View extends Referable implements IHasSemantics, IHasDataSpecification, IView {
@@ -35,11 +35,11 @@ class View extends Referable implements IHasSemantics, IHasDataSpecification, IV
         idShort: string,
         containedElements?: Array<IReference>,
         semanticId?: IReference,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
-        super(idShort, { name: KeyElementsEnum.View }, descriptions, category, parent);
+        super(idShort, { name: KeyElementsEnum.View }, description, category, parent);
         this.semanticId = semanticId;
         if (containedElements) this.setContainedElements(containedElements);
     }

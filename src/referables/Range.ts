@@ -16,7 +16,7 @@ interface IRange {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     min?: string;
     max?: string;
     valueType: AnyAtomicTypeEnum;
@@ -30,7 +30,7 @@ type TRangeJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     min?: string;
     max?: string;
     valueType: AnyAtomicTypeEnum;
@@ -50,7 +50,7 @@ class Range extends SubmodelElement implements IRange {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -64,7 +64,7 @@ class Range extends SubmodelElement implements IRange {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -75,7 +75,7 @@ class Range extends SubmodelElement implements IRange {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

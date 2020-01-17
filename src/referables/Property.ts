@@ -16,7 +16,7 @@ interface IProperty {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     valueId?: IReference;
     value?: string;
     valueType: AnyAtomicTypeEnum;
@@ -30,7 +30,7 @@ type TPropertyJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     valueId?: IReference;
     value?: string;
     valueType: AnyAtomicTypeEnum;
@@ -50,7 +50,7 @@ class Property extends SubmodelElement implements IProperty {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -64,7 +64,7 @@ class Property extends SubmodelElement implements IProperty {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -75,7 +75,7 @@ class Property extends SubmodelElement implements IProperty {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

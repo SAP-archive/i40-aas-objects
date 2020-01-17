@@ -16,7 +16,7 @@ interface IBasicEvent {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     observed?: IReference;
     qualifiers?: Array<IConstraint>;
 }
@@ -28,7 +28,7 @@ type TBasicEventJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     observed?: IReference;
     qualifiers?: Array<IConstraint>;
 };
@@ -43,7 +43,7 @@ class BasicEvent extends SubmodelElement implements IBasicEvent {
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -55,7 +55,7 @@ class BasicEvent extends SubmodelElement implements IBasicEvent {
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -66,7 +66,7 @@ class BasicEvent extends SubmodelElement implements IBasicEvent {
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

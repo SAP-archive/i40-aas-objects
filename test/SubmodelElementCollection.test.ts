@@ -46,7 +46,7 @@ describe('Get SubmodelElement by idShort', function() {
                     },
                 ],
             },
-            descriptions: [
+            description: [
                 {
                     language: CountryCodeEnum.Germany,
                     text: 'some collection',

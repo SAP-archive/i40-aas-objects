@@ -15,7 +15,7 @@ interface IAnnotatedRelationshipElement {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     first: Reference;
     second: Reference;
     annotations: Array<IReference>;
@@ -29,7 +29,7 @@ type TAnnotatedRelationshipElementJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     first: IReference;
     second: IReference;
     annotations: Array<IReference>;
@@ -47,7 +47,7 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -61,7 +61,7 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -74,7 +74,7 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

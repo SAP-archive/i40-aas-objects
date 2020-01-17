@@ -22,7 +22,7 @@ interface ISubmodel {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     kind: KindEnum;
@@ -36,7 +36,7 @@ interface TSubmodelJSON {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     kind?: KindEnum;
@@ -53,7 +53,7 @@ class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantic
             undefined,
             undefined,
             undefined,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
             obj.embeddedDataSpecifications,
@@ -76,13 +76,21 @@ class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantic
         submodelsElements?: Array<ISubmodelElement>,
         qualifiers?: Array<IConstraint>,
         semanticId?: IReference,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: Reference,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         kind?: KindEnum,
     ) {
-        super(identification, idShort, { name: KeyElementsEnum.Asset }, administration, descriptions, category, parent);
+        super(
+            identification,
+            idShort,
+            { name: KeyElementsEnum.Submodel },
+            administration,
+            description,
+            category,
+            parent,
+        );
         this.embeddedDataSpecifications = embeddedDataSpecifications || [];
         this.kind = kind || KindEnum.Instance;
         if (semanticId) this.semanticId = new Reference(semanticId);

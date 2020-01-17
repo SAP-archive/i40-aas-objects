@@ -4,5 +4,4 @@ enum IdTypeEnum {
     Custom = 'Custom',
     IdShort = 'IdShort',
 }
-
 export { IdTypeEnum };

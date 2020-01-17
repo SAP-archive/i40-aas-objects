@@ -16,7 +16,7 @@ interface IAsset {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     assetIdentificationModel?: Reference;
@@ -30,7 +30,7 @@ interface TAssetJSON {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     assetIdentificationModel?: IReference;
@@ -45,7 +45,7 @@ class Asset extends Identifiable implements IAsset {
             obj.administration,
             undefined,
             undefined,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
             undefined, //embeddedDataSpecifications
@@ -68,13 +68,13 @@ class Asset extends Identifiable implements IAsset {
         administration?: IAdministrativeInformation,
         assetIdentificationModel?: Reference,
         billOfMaterial?: Reference,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: Reference,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         kind?: AssetKindEnum,
     ) {
-        super(identification, idShort, { name: KeyElementsEnum.Asset }, administration, descriptions, category, parent);
+        super(identification, idShort, { name: KeyElementsEnum.Asset }, administration, description, category, parent);
         this.embeddedDataSpecifications = embeddedDataSpecifications || [];
         this.kind = kind || AssetKindEnum.Instance;
         this.assetIdentificationModel = assetIdentificationModel;

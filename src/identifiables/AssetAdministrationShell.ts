@@ -15,7 +15,7 @@ interface IAssetAdministrationShell {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     derivedFrom?: Reference;
@@ -31,7 +31,7 @@ interface TAssetAdministrationShellJSON {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
     derivedFrom?: IReference;
@@ -59,7 +59,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
             undefined, //conceptDictionaries
             undefined, //views
             undefined, //derivedFrom
-            obj.descriptions,
+            obj.description,
             obj.category,
             undefined, //security
             obj.parent ? new Reference(obj.parent) : undefined,
@@ -83,7 +83,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
         conceptDictionaries?: Array<ConceptDictionary>,
         views?: Array<View>,
         derivedFrom?: Reference,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         security?: any,
         parent?: Reference,
@@ -94,7 +94,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
             idShort,
             { name: KeyElementsEnum.AssetAdministrationShell },
             administration,
-            descriptions,
+            description,
             category,
             parent,
         );
@@ -142,7 +142,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
             new ConceptDictionary(
                 conceptDictionary.idShort,
                 conceptDictionary.conceptDescriptions,
-                conceptDictionary.descriptions,
+                conceptDictionary.description,
                 conceptDictionary.category,
                 conceptDictionary.parent,
             ),
@@ -163,7 +163,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
             this.views = [];
         }
         this.views.push(
-            new View(view.idShort, view.containedElements, view.semanticId, view.descriptions, view.category),
+            new View(view.idShort, view.containedElements, view.semanticId, view.description, view.category),
         );
         return this;
     }

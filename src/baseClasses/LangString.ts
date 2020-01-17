@@ -1,7 +1,5 @@
-import { CountryCodeEnum } from '../types/CountryCodeEnum';
-
 interface ILangString {
-    language: CountryCodeEnum;
+    language: string;
     text: string;
 }
 

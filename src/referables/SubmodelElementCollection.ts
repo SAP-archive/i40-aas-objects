@@ -17,7 +17,7 @@ interface ISubmodelElementCollection {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
@@ -31,7 +31,7 @@ type TSubmodelElementCollectionJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
@@ -51,7 +51,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -65,7 +65,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -76,7 +76,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );
@@ -130,7 +130,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
             idShort: this.idShort,
             parent: this.parent,
             category: this.category,
-            descriptions: this.descriptions,
+            description: this.description,
             kind: this.kind,
             modelType: this.modelType,
             semanticId: this.semanticId,

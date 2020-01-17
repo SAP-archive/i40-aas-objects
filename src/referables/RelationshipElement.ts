@@ -15,7 +15,7 @@ interface IRelationShipElement {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     first: Reference;
     second: Reference;
     qualifiers?: Array<IConstraint>;
@@ -28,7 +28,7 @@ type TRelationShipElementJSON = {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: Array<ILangString>;
+    description?: Array<ILangString>;
     first: IReference;
     second: IReference;
     qualifiers?: Array<IConstraint>;
@@ -46,7 +46,7 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
             obj.kind,
             obj.embeddedDataSpecifications,
             obj.qualifiers,
-            obj.descriptions,
+            obj.description,
             obj.category,
             obj.parent,
         );
@@ -60,7 +60,7 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
         qualifiers?: Array<IConstraint>,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: IReference,
     ) {
@@ -71,7 +71,7 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
             kind,
             embeddedDataSpecifications,
             qualifiers,
-            descriptions,
+            description,
             category,
             parent,
         );

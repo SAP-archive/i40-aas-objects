@@ -11,7 +11,7 @@ interface IIdentifiable {
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: ILangString[];
+    description?: ILangString[];
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
 }
@@ -20,7 +20,7 @@ interface IIdentifiableConstructor {
     idShort: string;
     parent?: IReference;
     category?: string;
-    descriptions?: ILangString[];
+    description?: ILangString[];
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
 }
@@ -49,11 +49,11 @@ abstract class Identifiable extends Referable implements Identifiable {
         idShort: string,
         modelType: IModelType,
         administration?: IAdministrativeInformation,
-        descriptions?: Array<ILangString>,
+        description?: Array<ILangString>,
         category?: string,
         parent?: Reference,
     ) {
-        super(idShort, modelType, descriptions, category, parent);
+        super(idShort, modelType, description, category, parent);
         this.identification = identification;
         this.administration = administration;
     }
@@ -64,7 +64,7 @@ abstract class Identifiable extends Referable implements Identifiable {
             administration: this.administration,
             parent: supersJson.parent,
             modelType: supersJson.modelType,
-            descriptions: supersJson.descriptions,
+            description: supersJson.description,
             idShort: supersJson.idShort,
             category: supersJson.category,
         };

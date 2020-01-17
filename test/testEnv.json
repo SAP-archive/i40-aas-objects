@@ -12,7 +12,7 @@
         ]
       },
       "embeddedDataSpecifications": [],
-      "descriptions": [],
+      "description": [],
       "identification": {
         "id": "hilscher.com/NIOT-E-TIJCX-GB-RE/1321.300/6534235",
         "idType": "IRI"
@@ -50,7 +50,7 @@
         ]
       },
       "kind": "Instance",
-      "descriptions": [],
+      "description": [],
       "idShort": "opc-ua-devices",
       "identification": {
         "id": "sap.com/aas/submodels/part-100-device-information-model/10JF-1234-Jf14-PP22",
@@ -73,7 +73,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [
+          "description": [
             {
               "language": "EN",
               "text": "NORMAL_0 ;FAILURE_1 ;CHECK_FUNCTION_2 ;OFF_SPEC_3 ;MAINTENANCE_REQUIRED_4 "
@@ -112,7 +112,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "manufacturer",
           "parent": {
             "keys": [
@@ -136,7 +136,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "manufactureruri ",
           "parent": {
             "keys": [
@@ -180,7 +180,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "model",
           "parent": {
             "keys": [
@@ -214,7 +214,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "serialnumber",
           "parent": {
             "keys": [
@@ -248,7 +248,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "hardwarerevision ",
           "parent": {
             "keys": [
@@ -282,7 +282,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "softwarerevision ",
           "parent": {
             "keys": [
@@ -306,7 +306,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "devicerevision ",
           "semanticId": {
             "keys": [
@@ -340,7 +340,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "revisioncounter ",
           "semanticId": {
             "keys": [
@@ -383,7 +383,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "productcode ",
           "parent": {
             "keys": [
@@ -407,7 +407,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [
+          "description": [
             {
               "language": "EN",
               "text": "OI4 identifier is used"
@@ -446,7 +446,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "devicemanual ",
           "semanticId": {
             "keys": [
@@ -480,7 +480,7 @@
         {
           "embeddedDataSpecifications": [],
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "deviceclass",
           "semanticId": {
             "keys": [
@@ -524,7 +524,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "parameterset",
           "parent": {
             "keys": [
@@ -554,7 +554,7 @@
                 ]
               },
               "kind": "Instance",
-              "descriptions": [],
+              "description": [],
               "idShort": "versorgungsspannung",
               "parent": {
                 "keys": [
@@ -594,7 +594,7 @@
                 ]
               },
               "kind": "Instance",
-              "descriptions": [],
+              "description": [],
               "idShort": "abmessung",
               "parent": {
                 "keys": [
@@ -636,7 +636,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "methodset",
           "parent": {
             "keys": [
@@ -667,7 +667,7 @@
             ]
           },
           "kind": "Instance",
-          "descriptions": [],
+          "description": [],
           "idShort": "functionalgroups",
           "parent": {
             "keys": [
