@@ -8,6 +8,7 @@ import { ConceptDictionary, IConceptDictionary, IConceptDictionaryConstructor } 
 import { View, IView } from '../referables/View';
 import { Identifiable } from '../characteristics/Identifiable';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
+import { Asset } from './Asset';
 
 interface IAssetAdministrationShell {
     modelType: IModelType;
@@ -54,24 +55,20 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
             obj.identification,
             obj.idShort,
             obj.administration,
-            undefined, //asset
+            obj.asset ? new Reference(obj.asset) : undefined, //asset
             undefined, //submodels
             undefined, //conceptDictionaries
             undefined, //views
-            undefined, //derivedFrom
+            obj.derivedFrom ? new Reference(obj.derivedFrom) : undefined, //derivedFrom
             obj.description,
             obj.category,
-            undefined, //security
+            obj.security, //security
             obj.parent ? new Reference(obj.parent) : undefined,
-            undefined, //embeddedDataSpecifications
+            obj.embeddedDataSpecifications, //embeddedDataSpecifications
         );
-        if (obj.asset) aas.setAsset(obj.asset);
         if (obj.submodels) aas.setSubmodels(obj.submodels);
         if (obj.conceptDictionaries) aas.setConceptDictionaries(obj.conceptDictionaries);
         if (obj.views) aas.setViews(obj.views);
-        if (obj.derivedFrom) aas.derivedFrom = new Reference(obj.derivedFrom);
-        if (obj.security) aas.security = obj.security;
-        if (obj.embeddedDataSpecifications) aas.embeddedDataSpecifications = obj.embeddedDataSpecifications;
         return aas;
     }
     constructor(

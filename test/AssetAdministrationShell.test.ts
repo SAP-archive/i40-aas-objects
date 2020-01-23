@@ -1,7 +1,7 @@
 import { AssetAdministrationShell } from '../src/identifiables/AssetAdministrationShell';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
 import { Asset } from '../src/identifiables/Asset';
 

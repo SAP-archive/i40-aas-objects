@@ -1,7 +1,7 @@
 import { Submodel } from '../src/identifiables/Submodel';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import { Property } from '../src/referables/Property';
 import { AnyAtomicTypeEnum } from '../src/types/AnyAtomicTypeEnum';
 

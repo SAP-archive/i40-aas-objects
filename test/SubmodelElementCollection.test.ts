@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
 import { Property } from '../src/referables/Property';
 import { SubmodelElementCollection } from '../src/referables/SubmodelElementCollection';

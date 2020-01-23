@@ -46,22 +46,29 @@ interface TSubmodelJSON {
 }
 class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantics, IQualifiable {
     static fromJSON(obj: TSubmodelJSON) {
+        var submodelElements: Array<ISubmodelElement> = [];
+        if (obj.submodelElements) {
+            obj.submodelElements.forEach(function(sme) {
+                try {
+                    submodelElements.push(SubmodelElementFactory.createSubmodelElement(sme));
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        }
         var sm = new Submodel(
             obj.identification,
             obj.idShort,
             obj.administration,
-            undefined,
-            undefined,
-            undefined,
+            submodelElements,
+            obj.qualifiers ? obj.qualifiers : undefined,
+            obj.semanticId,
             obj.description,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
             obj.embeddedDataSpecifications,
             obj.kind,
         );
-        if (obj.submodelElements) sm.setSubmodelElements(obj.submodelElements);
-        if (obj.qualifiers) sm.qualifiers = obj.qualifiers;
-        if (obj.semanticId) sm.semanticId = new Reference(obj.semanticId);
         return sm;
     }
     qualifiers?: Array<IConstraint>;
@@ -91,6 +98,8 @@ class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantic
             category,
             parent,
         );
+        this.setSubmodelElements(submodelsElements || []);
+        this.qualifiers = qualifiers;
         this.embeddedDataSpecifications = embeddedDataSpecifications || [];
         this.kind = kind || KindEnum.Instance;
         if (semanticId) this.semanticId = new Reference(semanticId);

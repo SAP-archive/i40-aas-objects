@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
-import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
 import { Asset, Submodel } from '../index';
 describe('Construct an minimal Asset', function() {

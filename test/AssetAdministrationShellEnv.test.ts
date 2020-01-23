@@ -1,7 +1,7 @@
 import { AssetAdministrationShellEnv, TAssetAdministrationShellEnvJSON } from '../src/AssetAdministrationShellEnv';
 import { expect } from 'chai';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import * as fs from 'fs';
 import testEnv from './testEnv.json';
 describe('Construct AssetAdministrationShellEnv', function() {
