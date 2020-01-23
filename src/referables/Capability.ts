@@ -5,7 +5,7 @@ import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { IConstraint } from '../baseClasses/Constraint';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface ICapability {
     kind?: KindEnum;

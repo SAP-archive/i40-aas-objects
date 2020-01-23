@@ -7,7 +7,7 @@ import { IAdministrativeInformation } from '../baseClasses/AdministrativeInforma
 import { ConceptDictionary, IConceptDictionary, IConceptDictionaryConstructor } from '../referables/ConceptDictionary';
 import { View, IView } from '../referables/View';
 import { Identifiable } from '../characteristics/Identifiable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface IAssetAdministrationShell {
     modelType: IModelType;
@@ -176,6 +176,7 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
         res.conceptDictionaries = this.conceptDictionaries;
         res.views = this.views;
         res.asset = this.asset;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
         return res;
     }
     checkRules() {

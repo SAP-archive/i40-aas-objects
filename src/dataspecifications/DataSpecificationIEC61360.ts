@@ -11,10 +11,10 @@ interface IDataspecificationIEC61360 {
     dataType?: string;
     definition?: Array<ILangString>;
     valueFormat?: string;
-    valueList?: string;
+    valueList?: any;
     value?: string;
     valueId?: IReference;
-    levelType?: Array<object>;
+    levelType?: Array<any>;
 }
 class DataspecificationIEC61360 implements IDataspecificationIEC61360 {
     preferredName: Array<ILangString>;
@@ -26,10 +26,10 @@ class DataspecificationIEC61360 implements IDataspecificationIEC61360 {
     dataType?: string;
     definition?: Array<ILangString>;
     valueFormat?: string;
-    valueList?: string;
+    valueList?: any;
     value?: string;
     valueId?: IReference;
-    levelType?: Array<object>;
+    levelType?: Array<any>;
     constructor(obj: IDataspecificationIEC61360) {
         this.preferredName = obj.preferredName;
         this.shortName = obj.shortName;

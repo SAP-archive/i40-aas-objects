@@ -6,7 +6,7 @@ import { ILangString } from '../baseClasses/LangString';
 import { IIdentifier } from '../baseClasses/Identifier';
 import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
 import { Identifiable } from '../characteristics/Identifiable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { Submodel } from './Submodel';
 
 interface IAsset {
@@ -43,17 +43,14 @@ class Asset extends Identifiable implements IAsset {
             obj.identification,
             obj.idShort,
             obj.administration,
-            undefined,
-            undefined,
+            obj.assetIdentificationModel ? new Reference(obj.assetIdentificationModel) : undefined,
+            obj.billOfMaterial ? new Reference(obj.billOfMaterial) : undefined,
             obj.description,
             obj.category,
             obj.parent ? new Reference(obj.parent) : undefined,
-            undefined, //embeddedDataSpecifications
+            obj.embeddedDataSpecifications, //embeddedDataSpecifications
             obj.kind,
         );
-        if (obj.assetIdentificationModel) asset.assetIdentificationModel = new Reference(obj.assetIdentificationModel);
-        if (obj.billOfMaterial) asset.billOfMaterial = new Reference(obj.billOfMaterial);
-        if (obj.embeddedDataSpecifications) asset.embeddedDataSpecifications = obj.embeddedDataSpecifications;
         return asset;
     }
 
@@ -90,7 +87,7 @@ class Asset extends Identifiable implements IAsset {
         let res: any = super.toJSON();
         res.assetIdentificationModel = this.assetIdentificationModel;
         res.kind = this.kind;
-
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
         return res;
     }
 }

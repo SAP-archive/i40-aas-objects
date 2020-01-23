@@ -24,5 +24,36 @@ enum KeyElementsEnum {
     Range = 'Range',
     Capability = 'Capability',
     BasicEvent = 'BasicEvent',
+    Qualifier = 'Qualifier',
+    Formula = 'Formula',
 }
-export { KeyElementsEnum };
+
+type TModelTypeElements =
+    | 'GlobalReference'
+    | 'AccessPermissionRule'
+    | 'Blob'
+    | 'ConceptDictionary'
+    | 'DataElement'
+    | 'File'
+    | 'Event'
+    | 'Operation'
+    | 'OperationVariable'
+    | 'Property'
+    | 'ReferenceElement'
+    | 'RelationshipElement'
+    | 'SubmodelElement'
+    | 'SubmodelElementCollection'
+    | 'View'
+    | 'Asset'
+    | 'AssetAdministrationShell'
+    | 'ConceptDescription'
+    | 'Submodel'
+    | 'MultiLanguageProperty'
+    | 'Entity'
+    | 'AnnotatedRelationshipElement'
+    | 'Range'
+    | 'Capability'
+    | 'BasicEvent'
+    | 'Qualifier'
+    | 'Formula';
+export { KeyElementsEnum, TModelTypeElements };

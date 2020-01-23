@@ -4,7 +4,7 @@ import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecifica
 import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 import * as fs from 'fs';
 interface IBlob {

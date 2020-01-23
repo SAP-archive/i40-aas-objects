@@ -5,7 +5,7 @@ import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 
 interface IBasicEvent {

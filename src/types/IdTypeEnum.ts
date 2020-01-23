@@ -1,7 +1,8 @@
-enum IdTypeEnum {
+const enum IdTypeEnum {
     IRDI = 'IRDI',
     IRI = 'IRI',
     Custom = 'Custom',
     IdShort = 'IdShort',
 }
-export { IdTypeEnum };
+type TIdType = 'IRDI' | 'IRI' | 'Custom' | 'IdShort';
+export { IdTypeEnum, TIdType };

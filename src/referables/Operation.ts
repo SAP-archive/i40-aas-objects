@@ -6,7 +6,7 @@ import { ILangString } from '../baseClasses/LangString';
 import { IConstraint } from '../baseClasses/Constraint';
 import { OperationVariable } from './OperationVariable';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface IOperation {
     kind?: KindEnum;

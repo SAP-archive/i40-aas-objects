@@ -1,4 +1,4 @@
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { KindEnum } from '../types/KindEnum';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';

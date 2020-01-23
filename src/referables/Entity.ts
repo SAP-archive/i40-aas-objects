@@ -4,7 +4,7 @@ import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecifica
 import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { EntityTypeEnum } from '../types/EntityTypeEnum';
 import { TSubmodelElements, TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
 import { IConstraint } from '../baseClasses/Constraint';

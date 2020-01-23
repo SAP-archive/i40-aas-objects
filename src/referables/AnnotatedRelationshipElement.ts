@@ -3,7 +3,7 @@ import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { RelationShipElement } from './RelationshipElement';
 import { IConstraint } from '../baseClasses/Constraint';
 

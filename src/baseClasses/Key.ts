@@ -1,16 +1,16 @@
-import { IdTypeEnum } from '../types/IdTypeEnum';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { TIdType } from '../types/IdTypeEnum';
+import { TModelTypeElements } from '../types/ModelTypeElementsEnum';
 
 interface IKey {
-    idType: IdTypeEnum;
+    idType: TIdType;
     local: boolean;
-    type: KeyElementsEnum;
+    type: TModelTypeElements;
     value?: string;
 }
 class Key implements IKey {
-    idType: IdTypeEnum;
+    idType: TIdType;
     local: boolean;
-    type: KeyElementsEnum;
+    type: TModelTypeElements;
     value?: string | undefined;
     constructor(obj: IKey) {
         this.idType = obj.idType;

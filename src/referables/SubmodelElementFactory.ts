@@ -1,5 +1,5 @@
 import { TSubmodelElements, TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { Property, TPropertyJSON } from './Property';
 import { TSubmodelElementCollectionJSON, SubmodelElementCollection } from './SubmodelElementCollection';
 import { TMultiLanguagePropertyJSON, MultiLanguageProperty } from './MultiLanguageProperty';

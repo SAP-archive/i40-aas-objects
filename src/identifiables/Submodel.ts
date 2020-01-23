@@ -11,7 +11,7 @@ import { Identifiable } from '../characteristics/Identifiable';
 import { IHasKind } from '../characteristics/HasKind';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IQualifiable } from '../characteristics/Qualifiable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { Operation } from '../referables/Operation';
 import { SubmodelElementFactory } from '../referables/SubmodelElementFactory';
 import { TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
@@ -140,6 +140,8 @@ class Submodel extends Identifiable implements ISubmodel, IHasKind, IHasSemantic
         res.kind = this.kind;
         res.semanticId = this.semanticId;
         res.submodelElements = this.submodelElements;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+
         return res;
     }
 }

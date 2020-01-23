@@ -2,7 +2,7 @@ import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { Reference, IReference } from '../baseClasses/Reference';
 import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface IConceptDictionary {
     modelType: IModelType;

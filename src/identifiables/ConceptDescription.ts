@@ -5,7 +5,7 @@ import { ILangString } from '../baseClasses/LangString';
 import { IIdentifier } from '../baseClasses/Identifier';
 import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
 import { Identifiable } from '../characteristics/Identifiable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface IConceptDescription {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
@@ -86,6 +86,7 @@ class ConceptDescription extends Identifiable implements IConceptDescription {
     toJSON(): IConceptDescription {
         let res: any = super.toJSON();
         res.isCaseOf = this.isCaseOf;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
         return res;
     }
 }

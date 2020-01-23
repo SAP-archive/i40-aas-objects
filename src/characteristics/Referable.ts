@@ -4,7 +4,7 @@ import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { IdTypeEnum } from '../types/IdTypeEnum';
 import { Key } from '../baseClasses/Key';
 import { ILangString } from '../baseClasses/LangString';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
 interface IReferable {
     modelType: IModelType;

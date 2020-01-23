@@ -3,7 +3,7 @@ import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
 

@@ -22,7 +22,7 @@ import { InteractionMessage } from './src/interaction/InteractionMessage';
 import { IInteractionMessage } from './src/interaction/InteractionMessage';
 import { CountryCodeEnum } from './src/types/CountryCodeEnum';
 import { AnyAtomicTypeEnum } from './src/types/AnyAtomicTypeEnum';
-import { KeyElementsEnum } from './src/types/KeyElementsEnum';
+import { KeyElementsEnum } from './src/types/ModelTypeElementsEnum';
 import { Reference } from './src/baseClasses/Reference';
 import { Key } from 'readline';
 import { IIdentifier } from './src/baseClasses/Identifier';

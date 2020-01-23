@@ -26,8 +26,10 @@ interface IIdentifiableConstructor {
 }
 abstract class Identifiable extends Referable implements Identifiable {
     getReference(): Reference {
-        super.getReference();
         let keys: Array<IKey> = [];
+        if (!this.identification.idType || !this.identification.id) {
+            throw new Error('Missiong identification.id or identification.idType in identifiable.');
+        }
         let rootKey = {
             type: this.modelType.name,
             idType: this.identification.idType,

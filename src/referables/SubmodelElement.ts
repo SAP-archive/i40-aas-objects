@@ -9,7 +9,7 @@ import { IHasKind } from '../characteristics/HasKind';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IQualifiable } from '../characteristics/Qualifiable';
 import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { TSubmodelElements } from '../types/SubmodelElementTypes';
 
 interface ISubmodelElement {
