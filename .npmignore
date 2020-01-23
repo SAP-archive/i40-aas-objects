@@ -1,6 +1,7 @@
 /src
 test
-
+/docs
+/examples
 tsconfig.json
 
 .git
