@@ -1,52 +1,82 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
+import { IReference, Reference } from '../baseClasses/Reference';
 import { Referable } from './Referable';
-import { Identifier } from './interfaces/Identifier';
-import { AdministrativeInformation } from './interfaces/AdministrativeInformation';
-import { ModelType } from './interfaces/ModelType';
-import { Description } from './interfaces/Description';
-import { IdTypeEnum } from '../types/IdTypeEnum';
-import { Key } from './interfaces/Key';
-interface IdentifiableInterface {
-    modelType: ModelType;
-    idShort?: string;
+import { IIdentifier } from '../baseClasses//Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IKey } from '../baseClasses/Key';
+import { ILangString } from '../baseClasses/LangString';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+interface IIdentifiable {
+    modelType: IModelType;
+    idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Description[];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
+    description?: ILangString[];
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
 }
-class Identifiable implements Referable, Identifiable {
+interface IIdentifiableConstructor {
+    modelType?: IModelTypeConstructor;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    description?: ILangString[];
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
+}
+abstract class Identifiable extends Referable implements Identifiable {
     getReference(): Reference {
-        let keys: Array<Key> = [];
+        let keys: Array<IKey> = [];
+        if (!this.identification.idType || !this.identification.id) {
+            throw new Error('Missiong identification.id or identification.idType in identifiable.');
+        }
         let rootKey = {
             type: this.modelType.name,
             idType: this.identification.idType,
             value: this.identification.id,
             local: true,
-            index: 0,
         };
 
         keys.push(rootKey);
-        return {
+        return new Reference({
             keys: keys,
-        };
+        });
     }
-    modelType: ModelType;
-    idShort?: string;
-    parent?: Reference;
-    category?: string;
-    descriptions: Description[] = [];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
-    constructor(obj: Identifiable) {
-        this.modelType = obj.modelType;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        this.descriptions = obj.descriptions;
-        this.identification = obj.identification;
-        this.administration = obj.administration;
+
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
+
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        modelType: IModelType,
+        administration?: IAdministrativeInformation,
+        description?: Array<ILangString>,
+        category?: string,
+        parent?: Reference,
+    ) {
+        super(idShort, modelType, description, category, parent);
+        this.identification = identification;
+        this.administration = administration;
+    }
+    toJSON(): IIdentifiable {
+        let supersJson = super.toJSON();
+        let res: IIdentifiable = {
+            identification: this.identification,
+            administration: this.administration,
+            parent: supersJson.parent,
+            modelType: supersJson.modelType,
+            description: supersJson.description,
+            idShort: supersJson.idShort,
+            category: supersJson.category,
+        };
+        return res;
+    }
+    checkRules() {
+        super.checkRules();
+        if (!this.idShort || !this.identification) {
+            throw new Error('Missing required attributes in identifiable class ');
+        }
     }
 }
 

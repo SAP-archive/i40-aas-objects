@@ -1,54 +1,88 @@
-import { applyMixins } from '../characteristics/mixins';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { HasModelType } from '../characteristics/HasModelType';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
 import { KindEnum } from '../types/KindEnum';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { ILangString } from '../baseClasses/LangString';
 import { SubmodelElement } from './SubmodelElement';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
-import { Property } from './Property';
-import { MultiLanguageProperty } from './MultiLanguageProperty';
-import { Operation } from './Operation';
-interface SubmodelElementCollectionInterface {
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
+import { IConstraint } from '../baseClasses/Constraint';
+import { TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
+import { SubmodelElementFactory } from './SubmodelElementFactory';
+
+interface ISubmodelElementCollection {
     kind?: KindEnum;
-    semanticId?: Reference;
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<Description>;
+    description?: Array<ILangString>;
     value?: Array<SubmodelElement>;
     ordered?: boolean;
     allowDuplicates?: boolean;
+    qualifiers?: Array<IConstraint>;
 }
-class SubmodelElementCollection implements HasModelType, SubmodelElement {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    kind: KindEnum = KindEnum.Instance;
-    semanticId?: Reference;
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType = { name: KeyElementsEnum.SubmodelElementCollection };
+type TSubmodelElementCollectionJSON = {
+    kind?: KindEnum;
+    semanticId: IReference;
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
     idShort: string;
-    parent?: Reference;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
+    description?: Array<ILangString>;
+    value?: Array<SubmodelElement>;
+    ordered?: boolean;
+    allowDuplicates?: boolean;
+    qualifiers?: Array<IConstraint>;
+};
+class SubmodelElementCollection extends SubmodelElement implements ISubmodelElementCollection {
     value: Array<SubmodelElement> = [];
     ordered: boolean = false;
     allowDuplicates: boolean = true;
-
-    constructor(obj: SubmodelElementCollectionInterface) {
-        if (obj.kind) this.kind = obj.kind;
-        this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        if (obj.value) this.value = obj.value;
-        if (obj.ordered) this.ordered = obj.ordered;
-        if (obj.allowDuplicates) this.allowDuplicates = obj.allowDuplicates;
+    static fromJSON(obj: TSubmodelElementCollectionJSON): SubmodelElementCollection {
+        return new SubmodelElementCollection(
+            obj.idShort,
+            obj.value,
+            obj.ordered,
+            obj.allowDuplicates,
+            obj.semanticId,
+            obj.kind,
+            obj.embeddedDataSpecifications,
+            obj.qualifiers,
+            obj.description,
+            obj.category,
+            obj.parent,
+        );
+    }
+    constructor(
+        idShort: string,
+        value?: Array<SubmodelElement>,
+        ordered?: boolean,
+        allowDuplicates?: boolean,
+        semanticId?: IReference,
+        kind?: KindEnum,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+        qualifiers?: Array<IConstraint>,
+        description?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(
+            idShort,
+            { name: KeyElementsEnum.SubmodelElementCollection },
+            semanticId,
+            kind,
+            embeddedDataSpecifications,
+            qualifiers,
+            description,
+            category,
+            parent,
+        );
+        if (value) this.setValue(value);
+        if (ordered) this.ordered = ordered;
+        if (allowDuplicates) this.allowDuplicates = allowDuplicates;
     }
 
     getValue() {
@@ -60,36 +94,21 @@ class SubmodelElementCollection implements HasModelType, SubmodelElement {
         values.forEach(function(value) {
             that.addValue(value);
         });
+        return this;
     }
+
     /*public addValue(value: SubmodelElement) {
     if (this.value.indexOf(value) >= 0 && this.allowDuplicates == false) {
       throw new Error('You can not add an object multiple times with allowDuplicates == false');
     }
     value.parent = this.getReference();
     this.value.push(value);
-  }*/
-
-    public addValue(submodelElement: SubmodelElement) {
+  }
+*/
+    public addValue(submodelElement: TSubmodelElementsJSON) {
         submodelElement.parent = this.getReference();
-        if (submodelElement.modelType != null) {
-            if (submodelElement.modelType.name === KeyElementsEnum.Property) {
-                let submodelElementTemp: Property = <Property>submodelElement;
-                this.value.push(new Property(submodelElementTemp));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.SubmodelElementCollection) {
-                this.value.push(new SubmodelElementCollection(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.MultiLanguageProperty) {
-                this.value.push(new MultiLanguageProperty(submodelElement));
-            } else if (submodelElement.modelType.name === KeyElementsEnum.Operation) {
-                let submodelElementTemp: Operation = <Operation>submodelElement;
-                this.value.push(new Operation(submodelElementTemp));
-            } else {
-                throw new Error('Only Property and SubmodelElementCollection are supported submodelElements');
-            }
-        } else {
-            throw new Error(
-                `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,
-            );
-        }
+        this.value.push(SubmodelElementFactory.createSubmodelElement(submodelElement));
+        return this;
     }
 
     public getValueByIdShort(idShort: string): SubmodelElement {
@@ -111,7 +130,7 @@ class SubmodelElementCollection implements HasModelType, SubmodelElement {
             idShort: this.idShort,
             parent: this.parent,
             category: this.category,
-            descriptions: this.descriptions,
+            description: this.description,
             kind: this.kind,
             modelType: this.modelType,
             semanticId: this.semanticId,
@@ -122,6 +141,5 @@ class SubmodelElementCollection implements HasModelType, SubmodelElement {
         };
     }
 }
-applyMixins(SubmodelElementCollection, [HasModelType, SubmodelElement]);
 
-export { SubmodelElementCollection };
+export { SubmodelElementCollection, TSubmodelElementCollectionJSON, ISubmodelElementCollection };

@@ -1,9 +1,6 @@
-import { ModelType } from './interfaces/ModelType';
-
-class HasModelType {
-    modelType: ModelType;
-    constructor(obj: HasModelType) {
-        this.modelType = obj.modelType;
-    }
+import { IModelType } from '../baseClasses//ModelType';
+interface IHasModelType {
+    modelType: IModelType;
 }
-export { HasModelType };
+
+export { IHasModelType };

@@ -1,88 +1,94 @@
 import { expect } from 'chai';
+import { KeyElementsEnum } from '../src/types/ModelTypeElementsEnum';
 import { IdTypeEnum } from '../src/types/IdTypeEnum';
-import { KeyElementsEnum } from '../src/types/KeyElementsEnum';
-import { CountryCodeEnum } from '../src/types/CountryCodeEnum';
-import { AssetAdministrationShell } from '..';
-
-describe('Construct AssetAdministrationShell', function() {
-  it('create an AssetAdministrationShell', function() {
-    let aas = new AssetAdministrationShell({
-      identification: {
-        id: 'http://sap.com/customer/2',
-        idType: IdTypeEnum.URI
-      },
-      modelType: {
-        name: KeyElementsEnum.AssetAdministrationShell
-      },
-      embeddedDataSpecifications: [],
-      descriptions: [
-        {
-          language: CountryCodeEnum.Germany,
-          text: 'VWS eines Kundensystems'
-        }
-      ],
-      conceptDictionaries: [],
-      submodels: [
-        {
-          keys: [
+import { Asset, Submodel } from '../index';
+describe('Construct an minimal Asset', function() {
+    it('Create an minimal Asset', function() {
+        let asset = new Asset(
             {
-              idType: IdTypeEnum.URI,
-              type: KeyElementsEnum.Submodel,
-              value: 'http://sap.com/order/management/om246063-15a0-4361-bfa7-1g817f91434g0',
-              local: true
-            }
-          ]
-        }
-      ],
-      views: [],
-      idShort: 'customer2',
-      administration: {
-        revision: '0.0.0',
-        version: '0.0.1'
-      }
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            'myAsset',
+        );
+        expect(Object.keys(asset)).to.include.members(['identification', 'idShort', 'modelType']);
     });
-    expect(Object.keys(aas)).to.include.members(['asset', 'identification', 'submodels', 'security', 'modelType']);
-  });
 });
-
-describe('Get a Reference to the aas', function() {
-  it('generate a Reference', function() {
-    let aas = new AssetAdministrationShell({
-      identification: {
-        id: 'http://sap.com/customer/2',
-        idType: IdTypeEnum.URI
-      },
-      modelType: {
-        name: KeyElementsEnum.AssetAdministrationShell
-      },
-      embeddedDataSpecifications: [],
-      descriptions: [
-        {
-          language: CountryCodeEnum.Germany,
-          text: 'VWS eines Kundensystems'
-        }
-      ],
-      conceptDictionaries: [],
-      submodels: [
-        {
-          keys: [
+describe('Add an assetIdentficationModel to the Asset', function() {
+    it('Add in Construcor', function() {
+        let asset = new Asset(
             {
-              idType: IdTypeEnum.URI,
-              type: KeyElementsEnum.Submodel,
-              value: 'http://sap.com/order/management/om246063-15a0-4361-bfa7-1g817f91434g0',
-              local: true
-            }
-          ]
-        }
-      ],
-      views: [],
-      idShort: 'customer2',
-      administration: {
-        revision: '0.0.0',
-        version: '0.0.1'
-      }
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            'myAsset',
+            undefined,
+            new Submodel(
+                {
+                    id: 'http://sap.com/customer/2',
+                    idType: IdTypeEnum.IRI,
+                },
+                'myAsset',
+            ).getReference(),
+        );
+
+        expect(Object.keys(asset)).to.include.members([
+            'identification',
+            'idShort',
+            'modelType',
+            'assetIdentificationModel',
+        ]);
+        expect(asset.assetIdentificationModel).to.be.an('object');
+        expect(asset.assetIdentificationModel).to.have.property('keys');
+        expect(asset.assetIdentificationModel!.keys)
+            .to.be.an('array')
+            .with.length(1);
+        expect(asset.assetIdentificationModel!.keys[0]).to.have.all.keys('idType', 'value', 'type', 'local');
     });
-    console.log(aas.getReference());
-    expect(Object.keys(aas.getReference())).to.have.members(['keys']);
-  });
+
+    it('Add via setAssetIdentificationModel', function() {
+        let asset = new Asset(
+            {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            'myAsset',
+        );
+        asset.setAssetIdentificationModel(
+            new Submodel(
+                {
+                    id: 'http://sap.com/customer/2',
+                    idType: IdTypeEnum.IRI,
+                },
+                'myAsset',
+            ).getReference(),
+        );
+
+        expect(
+            asset.setAssetIdentificationModel({
+                keys: [{ idType: IdTypeEnum.IRI, value: 'asda/adjea', type: KeyElementsEnum.Submodel, local: true }],
+            }),
+        ).to.contain.keys(
+            'identification',
+            'idShort',
+            'modelType',
+            'assetIdentificationModel',
+            'administration',
+            'category',
+            'description',
+            'kind',
+        );
+    });
+});
+describe('Get a Reference to the asset', function() {
+    it('Generate a Reference', function() {
+        let asset = new Asset(
+            {
+                id: 'http://sap.com/customer/2',
+                idType: IdTypeEnum.IRI,
+            },
+            'myAsset',
+        );
+        expect(Object.keys(asset.getReference())).to.have.members(['keys']);
+    });
 });

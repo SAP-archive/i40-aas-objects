@@ -1,23 +1,20 @@
+import { IIdentifier } from '../baseClasses/Identifier';
+
 interface IConversationMember {
-    identification?: IIdentification;
+    identification?: IIdentifier;
     role: Role;
 }
 
 interface IRole {
     name: string;
 }
-//TODO: this has to be revised, id should be of type:"idType", schema needs to be updated
-interface IIdentification {
-    id: string;
-    idType: string;
-}
 
 class ConversationMember implements IConversationMember {
-    identification: Identification | undefined;
+    identification?: IIdentifier;
     role: Role;
 
     constructor(obj: IConversationMember) {
-        this.identification = obj.identification;
+        if (obj.identification) this.identification = obj.identification;
         this.role = obj.role;
     }
 
@@ -25,7 +22,7 @@ class ConversationMember implements IConversationMember {
         return this.role;
     }
 
-    getIdentification(): IIdentification | undefined {
+    getIdentification(): IIdentifier | undefined {
         return this.identification;
     }
 }
@@ -35,16 +32,6 @@ class Role implements IRole {
 
     constructor(obj: IRole) {
         this.name = obj.name;
-    }
-}
-
-class Identification implements IIdentification {
-    id: string;
-    idType: string;
-
-    constructor(obj: IIdentification) {
-        this.id = obj.id;
-        this.idType = obj.idType;
     }
 }
 

@@ -1,49 +1,93 @@
-import { applyMixins } from '../characteristics/mixins';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasModelType } from '../characteristics/HasModelType';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
+import { IIdentifier } from '../baseClasses/Identifier';
+import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
 import { Identifiable } from '../characteristics/Identifiable';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { Identifier } from '../characteristics/interfaces/Identifier';
-import { AdministrativeInformation } from '../characteristics/interfaces/AdministrativeInformation';
-import { Description } from '../characteristics/interfaces/Description';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
-interface ConceptDescriptionInterface {
-    embeddedDataSpecifications?: Array<EmbeddedDataSpecification>;
-    modelType?: ModelType;
-    idShort?: string;
+interface IConceptDescription {
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType: IModelType;
+    idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<Description>;
-    identification: Identifier;
-    administration?: AdministrativeInformation;
-    isCaseOf?: Reference;
+    description?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
+    isCaseOf?: Array<IReference>;
 }
-class ConceptDescription implements HasDataSpecification, HasModelType, Identifiable {
-    getReference(): Reference {
-        throw new Error('Method not implemented.');
-    }
-    embeddedDataSpecifications: Array<EmbeddedDataSpecification> = [];
-    modelType: ModelType = { name: KeyElementsEnum.ConceptDescription };
-    idShort?: string;
-    parent?: Reference;
+interface TConceptDescriptionJSON {
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    modelType?: IModelTypeConstructor;
+    idShort: string;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
-    identification: Identifier;
-    administration?: AdministrativeInformation;
-    isCaseOf?: Reference;
-    constructor(obj: ConceptDescriptionInterface) {
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        this.identification = obj.identification;
-        this.administration = obj.administration;
-        this.isCaseOf = obj.isCaseOf;
+    description?: Array<ILangString>;
+    identification: IIdentifier;
+    administration?: IAdministrativeInformation;
+    isCaseOf?: Array<IReference>;
+}
+class ConceptDescription extends Identifiable implements IConceptDescription {
+    static fromJSON(obj: TConceptDescriptionJSON) {
+        var cd = new ConceptDescription(
+            obj.identification,
+            obj.idShort,
+            obj.administration,
+            obj.isCaseOf, //isCaseOf
+            obj.description,
+            obj.category,
+            obj.parent ? new Reference(obj.parent) : undefined,
+            obj.embeddedDataSpecifications, //embeddedDataSpecifications
+        );
+        return cd;
+    }
+    isCaseOf?: Array<IReference> = [];
+    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
+    constructor(
+        identification: IIdentifier,
+        idShort: string,
+        administration?: IAdministrativeInformation,
+        isCaseOf?: Array<IReference>,
+        description?: Array<ILangString>,
+        category?: string,
+        parent?: Reference,
+        embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
+    ) {
+        super(
+            identification,
+            idShort,
+            { name: KeyElementsEnum.ConceptDescription },
+            administration,
+            description,
+            category,
+            parent,
+        );
+        this.embeddedDataSpecifications = embeddedDataSpecifications || [];
+        if (isCaseOf) this.setIsCaseOf(isCaseOf);
+    }
+    setIsCaseOf(isCaseOf: Array<IReference>) {
+        var that = this;
+        this.isCaseOf = [];
+        isCaseOf.forEach(function(isCaseOfinstance: IReference) {
+            that.addIsCaseOf(isCaseOfinstance);
+        });
+        return this;
+    }
+    addIsCaseOf(isCaseOfinstance: IReference) {
+        if (!this.isCaseOf) {
+            this.isCaseOf = [];
+        }
+        this.isCaseOf.push(new Reference(isCaseOfinstance));
+        return this;
+    }
+
+    toJSON(): IConceptDescription {
+        let res: any = super.toJSON();
+        res.isCaseOf = this.isCaseOf;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+        return res;
     }
 }
-applyMixins(ConceptDescription, [Identifiable, HasDataSpecification, HasModelType]);
-export { ConceptDescription, ConceptDescriptionInterface };
+export { ConceptDescription, TConceptDescriptionJSON, IConceptDescription };

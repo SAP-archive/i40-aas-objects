@@ -1,6 +1,6 @@
 {
   "name": "i40-aas-objects",
-  "version": "0.0.3-alpha",
+  "version": "0.2.0",
   "description": "",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -15,16 +15,18 @@
     "prepublish": "npm run clean && npm run build && npm run format",
     "clean": "rm -rf ./dist/*",
     "start": "node /dist/index.js",
-    "browserify": "npm run build && browserify ./dist/index.js --standalone aas --outfile aasForBrowser.js"
+    "browserify": "npm run build && browserify ./dist/index.js --standalone aas --outfile aasForBrowser.js",
+    "docs": "typedoc --out ./docs/ ./src"
   },
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "ajv": "^6.10.2",
-    "jsonschema": "^1.2.4"
+    "jsonschema": "^1.2.4",
+    "mime-types": "^2.1.25"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/mime-types": "^2.1.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.0.2",
     "chai": "^4.2.0",
@@ -33,6 +35,7 @@
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "ts-node": "^8.2.0",
+    "typedoc": "^0.15.2",
     "typescript": "^3.4.5"
   }
 }

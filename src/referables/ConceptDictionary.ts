@@ -1,36 +1,53 @@
-import { applyMixins } from '../characteristics/mixins';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { Reference, IReference } from '../baseClasses/Reference';
+import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
-interface ConceptDictionaryInterface {
-    modelType?: ModelType;
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
+
+interface IConceptDictionary {
+    modelType: IModelType;
     idShort: string;
     parent?: Reference;
     category?: string;
-    descriptions?: Array<Description>;
+    description?: Array<ILangString>;
     conceptDescriptions?: Array<Reference>;
 }
-class ConceptDictionary implements Referable {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    modelType: ModelType = { name: KeyElementsEnum.ConceptDictionary };
-    idShort?: string;
-    parent?: Reference;
+interface IConceptDictionaryConstructor {
+    modelType?: IModelTypeConstructor;
+    idShort: string;
+    parent?: IReference;
     category?: string;
-    descriptions: Array<Description> = [];
+    description?: Array<ILangString>;
+    conceptDescriptions?: Array<IReference>;
+}
+class ConceptDictionary extends Referable {
     conceptDescriptions: Array<Reference> = [];
-    constructor(obj: ConceptDictionaryInterface) {
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        if (obj.conceptDescriptions) this.conceptDescriptions = obj.conceptDescriptions;
+
+    constructor(
+        idShort: string,
+        conceptDescriptions?: Array<IReference>,
+        description?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(idShort, { name: KeyElementsEnum.ConceptDictionary }, description, category, parent);
+        if (conceptDescriptions) this.setConceptDescriptions(conceptDescriptions);
+    }
+
+    setConceptDescriptions(cds: Array<IReference>) {
+        var that = this;
+        this.conceptDescriptions = [];
+        cds.forEach(function(cd: IReference) {
+            that.conceptDescriptions.push(new Reference(cd));
+        });
+        return this;
+    }
+
+    toJSON(): IConceptDictionary {
+        let res: any = super.toJSON();
+        res.conceptDescriptions = this.conceptDescriptions;
+        return res;
     }
 }
 
-applyMixins(ConceptDictionary, [Referable]);
-
-export { ConceptDictionary };
+export { ConceptDictionary, IConceptDictionaryConstructor, IConceptDictionary };

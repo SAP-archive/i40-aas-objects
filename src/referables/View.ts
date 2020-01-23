@@ -1,44 +1,67 @@
-import { applyMixins } from '../characteristics/mixins';
+import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IReference, Reference } from '../baseClasses/Reference';
+import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
+import { ILangString } from '../baseClasses/LangString';
 import { Referable } from '../characteristics/Referable';
-import { Reference } from '../characteristics/interfaces/Reference';
-import { Description } from '../characteristics/interfaces/Description';
-import { HasDataSpecification } from '../characteristics/HasDataSpecification';
-import { HasSemantics } from '../characteristics/HasSemantics';
-import { ModelType } from '../characteristics/interfaces/ModelType';
-import { EmbeddedDataSpecification } from '../characteristics/interfaces/EmbeddedDataSpecification';
-import { KeyElementsEnum } from '../types/KeyElementsEnum';
-interface ViewInterface {
-    modelType?: ModelType;
-    semanticId?: Reference;
-    embeddedDataSpecifications?: EmbeddedDataSpecification[];
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    descriptions?: Array<Description>;
-    containedElements?: Array<Reference>;
-}
-class View implements Referable, HasSemantics, HasDataSpecification, ViewInterface {
-    getReference(idType?: import('../types/IdTypeEnum').IdTypeEnum): Reference {
-        throw new Error('Method not implemented.');
-    }
-    modelType: ModelType = { name: KeyElementsEnum.View };
-    semanticId?: Reference;
-    embeddedDataSpecifications: EmbeddedDataSpecification[] = [];
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    descriptions: Array<Description> = [];
-    containedElements: Array<Reference> = [];
-    constructor(obj: ViewInterface) {
-        this.semanticId = obj.semanticId;
-        if (obj.embeddedDataSpecifications) this.embeddedDataSpecifications = obj.embeddedDataSpecifications;
-        this.idShort = obj.idShort;
-        this.parent = obj.parent;
-        this.category = obj.category;
-        if (obj.descriptions) this.descriptions = obj.descriptions;
-        if (obj.containedElements) this.containedElements = obj.containedElements;
-    }
-}
-applyMixins(View, [Referable, HasSemantics, HasDataSpecification]);
+import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
+import { IHasSemantics } from '../characteristics/HasSemantics';
+import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
 
-export { View };
+interface IView {
+    modelType: IModelType;
+    semanticId?: IReference;
+    embeddedDataSpecifications?: IEmbeddedDataSpecification[];
+    idShort: string;
+    parent?: Reference;
+    category?: string;
+    description?: Array<ILangString>;
+    containedElements?: Array<IReference>;
+}
+type TViewJSON = {
+    modelType?: IModelTypeConstructor;
+    semanticId?: IReference;
+    embeddedDataSpecifications?: IEmbeddedDataSpecification[];
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    description?: Array<ILangString>;
+    containedElements?: Array<IReference>;
+};
+class View extends Referable implements IHasSemantics, IHasDataSpecification, IView {
+    semanticId?: IReference;
+    embeddedDataSpecifications: IEmbeddedDataSpecification[] = [];
+    containedElements: Array<IReference> = [];
+    constructor(
+        idShort: string,
+        containedElements?: Array<IReference>,
+        semanticId?: IReference,
+        description?: Array<ILangString>,
+        category?: string,
+        parent?: IReference,
+    ) {
+        super(idShort, { name: KeyElementsEnum.View }, description, category, parent);
+        this.semanticId = semanticId;
+        if (containedElements) this.setContainedElements(containedElements);
+    }
+    setContainedElements(ces: Array<IReference>) {
+        var that = this;
+        this.containedElements = [];
+        ces.forEach(function(ce: IReference) {
+            that.containedElements.push(new Reference(ce));
+        });
+        return this;
+    }
+    setSemanticId(semanticId: IReference) {
+        this.semanticId = new Reference(semanticId);
+        return this;
+    }
+    toJSON(): IView {
+        let res: any = super.toJSON();
+        res.semanticId = this.semanticId;
+        res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+        res.containedElements = this.containedElements;
+        return res;
+    }
+}
+
+export { View, IView, TViewJSON };

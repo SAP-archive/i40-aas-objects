@@ -1,14 +1,13 @@
-import { Frame, IFrame } from './Frame';
-import { Submodel, SubmodelInterface } from '../identifiables/Submodel';
+import { IFrame } from './Frame';
 
 interface IInteractionMessage {
     frame: IFrame;
-    interactionElements: Array<SubmodelInterface>;
+    interactionElements: Array<object>;
 }
 
 class InteractionMessage implements IInteractionMessage {
     frame: IFrame;
-    interactionElements: Array<SubmodelInterface>;
+    interactionElements: Array<object>;
 
     constructor(obj: InteractionMessage) {
         this.frame = obj.frame;

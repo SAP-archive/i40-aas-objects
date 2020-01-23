@@ -1,5 +1,5 @@
 enum KindEnum {
     Instance = 'Instance',
-    Type = 'Type',
+    Template = 'Template',
 }
 export { KindEnum };

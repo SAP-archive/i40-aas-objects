@@ -1,8 +1,6 @@
-import { Reference } from './interfaces/Reference';
-class HasSemantics {
-    semanticId?: Reference;
-    constructor(obj: HasSemantics) {
-        this.semanticId = obj.semanticId;
-    }
+import { IReference } from '../baseClasses/Reference';
+interface IHasSemantics {
+    semanticId?: IReference;
 }
-export { HasSemantics };
+
+export { IHasSemantics };

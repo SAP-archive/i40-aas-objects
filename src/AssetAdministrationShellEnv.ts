@@ -1,88 +1,117 @@
-import { applyMixins } from './characteristics/mixins';
-import { AssetAdministrationShell, AssetAdministrationShellInterface } from './identifiables/AssetAdministrationShell';
-import { Submodel, SubmodelInterface } from './identifiables/Submodel';
-import { ConceptDescription, ConceptDescriptionInterface } from './identifiables/ConceptDescription';
-import { Asset, AssetInterface } from './identifiables/Asset';
-import { Reference } from './characteristics/interfaces/Reference';
+import { TAssetAdministrationShellJSON, AssetAdministrationShell } from './identifiables/AssetAdministrationShell';
+import { TSubmodelJSON, Submodel } from './identifiables/Submodel';
+import { TConceptDescriptionJSON, ConceptDescription } from './identifiables/ConceptDescription';
+import { TAssetJSON, Asset } from './identifiables/Asset';
+import { IReference, Reference } from './baseClasses/Reference';
 import { Referable } from './characteristics/Referable';
-import { ModelType } from './characteristics/interfaces/ModelType';
-import { Key } from './characteristics/interfaces/Key';
 import { Identifiable } from './characteristics/Identifiable';
-interface AssetAdministrationShellEnvInterface {
+import { IKey } from './baseClasses/Key';
+import { IModelType } from './baseClasses/ModelType';
+
+type TAssetAdministrationShellEnvJSON = {
+    assetAdministrationShells: Array<TAssetAdministrationShellJSON>;
+    submodels: Array<TSubmodelJSON>;
+    conceptDescriptions: Array<TConceptDescriptionJSON>;
+    assets: Array<TAssetJSON>;
+};
+
+interface IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell>;
     submodels: Array<Submodel>;
     conceptDescriptions: Array<ConceptDescription>;
     assets: Array<Asset>;
 }
-class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterface {
+
+class AssetAdministrationShellEnv implements IAssetAdministrationShellEnv {
     assetAdministrationShells: Array<AssetAdministrationShell> = [];
     submodels: Array<Submodel> = [];
     conceptDescriptions: Array<ConceptDescription> = [];
     assets: Array<Asset> = [];
 
-    constructor(obj: AssetAdministrationShellEnvInterface) {
-        this.assetAdministrationShells = obj.assetAdministrationShells;
-        this.submodels = obj.submodels;
-        this.conceptDescriptions = obj.conceptDescriptions;
-        this.assets = obj.assets;
+    static fromJSON(obj: TAssetAdministrationShellEnvJSON) {
+        var aasEnv = new AssetAdministrationShellEnv();
+        aasEnv.setAssetAdministrationShells(obj.assetAdministrationShells);
+        aasEnv.setSubmodels(obj.submodels);
+        aasEnv.setAssets(obj.assets);
+        aasEnv.setConceptDescriptions(obj.conceptDescriptions);
+        return aasEnv;
     }
-    setAssetAdministrationShells(assetAdministrationShellsIn: Array<AssetAdministrationShell>) {
+
+    constructor(
+        assetAdministrationShells?: Array<AssetAdministrationShell>,
+        submodels?: Array<Submodel>,
+        assets?: Array<Asset>,
+        conceptDescriptions?: Array<ConceptDescription>,
+    ) {
+        this.assetAdministrationShells = assetAdministrationShells || [];
+        this.submodels = submodels || [];
+        this.assets = assets || [];
+        this.conceptDescriptions = conceptDescriptions || [];
+    }
+    setAssetAdministrationShells(assetAdministrationShellsIn: Array<TAssetAdministrationShellJSON>) {
         this.assetAdministrationShells = [];
         var that = this;
         assetAdministrationShellsIn.forEach(assetAdministrationShell => {
-            that.addAssetAdministrationShell(assetAdministrationShell);
+            that.addAssetAdministrationShell(AssetAdministrationShell.fromJSON(assetAdministrationShell));
         });
+        return this;
     }
 
     getAssetAdministrationShells(): Array<AssetAdministrationShell> {
         return this.assetAdministrationShells;
     }
-    addAssetAdministrationShell(assetAdministrationShell: AssetAdministrationShellInterface) {
-        this.assetAdministrationShells.push(new AssetAdministrationShell(assetAdministrationShell));
+    addAssetAdministrationShell(assetAdministrationShell: AssetAdministrationShell) {
+        this.assetAdministrationShells.push(assetAdministrationShell);
+        return this;
     }
     getSubmodels() {
         return this.submodels;
     }
-    setSubmodels(submodels: Array<SubmodelInterface>) {
+    setSubmodels(submodels: Array<TSubmodelJSON>) {
         this.submodels = [];
         var that = this;
         submodels.forEach(submodel => {
-            that.addSubmodel(submodel);
+            that.addSubmodel(Submodel.fromJSON(submodel));
         });
+        return this;
     }
-    addSubmodel(submodel: SubmodelInterface) {
-        this.submodels.push(new Submodel(submodel));
+    addSubmodel(submodel: Submodel) {
+        this.submodels.push(submodel);
+        return this;
     }
     getConceptDescriptions() {
         return this.conceptDescriptions;
     }
-    setConceptDescriptions(conceptDescriptions: Array<ConceptDescriptionInterface>) {
+    setConceptDescriptions(conceptDescriptions: Array<TConceptDescriptionJSON>) {
         this.conceptDescriptions = [];
         var that = this;
         conceptDescriptions.forEach(conceptDescription => {
-            that.addConceptDescription(conceptDescription);
+            that.addConceptDescription(ConceptDescription.fromJSON(conceptDescription));
         });
+        return this;
     }
-    addConceptDescription(conceptDescription: ConceptDescriptionInterface) {
-        this.conceptDescriptions.push(new ConceptDescription(conceptDescription));
+    addConceptDescription(conceptDescription: ConceptDescription) {
+        this.conceptDescriptions.push(conceptDescription);
+        return this;
     }
 
     getAssets() {
         return this.assets;
     }
 
-    setAssets(assets: Array<AssetInterface>) {
+    setAssets(assets: Array<TAssetJSON>) {
         this.assets = [];
         var that = this;
         assets.forEach(asset => {
-            that.addAsset(asset);
+            that.addAsset(Asset.fromJSON(asset));
         });
     }
-    addAsset(asset: AssetInterface) {
-        this.assets.push(new Asset(asset));
+    addAsset(asset: Asset) {
+        this.assets.push(asset);
+        return this;
     }
-    getInstance(ref: Reference): Referable {
-        var keyChain: Reference = this.getShortestRef(ref);
+    getInstance(ref: IReference): Referable {
+        var keyChain: IReference = this.getShortestRef(ref);
         var structure: any = this;
         var that = this;
         keyChain.keys.forEach(key => {
@@ -103,7 +132,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
         });
         return structure;
     }
-    getStructureAggregationName(key: Key, structureModelType?: ModelType): string {
+    private getStructureAggregationName(key: IKey, structureModelType?: IModelType): string {
         var structureModelTypeName = 'AssetAdministrationShellEnv';
         if (structureModelType) {
             structureModelTypeName = structureModelType.name;
@@ -126,7 +155,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
                 throw new Error('Can nit find key type ' + key.type);
         }
     }
-    getShortestRef(ref: Reference): Reference {
+    getShortestRef(ref: IReference): IReference {
         var keys = ref.keys;
         if (keys.length <= 1) {
             return ref;
@@ -138,7 +167,7 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
                 break;
             }
         }
-        return { keys: newKeys };
+        return new Reference({ keys: newKeys });
     }
 
     public getSubmodelsByIdShort(idShort: string): Array<Submodel> {
@@ -193,4 +222,4 @@ class AssetAdministrationShellEnv implements AssetAdministrationShellEnvInterfac
     }
 }
 
-export { AssetAdministrationShellEnv };
+export { AssetAdministrationShellEnv, TAssetAdministrationShellEnvJSON, IAssetAdministrationShellEnv };
