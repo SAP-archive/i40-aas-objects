@@ -21,7 +21,6 @@
   "author": "",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "ajv": "^6.10.2",
     "jsonschema": "^1.2.4",
     "mime-types": "^2.1.25"
   },
