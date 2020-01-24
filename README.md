@@ -108,6 +108,8 @@ Create a `tsconfig.json` file in the root of the project directory and paste in 
 Let it be added by the package manager:
 
 ```
+$ npm i --save i40-aas-objects
+OR
 $ npm i --save git://github.com/SAP/i40-aas-objects.git
 ```
 
@@ -123,7 +125,7 @@ Or add it manually to your `package.json`. (**NOTE**: You need to run `npm i` af
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies":{
-      "i40-aas-objects": "git://github.com/SAP/i40-aas-objects.git",
+      "i40-aas-objects": "^0.2.0",
       ...
   },
   "author": "",
