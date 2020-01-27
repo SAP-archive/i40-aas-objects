@@ -111,7 +111,7 @@
                         {
                             "type": "Submodel",
                             "idType": "IRDI",
-                            "value": "https://acplt.org/Test_Submodel2_Mandatory",
+                            "value": "https://acplt.org/Test_Submodel_Mandatory",
                             "local": false
                         }
                     ]
@@ -121,7 +121,7 @@
                         {
                             "type": "Submodel",
                             "idType": "IRDI",
-                            "value": "https://acplt.org/Test_Submodel_Mandatory",
+                            "value": "https://acplt.org/Test_Submodel2_Mandatory",
                             "local": false
                         }
                     ]
@@ -324,24 +324,6 @@
                             "modelType": {
                                 "name": "Qualifier"
                             },
-                            "value": "50",
-                            "valueId": {
-                                "keys": [
-                                    {
-                                        "type": "GlobalReference",
-                                        "idType": "IRDI",
-                                        "value": "http://acplt.org/ValueId/ExampleValueId",
-                                        "local": false
-                                    }
-                                ]
-                            },
-                            "valueType": "string",
-                            "type": "http://acplt.org/Qualifier/ExampleQualifier2"
-                        },
-                        {
-                            "modelType": {
-                                "name": "Qualifier"
-                            },
                             "value": "100",
                             "valueId": {
                                 "keys": [
@@ -355,6 +337,24 @@
                             },
                             "valueType": "string",
                             "type": "http://acplt.org/Qualifier/ExampleQualifier"
+                        },
+                        {
+                            "modelType": {
+                                "name": "Qualifier"
+                            },
+                            "value": "50",
+                            "valueId": {
+                                "keys": [
+                                    {
+                                        "type": "GlobalReference",
+                                        "idType": "IRDI",
+                                        "value": "http://acplt.org/ValueId/ExampleValueId",
+                                        "local": false
+                                    }
+                                ]
+                            },
+                            "valueType": "string",
+                            "type": "http://acplt.org/Qualifier/ExampleQualifier2"
                         }
                     ],
                     "value": "ACPLT",
@@ -683,7 +683,7 @@
                             {
                                 "type": "Property",
                                 "idType": "IdShort",
-                                "value": "ExampleProperty",
+                                "value": "ExampleProperty2",
                                 "local": true
                             }
                         ]
@@ -730,7 +730,7 @@
                             {
                                 "type": "Property",
                                 "idType": "IdShort",
-                                "value": "ExampleProperty",
+                                "value": "ExampleProperty2",
                                 "local": true
                             }
                         ]
@@ -741,7 +741,7 @@
                                 {
                                     "type": "Property",
                                     "idType": "IdShort",
-                                    "value": "ExampleProperty",
+                                    "value": "ExampleProperty3",
                                     "local": true
                                 }
                             ]
@@ -2927,8 +2927,8 @@
                         },
                         "value": "TEST",
                         "levelType": [
-                            "Min",
-                            "Max"
+                            "Max",
+                            "Min"
                         ]
                     }
                 }
