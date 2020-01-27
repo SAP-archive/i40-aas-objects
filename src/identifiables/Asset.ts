@@ -88,6 +88,7 @@ class Asset extends Identifiable implements IAsset {
         res.assetIdentificationModel = this.assetIdentificationModel;
         res.kind = this.kind;
         res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+        res.billOfMaterial = this.billOfMaterial;
         return res;
     }
 }
