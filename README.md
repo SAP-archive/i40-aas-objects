@@ -135,6 +135,8 @@ Or add it manually to your `package.json`. (**NOTE**: You need to run `npm i` af
 
 ### 4. Use i40-aas-objects
 
+[DOCS](https://i40-aas-objects-docs.cfapps.eu10.hana.ondemand.com/)
+
 ```typescript
 import {
     AssetAdministrationShellEnv,
