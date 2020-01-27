@@ -5,7 +5,6 @@ tsconfig.json
 
 .git
 .gitignore
-.prettierrc.js
 .travis.yml
 
 SAP CCLA.pdf
