@@ -18,6 +18,7 @@ interface IMultiLanguageProperty {
     description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
     value?: Array<ILangString>;
+    valueId?: IReference;
 }
 type TMultiLanguagePropertyJSON = {
     kind?: KindEnum;
@@ -30,12 +31,14 @@ type TMultiLanguagePropertyJSON = {
     description?: Array<ILangString>;
     qualifiers?: Array<IConstraint>;
     value?: Array<ILangString>;
+    valueId?: IReference;
 };
 class MultiLanguageProperty extends SubmodelElement implements IMultiLanguageProperty {
     static fromJSON(obj: TMultiLanguagePropertyJSON): MultiLanguageProperty {
         return new MultiLanguageProperty(
             obj.idShort,
             obj.value,
+            obj.valueId,
             obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
@@ -46,9 +49,11 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
         );
     }
     value: Array<ILangString> = [];
+    valueId?: IReference;
     constructor(
         idShort: string,
         value?: Array<ILangString>,
+        valueId?: IReference,
         semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
@@ -69,6 +74,7 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
             parent,
         );
         if (value) this.value = value;
+        if (valueId) this.valueId = valueId;
     }
 
     getValue() {
@@ -90,6 +96,7 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
     toJSON(): IMultiLanguageProperty {
         let res: any = super.toJSON();
         res.value = this.value;
+        res.valueId = this.valueId;
         return res;
     }
 }

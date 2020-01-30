@@ -18,7 +18,7 @@ interface IAnnotatedRelationshipElement {
     description?: Array<ILangString>;
     first: Reference;
     second: Reference;
-    annotations: Array<IReference>;
+    annotation: Array<IReference>;
     qualifiers?: Array<IConstraint>;
 }
 type TAnnotatedRelationshipElementJSON = {
@@ -32,17 +32,17 @@ type TAnnotatedRelationshipElementJSON = {
     description?: Array<ILangString>;
     first: IReference;
     second: IReference;
-    annotations: Array<IReference>;
+    annotation: Array<IReference>;
     qualifiers?: Array<IConstraint>;
 };
 class AnnotatedRelationshipElement extends RelationShipElement implements IAnnotatedRelationshipElement {
-    annotations: Array<IReference> = [];
+    annotation: Array<IReference> = [];
     static fromJSON(obj: TAnnotatedRelationshipElementJSON): AnnotatedRelationshipElement {
         return new AnnotatedRelationshipElement(
             obj.idShort,
             obj.first,
             obj.second,
-            obj.annotations,
+            obj.annotation,
             obj.semanticId,
             obj.kind,
             obj.embeddedDataSpecifications,
@@ -56,7 +56,7 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
         idShort: string,
         first: IReference,
         second: IReference,
-        annotations: Array<IReference>,
+        annotation: Array<IReference>,
         semanticId?: IReference,
         kind?: KindEnum,
         embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>,
@@ -78,11 +78,11 @@ class AnnotatedRelationshipElement extends RelationShipElement implements IAnnot
             category,
             parent,
         );
-        this.annotations = annotations;
+        this.annotation = annotation;
     }
     toJSON(): IAnnotatedRelationshipElement {
         let res: any = super.toJSON();
-        res.annotations = this.annotations;
+        res.annotation = this.annotation;
         return res;
     }
 }

@@ -86,7 +86,7 @@ class Operation extends SubmodelElement implements IOperation {
 
     toJSON(): IOperation {
         let res: any = super.toJSON();
-        res.inoutputVariable = this.inputVariable;
+        res.inputVariable = this.inputVariable;
         res.outputVariable = this.outputVariable;
         res.inoutputVariable = this.inoutputVariable;
         return res;

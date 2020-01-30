@@ -66,6 +66,7 @@ abstract class SubmodelElement extends Referable
         res.kind = this.kind;
         res.semanticId = this.semanticId;
         res.embeddedDataSpecifications = this.embeddedDataSpecifications;
+        res.qualifiers = this.qualifiers;
         return res;
     }
     checkRules() {
