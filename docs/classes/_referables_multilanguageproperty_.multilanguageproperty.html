@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MultiLanguageProperty | i40-aas-objects</title>
+	<title>MultiLanguageProperty | i40-aas-objects - v0.3.6</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">i40-aas-objects</a>
+					<a href="../index.html" class="title">i40-aas-objects - v0.3.6</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -85,7 +85,7 @@
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_characteristics_hasmodeltype_.ihasmodeltype.html" class="tsd-signature-type">IHasModelType</a></li>
+					<li><a href="../interfaces/_characteristics_referable_.ireferable.html" class="tsd-signature-type">IReferable</a></li>
 					<li><a href="../interfaces/_referables_submodelelement_.isubmodelelement.html" class="tsd-signature-type">ISubmodelElement</a></li>
 					<li><a href="../interfaces/_characteristics_haskind_.ihaskind.html" class="tsd-signature-type">IHasKind</a></li>
 					<li><a href="../interfaces/_characteristics_hassemantics_.ihassemantics.html" class="tsd-signature-type">IHasSemantics</a></li>
@@ -117,6 +117,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_referables_multilanguageproperty_.multilanguageproperty.html#qualifiers" class="tsd-kind-icon">qualifiers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported"><a href="_referables_multilanguageproperty_.multilanguageproperty.html#semanticid" class="tsd-kind-icon">semantic<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_referables_multilanguageproperty_.multilanguageproperty.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-not-exported"><a href="_referables_multilanguageproperty_.multilanguageproperty.html#valueid" class="tsd-kind-icon">value<wbr>Id</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
@@ -141,14 +142,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Multi<wbr>Language<wbr>Property<span class="tsd-signature-symbol">(</span>idShort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, semanticId<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a>, kind<span class="tsd-signature-symbol">?: </span><a href="../enums/_types_kindenum_.kindenum.html" class="tsd-signature-type">KindEnum</a>, embeddedDataSpecifications<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span>, qualifiers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_constraint_.iconstraint.html" class="tsd-signature-type">IConstraint</a><span class="tsd-signature-symbol">&gt;</span>, description<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, category<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, parent<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_referables_multilanguageproperty_.multilanguageproperty.html" class="tsd-signature-type">MultiLanguageProperty</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Multi<wbr>Language<wbr>Property<span class="tsd-signature-symbol">(</span>idShort<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, valueId<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a>, semanticId<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a>, kind<span class="tsd-signature-symbol">?: </span><a href="../enums/_types_kindenum_.kindenum.html" class="tsd-signature-type">KindEnum</a>, embeddedDataSpecifications<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_embeddeddataspecification_.iembeddeddataspecification.html" class="tsd-signature-type">IEmbeddedDataSpecification</a><span class="tsd-signature-symbol">&gt;</span>, qualifiers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_constraint_.iconstraint.html" class="tsd-signature-type">IConstraint</a><span class="tsd-signature-symbol">&gt;</span>, description<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span>, category<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, parent<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_referables_multilanguageproperty_.multilanguageproperty.html" class="tsd-signature-type">MultiLanguageProperty</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L48">referables/MultiLanguageProperty.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L43">referables/MultiLanguageProperty.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,6 +159,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> valueId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> semanticId: <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></h5>
@@ -196,7 +200,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#category">category</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#category">category</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L28">characteristics/Referable.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +212,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#description">description</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#description">description</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L29">characteristics/Referable.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L28">characteristics/Referable.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -220,7 +224,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#embeddeddataspecifications">embeddedDataSpecifications</a></p>
 						<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#embeddeddataspecifications">embeddedDataSpecifications</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L42">referables/SubmodelElement.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L41">referables/SubmodelElement.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -232,7 +236,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#idshort">idShort</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#idshort">idShort</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -244,7 +248,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#kind">kind</a></p>
 						<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#kind">kind</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L40">referables/SubmodelElement.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L39">referables/SubmodelElement.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -256,7 +260,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#modeltype">modelType</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#modeltype">modelType</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L25">characteristics/Referable.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L24">characteristics/Referable.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -268,7 +272,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#parent">parent</a></p>
 						<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#parent">parent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L27">characteristics/Referable.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L26">characteristics/Referable.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -280,7 +284,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#qualifiers">qualifiers</a></p>
 						<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#qualifiers">qualifiers</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L39">referables/SubmodelElement.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L38">referables/SubmodelElement.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -292,7 +296,7 @@
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#semanticid">semanticId</a></p>
 						<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#semanticid">semanticId</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L41">referables/SubmodelElement.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L40">referables/SubmodelElement.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -303,7 +307,18 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#value">value</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L48">referables/MultiLanguageProperty.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L42">referables/MultiLanguageProperty.ts:42</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+					<a name="valueid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> value<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">value<wbr>Id<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_baseclasses_reference_.ireference.html" class="tsd-signature-type">IReference</a></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html">IMultiLanguageProperty</a>.<a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html#valueid">valueId</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L43">referables/MultiLanguageProperty.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -320,7 +335,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L85">referables/MultiLanguageProperty.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L82">referables/MultiLanguageProperty.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -345,7 +360,7 @@
 								<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#checkrules">checkRules</a></p>
 								<p>Overrides <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#checkrules">checkRules</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L71">referables/SubmodelElement.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L71">referables/SubmodelElement.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -363,7 +378,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_characteristics_referable_.referable.html">Referable</a>.<a href="_characteristics_referable_.referable.html#getreference">getReference</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/characteristics/Referable.ts#L45">characteristics/Referable.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/characteristics/Referable.ts#L44">characteristics/Referable.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_baseclasses_reference_.reference.html" class="tsd-signature-type">Reference</a></h4>
@@ -380,7 +395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L74">referables/MultiLanguageProperty.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L71">referables/MultiLanguageProperty.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_baseclasses_langstring_.ilangstring.html" class="tsd-signature-type">ILangString</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -398,7 +413,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#setsemanticid">setSemanticId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/SubmodelElement.ts#L60">referables/SubmodelElement.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/SubmodelElement.ts#L59">referables/SubmodelElement.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -421,7 +436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L77">referables/MultiLanguageProperty.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L74">referables/MultiLanguageProperty.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -438,17 +453,17 @@
 					<a name="tojson" class="tsd-anchor"></a>
 					<h3>toJSON</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html" class="tsd-signature-type">IMultiLanguageProperty</a></li>
+						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_referables_multilanguageproperty_.html#tmultilanguagepropertyjson" class="tsd-signature-type">TMultiLanguagePropertyJSON</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_referables_submodelelement_.submodelelement.html">SubmodelElement</a>.<a href="_referables_submodelelement_.submodelelement.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L90">referables/MultiLanguageProperty.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L87">referables/MultiLanguageProperty.ts:87</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_referables_multilanguageproperty_.imultilanguageproperty.html" class="tsd-signature-type">IMultiLanguageProperty</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_referables_multilanguageproperty_.html#tmultilanguagepropertyjson" class="tsd-signature-type">TMultiLanguagePropertyJSON</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -462,7 +477,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/c3c3c69/src/referables/MultiLanguageProperty.ts#L35">referables/MultiLanguageProperty.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/SAP/i40-aas-objects/blob/69e9467/src/referables/MultiLanguageProperty.ts#L28">referables/MultiLanguageProperty.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -527,6 +542,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_referables_multilanguageproperty_.multilanguageproperty.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-not-exported">
+								<a href="_referables_multilanguageproperty_.multilanguageproperty.html#valueid" class="tsd-kind-icon">value<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="_referables_multilanguageproperty_.multilanguageproperty.html#addvalue" class="tsd-kind-icon">add<wbr>Value</a>

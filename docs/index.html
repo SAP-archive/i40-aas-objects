@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>i40-aas-objects</title>
+	<title>i40-aas-objects - v0.3.6</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">i40-aas-objects</a>
+					<a href="index.html" class="title">i40-aas-objects - v0.3.6</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> i40-aas-objects</h1>
+			<h1> i40-aas-objects - v0.3.6</h1>
 		</div>
 	</div>
 </header>
@@ -98,7 +98,7 @@
 					<h2>Description</h2>
 				</a>
 				<!--- Describe your project, why it exists, what it should provide to the user, and what differentiates it from any other project available. --->
-				<p><em>i40-aas-objects</em> is a typescript implementation of the specification <a href="https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html">&quot;Details of the AssetAdministrationShell&quot;</a> part 1 version 1.0.</p>
+				<p><em>i40-aas-objects</em> is a typescript implementation of the specification <a href="https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html">&quot;Details of the AssetAdministrationShell&quot;</a> part 1 version 2.0.1.</p>
 				<p>It implements all required classes to build an AAS-JSON-file. It is also possible to use it in the browser as it is JavaScript.</p>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
@@ -152,7 +152,9 @@ $ npm --<span class="hljs-keyword">version</span>
 					<h3>3. Add i40-aas-objects dependency in your package.json</h3>
 				</a>
 				<p>Let it be added by the package manager:</p>
-				<pre><code>$ npm i --save git:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/SAP/i</span>40-aas-objects.git</code></pre><p>Or add it manually to your <code>package.json</code>. (<strong>NOTE</strong>: You need to run <code>npm i</code> after you have edited your <code>package.json</code>.)</p>
+				<pre><code><span class="hljs-variable">$ </span>npm i --save i40-aas-objects
+OR
+<span class="hljs-variable">$ </span>npm i --save <span class="hljs-symbol">git:</span>/<span class="hljs-regexp">/github.com/</span>SAP/i40-aas-objects.git</code></pre><p>Or add it manually to your <code>package.json</code>. (<strong>NOTE</strong>: You need to run <code>npm i</code> after you have edited your <code>package.json</code>.)</p>
 				<pre><code>{
   <span class="hljs-string">"name"</span>: <span class="hljs-string">"testaas"</span>,
   <span class="hljs-string">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
@@ -162,7 +164,7 @@ $ npm --<span class="hljs-keyword">version</span>
     <span class="hljs-string">"test"</span>: <span class="hljs-string">"echo \"</span><span class="hljs-keyword">Error</span>: <span class="hljs-keyword">no</span> <span class="hljs-keyword">test</span> specified\<span class="hljs-string">" &amp;&amp; exit 1"</span>
   },
   <span class="hljs-string">"dependencies"</span>:{
-      <span class="hljs-string">"i40-aas-objects"</span>: <span class="hljs-string">"git://github.com/SAP/i40-aas-objects.git"</span>,
+      <span class="hljs-string">"i40-aas-objects"</span>: <span class="hljs-string">"^0.2.0"</span>,
       ...
   },
   <span class="hljs-string">"author"</span>: <span class="hljs-string">""</span>,
@@ -171,6 +173,7 @@ $ npm --<span class="hljs-keyword">version</span>
 				<a href="#4-use-i40-aas-objects" id="4-use-i40-aas-objects" style="color: inherit; text-decoration: none;">
 					<h3>4. Use i40-aas-objects</h3>
 				</a>
+				<p><a href="https://i40-aas-objects-docs.cfapps.eu10.hana.ondemand.com/">DOCS</a></p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
     AssetAdministrationShellEnv,
     Asset,
@@ -191,6 +194,9 @@ $ npm --<span class="hljs-keyword">version</span>
     }).addSubmodelElement(
         <span class="hljs-keyword">new</span> Property(
             <span class="hljs-string">'ManufacturerName'</span>,
+            AnyAtomicTypeEnum.string,
+            <span class="hljs-string">'SAP SE'</span>,
+            <span class="hljs-literal">undefined</span>,
             <span class="hljs-keyword">new</span> Reference({
                 keys: [
                     {
@@ -201,7 +207,6 @@ $ npm --<span class="hljs-keyword">version</span>
                     },
                 ],
             }),
-            AnyAtomicTypeEnum.string,
         ),
     );
     <span class="hljs-comment">/* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/</span>
@@ -225,7 +230,6 @@ $ npm --<span class="hljs-keyword">version</span>
     <span class="hljs-comment">/* print the environment to the console */</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(myNewAasEnv, <span class="hljs-literal">null</span>, <span class="hljs-number">3</span>));
 };
-
 run();</code></pre>
 				<!---
 ## Configuration [Optional]
@@ -414,6 +418,9 @@ run();</code></pre>
 						<a href="modules/_types_countrycodeenum_.html">&quot;types/<wbr>Country<wbr>Code<wbr>Enum&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_dataelementtype_.html">&quot;types/<wbr>Data<wbr>Element<wbr>Type&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_types_entitytypeenum_.html">&quot;types/<wbr>Entity<wbr>Type<wbr>Enum&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -424,6 +431,9 @@ run();</code></pre>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_types_modeltypeelementsenum_.html">&quot;types/<wbr>Model<wbr>Type<wbr>Elements<wbr>Enum&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_referabletypes_.html">&quot;types/<wbr>Referable<wbr>Types&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_types_submodelelementtypes_.html">&quot;types/<wbr>Submodel<wbr>Element<wbr>Types&quot;</a>
