@@ -1,29 +1,20 @@
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 
-interface IReferenceElement {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IReferenceElement extends ISubmodelElement {
     value?: IReference;
-    qualifiers?: Array<IConstraint>;
 }
 type TReferenceElementJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -71,7 +62,7 @@ class ReferenceElement extends SubmodelElement implements IReferenceElement {
         this.value = value;
     }
 
-    toJSON(): IReferenceElement {
+    toJSON(): TReferenceElementJSON {
         let res: any = super.toJSON();
         res.value = this.value;
         return res;

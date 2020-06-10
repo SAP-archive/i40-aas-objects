@@ -1,44 +1,35 @@
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { SubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
-import { TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
+import { TSubmodelElementsJSON, TSubmodelElements } from '../types/SubmodelElementTypes';
 import { SubmodelElementFactory } from './SubmodelElementFactory';
+import { ISubmodelElement, SubmodelElement } from './SubmodelElement';
 
-interface ISubmodelElementCollection {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
-    value?: Array<SubmodelElement>;
+interface ISubmodelElementCollection extends ISubmodelElement {
+    value?: Array<TSubmodelElements>;
     ordered?: boolean;
     allowDuplicates?: boolean;
-    qualifiers?: Array<IConstraint>;
 }
 type TSubmodelElementCollectionJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
     description?: Array<ILangString>;
-    value?: Array<SubmodelElement>;
+    value?: Array<TSubmodelElements>;
     ordered?: boolean;
     allowDuplicates?: boolean;
     qualifiers?: Array<IConstraint>;
 };
 class SubmodelElementCollection extends SubmodelElement implements ISubmodelElementCollection {
-    value: Array<SubmodelElement> = [];
+    value: Array<TSubmodelElements> = [];
     ordered: boolean = false;
     allowDuplicates: boolean = true;
     static fromJSON(obj: TSubmodelElementCollectionJSON): SubmodelElementCollection {
@@ -58,7 +49,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     }
     constructor(
         idShort: string,
-        value?: Array<SubmodelElement>,
+        value?: Array<TSubmodelElements>,
         ordered?: boolean,
         allowDuplicates?: boolean,
         semanticId?: IReference,
@@ -88,7 +79,7 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     getValue() {
         return this.value;
     }
-    setValue(values: Array<SubmodelElement>) {
+    setValue(values: Array<TSubmodelElements>) {
         this.value = [];
         var that = this;
         values.forEach(function(value) {
@@ -105,14 +96,14 @@ class SubmodelElementCollection extends SubmodelElement implements ISubmodelElem
     this.value.push(value);
   }
 */
-    public addValue(submodelElement: TSubmodelElementsJSON) {
+    public addValue(submodelElement: TSubmodelElements) {
         submodelElement.parent = this.getReference();
         this.value.push(SubmodelElementFactory.createSubmodelElement(submodelElement));
         return this;
     }
 
-    public getValueByIdShort(idShort: string): SubmodelElement {
-        let res: SubmodelElement | undefined = this.value.find((submodelElement: SubmodelElement) => {
+    public getValueByIdShort(idShort: string): TSubmodelElements {
+        let res: TSubmodelElements | undefined = this.value.find((submodelElement: TSubmodelElements) => {
             if (submodelElement.idShort == idShort) {
                 return true;
             } else {

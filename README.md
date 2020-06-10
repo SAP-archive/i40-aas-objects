@@ -28,7 +28,7 @@ Provide a set of tools to realize the Asset Administration Shell for Industrie 4
 
 <!--- Describe your project, why it exists, what it should provide to the user, and what differentiates it from any other project available. --->
 
-_i40-aas-objects_ is a typescript implementation of the specification ["Details of the AssetAdministrationShell"](https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html) part 1 version 2.0.
+_i40-aas-objects_ is a typescript implementation of the specification ["Details of the AssetAdministrationShell"](https://www.plattform-i40.de/PI40/Redaktion/EN/Downloads/Publikation/2018-details-of-the-asset-administration-shell.html) part 1 version 2.0.1.
 
 It implements all required classes to build an AAS-JSON-file. It is also possible to use it in the browser as it is JavaScript.
 
@@ -158,6 +158,9 @@ var run = function() {
     }).addSubmodelElement(
         new Property(
             'ManufacturerName',
+            AnyAtomicTypeEnum.string,
+            'SAP SE',
+            undefined,
             new Reference({
                 keys: [
                     {
@@ -168,7 +171,6 @@ var run = function() {
                     },
                 ],
             }),
-            AnyAtomicTypeEnum.string,
         ),
     );
     /* Create an asset and add a reference to the previously created submodel as it assetIdentificationModel*/
@@ -192,7 +194,6 @@ var run = function() {
     /* print the environment to the console */
     console.log(JSON.stringify(myNewAasEnv, null, 3));
 };
-
 run();
 ```
 

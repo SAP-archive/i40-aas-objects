@@ -1,8 +1,8 @@
 const aasJsonSchema = {
     $schema: 'https://json-schema.org/draft/2019-09/schema',
     title: 'AssetAdministrationShellEnvironment',
+    $id: 'http://www.admin-shell.io/schema/json/v2.0.1',
     type: 'object',
-    $id: 'urn://www.admin-shell.io/schema/json/v2.0',
     required: ['assetAdministrationShells', 'submodels', 'assets', 'conceptDescriptions'],
     properties: {
         assetAdministrationShells: {
@@ -89,7 +89,6 @@ const aasJsonSchema = {
                     $ref: '#/definitions/Reference',
                 },
             },
-            required: ['semanticId'],
         },
         HasDataSpecification: {
             type: 'object',
@@ -367,6 +366,9 @@ const aasJsonSchema = {
                                 'RATIONAL_MEASURE',
                                 'TIME',
                                 'TIMESTAMP',
+                                'INTEGER_COUNT',
+                                'INTEGER_MEASURE',
+                                'INTEGER_CURRENCY',
                             ],
                         },
                         definition: {
@@ -771,7 +773,7 @@ const aasJsonSchema = {
                         min: { type: 'string' },
                         max: { type: 'string' },
                     },
-                    required: ['valueType', 'min', 'max'],
+                    required: ['valueType'],
                 },
             ],
         },
@@ -805,7 +807,7 @@ const aasJsonSchema = {
                             type: 'string',
                         },
                     },
-                    required: ['mimeType', 'value'],
+                    required: ['mimeType'],
                 },
             ],
         },
@@ -821,7 +823,7 @@ const aasJsonSchema = {
                             type: 'string',
                         },
                     },
-                    required: ['mimeType', 'value'],
+                    required: ['mimeType'],
                 },
             ],
         },
@@ -896,7 +898,14 @@ const aasJsonSchema = {
                         annotation: {
                             type: 'array',
                             items: {
-                                $ref: '#/definitions/Reference',
+                                oneOf: [
+                                    { $ref: '#/definitions/Blob' },
+                                    { $ref: '#/definitions/File' },
+                                    { $ref: '#/definitions/MultiLanguageProperty' },
+                                    { $ref: '#/definitions/Property' },
+                                    { $ref: '#/definitions/Range' },
+                                    { $ref: '#/definitions/ReferenceElement' },
+                                ],
                             },
                         },
                     },

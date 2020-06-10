@@ -1,7 +1,7 @@
 import { KindEnum } from '../types/KindEnum';
 
 interface IHasKind {
-    kind: KindEnum;
+    kind?: KindEnum;
 }
 
 export { IHasKind };

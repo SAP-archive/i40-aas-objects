@@ -1,5 +1,5 @@
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { ILangString } from '../baseClasses/LangString';
 import { IIdentifier } from '../baseClasses/Identifier';
@@ -20,7 +20,7 @@ interface IConceptDescription {
 }
 interface TConceptDescriptionJSON {
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;

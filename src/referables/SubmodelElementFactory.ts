@@ -13,60 +13,75 @@ import { TFileJSON, File } from './File';
 import { ReferenceElement, TReferenceElementJSON } from './ReferenceElement';
 import { Capability, TCapabilityJSON } from './Capability';
 import { TBasicEventJSON, BasicEvent } from './BasicEvent';
+import { TDataElemetsJSON, TDataElemets } from '../types/DataElementType';
 
 class SubmodelElementFactory {
-    public static createSubmodelElement(submodelElement: TSubmodelElementsJSON): TSubmodelElements {
-        var res: TSubmodelElements;
+    static createDataElement(submodelElement: TDataElemetsJSON): TDataElemets {
         if (submodelElement.modelType != null) {
             switch (submodelElement.modelType.name) {
                 case KeyElementsEnum.Property:
-                    res = Property.fromJSON(submodelElement as TPropertyJSON);
-                    break;
-                case KeyElementsEnum.SubmodelElementCollection:
-                    res = SubmodelElementCollection.fromJSON(submodelElement as TSubmodelElementCollectionJSON);
-
-                    break;
+                    return Property.fromJSON(submodelElement as TPropertyJSON);
                 case KeyElementsEnum.MultiLanguageProperty:
-                    res = MultiLanguageProperty.fromJSON(submodelElement as TMultiLanguagePropertyJSON);
-                    break;
-                case KeyElementsEnum.Operation:
-                    res = Operation.fromJSON(submodelElement as TOperationJSON);
-                    break;
-                case KeyElementsEnum.Entity:
-                    res = Entity.fromJSON(submodelElement as TEntityJSON);
-                    break;
-                case KeyElementsEnum.RelationshipElement:
-                    res = RelationShipElement.fromJSON(submodelElement as TRelationShipElementJSON);
-                    break;
-                case KeyElementsEnum.AnnotatedRelationshipElement:
-                    res = AnnotatedRelationshipElement.fromJSON(submodelElement as TAnnotatedRelationshipElementJSON);
-                    break;
+                    return MultiLanguageProperty.fromJSON(submodelElement as TMultiLanguagePropertyJSON);
                 case KeyElementsEnum.Range:
-                    res = Range.fromJSON(submodelElement as TRangeJSON);
-                    break;
+                    return Range.fromJSON(submodelElement as TRangeJSON);
                 case KeyElementsEnum.Blob:
-                    res = Blob.fromJSON(submodelElement as TBlobJSON);
-                    break;
+                    return Blob.fromJSON(submodelElement as TBlobJSON);
                 case KeyElementsEnum.File:
-                    res = File.fromJSON(submodelElement as TFileJSON);
-                    break;
+                    return File.fromJSON(submodelElement as TFileJSON);
                 case KeyElementsEnum.ReferenceElement:
-                    res = ReferenceElement.fromJSON(submodelElement as TReferenceElementJSON);
-                    break;
-                case KeyElementsEnum.Capability:
-                    res = Capability.fromJSON(submodelElement as TCapabilityJSON);
-                    break;
-                case KeyElementsEnum.BasicEvent:
-                    res = BasicEvent.fromJSON(submodelElement as TBasicEventJSON);
-                    break;
+                    return ReferenceElement.fromJSON(submodelElement as TReferenceElementJSON);
                 default:
                     throw new Error(
                         'Could not parse SubmodeElement. ModelType: ' +
                             submodelElement.modelType.name +
-                            ' is not supported',
+                            ' is not a supported DataElement',
                     );
             }
-            return res;
+        } else {
+            throw new Error(
+                `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,
+            );
+        }
+    }
+    public static createSubmodelElement(submodelElement: TSubmodelElementsJSON): TSubmodelElements {
+        if (submodelElement.modelType != null) {
+            switch (submodelElement.modelType.name) {
+                case KeyElementsEnum.Property:
+                    return Property.fromJSON(submodelElement as TPropertyJSON);
+                case KeyElementsEnum.SubmodelElementCollection:
+                    return SubmodelElementCollection.fromJSON(submodelElement as TSubmodelElementCollectionJSON);
+                case KeyElementsEnum.MultiLanguageProperty:
+                    return MultiLanguageProperty.fromJSON(submodelElement as TMultiLanguagePropertyJSON);
+                case KeyElementsEnum.Operation:
+                    return Operation.fromJSON(submodelElement as TOperationJSON);
+                case KeyElementsEnum.Entity:
+                    return Entity.fromJSON(submodelElement as TEntityJSON);
+                case KeyElementsEnum.RelationshipElement:
+                    return RelationShipElement.fromJSON(submodelElement as TRelationShipElementJSON);
+                case KeyElementsEnum.AnnotatedRelationshipElement:
+                    console.log(submodelElement);
+                    return AnnotatedRelationshipElement.fromJSON(submodelElement as TAnnotatedRelationshipElementJSON);
+                case KeyElementsEnum.Range:
+                    return Range.fromJSON(submodelElement as TRangeJSON);
+                case KeyElementsEnum.Blob:
+                    return Blob.fromJSON(submodelElement as TBlobJSON);
+                case KeyElementsEnum.File:
+                    return File.fromJSON(submodelElement as TFileJSON);
+                case KeyElementsEnum.ReferenceElement:
+                    return ReferenceElement.fromJSON(submodelElement as TReferenceElementJSON);
+                case KeyElementsEnum.Capability:
+                    return Capability.fromJSON(submodelElement as TCapabilityJSON);
+
+                case KeyElementsEnum.BasicEvent:
+                    return BasicEvent.fromJSON(submodelElement as TBasicEventJSON);
+                default:
+                    throw new Error(
+                        'Could not parse SubmodeElement. ModelType: ' +
+                            submodelElement.modelType.name +
+                            ' is not a supported SubmodelElement',
+                    );
+            }
         } else {
             throw new Error(
                 `Modeltype property of element with shortid: ${submodelElement.idShort} is null or undefined `,

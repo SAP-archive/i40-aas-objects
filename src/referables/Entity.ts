@@ -3,26 +3,17 @@ import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { EntityTypeEnum } from '../types/EntityTypeEnum';
 import { TSubmodelElements, TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
 import { IConstraint } from '../baseClasses/Constraint';
 import { SubmodelElementFactory } from './SubmodelElementFactory';
 
-interface IEntity {
-    kind: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IEntity extends ISubmodelElement {
     statements?: Array<TSubmodelElements>;
     entityType: EntityTypeEnum;
     asset?: Reference;
-    qualifiers?: Array<IConstraint>;
 }
 type TEntityJSON = {
     kind?: KindEnum;
@@ -33,7 +24,7 @@ type TEntityJSON = {
     parent?: IReference;
     category?: string;
     description?: Array<ILangString>;
-    statements?: Array<TSubmodelElementsJSON>;
+    statements?: Array<TSubmodelElements>;
     entityType: EntityTypeEnum;
     asset?: IReference;
     qualifiers?: Array<IConstraint>;
@@ -60,7 +51,7 @@ class Entity extends SubmodelElement implements IEntity {
     constructor(
         idShort: string,
         entityType: EntityTypeEnum,
-        statements?: Array<TSubmodelElementsJSON>,
+        statements?: Array<TSubmodelElements>,
         asset?: IReference,
         semanticId?: IReference,
         kind?: KindEnum,
@@ -93,7 +84,7 @@ class Entity extends SubmodelElement implements IEntity {
             }
         }
     }
-    setStatements(statements: Array<TSubmodelElementsJSON>) {
+    setStatements(statements: Array<TSubmodelElements>) {
         this.statements = [];
         var that = this;
         statements.forEach(function(statement) {
@@ -101,7 +92,7 @@ class Entity extends SubmodelElement implements IEntity {
         });
         return this;
     }
-    public addStatement(statement: TSubmodelElementsJSON) {
+    public addStatement(statement: TSubmodelElements) {
         if (!this.statements) {
             this.statements = [];
         }
@@ -109,7 +100,7 @@ class Entity extends SubmodelElement implements IEntity {
         this.statements.push(SubmodelElementFactory.createSubmodelElement(statement));
         return this;
     }
-    toJSON(): IEntity {
+    toJSON(): TEntityJSON {
         let res: any = super.toJSON();
         res.statements = this.statements;
         res.entityType = this.entityType;

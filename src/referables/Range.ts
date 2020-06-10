@@ -1,22 +1,14 @@
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 
-interface IRange {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IRange extends ISubmodelElement {
     min?: string;
     max?: string;
     valueType: AnyAtomicTypeEnum;
@@ -26,7 +18,7 @@ type TRangeJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -84,7 +76,7 @@ class Range extends SubmodelElement implements IRange {
         this.valueType = valueType;
     }
 
-    toJSON(): IRange {
+    toJSON(): TRangeJSON {
         let res: any = super.toJSON();
         res.min = this.min;
         res.max = this.max;

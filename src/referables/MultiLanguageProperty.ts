@@ -1,22 +1,13 @@
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { IConstraint } from '../baseClasses/Constraint';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 
-interface IMultiLanguageProperty {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
-    qualifiers?: Array<IConstraint>;
+interface IMultiLanguageProperty extends ISubmodelElement {
     value?: Array<ILangString>;
     valueId?: IReference;
 }
@@ -24,7 +15,7 @@ type TMultiLanguagePropertyJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -93,7 +84,7 @@ class MultiLanguageProperty extends SubmodelElement implements IMultiLanguagePro
         return this;
     }
 
-    toJSON(): IMultiLanguageProperty {
+    toJSON(): TMultiLanguagePropertyJSON {
         let res: any = super.toJSON();
         res.value = this.value;
         res.valueId = this.valueId;

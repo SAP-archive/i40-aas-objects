@@ -1,25 +1,20 @@
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { Reference, IReference } from '../baseClasses/Reference';
 import { ILangString } from '../baseClasses/LangString';
-import { Referable } from '../characteristics/Referable';
+import { Referable, IReferable } from '../characteristics/Referable';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
-interface IConceptDictionary {
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IConceptDictionary extends IReferable {
     conceptDescriptions?: Array<Reference>;
 }
-interface IConceptDictionaryConstructor {
-    modelType?: IModelTypeConstructor;
+type TConceptDictionaryJSON = {
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
     description?: Array<ILangString>;
     conceptDescriptions?: Array<IReference>;
-}
+};
 class ConceptDictionary extends Referable {
     conceptDescriptions: Array<Reference> = [];
 
@@ -50,4 +45,4 @@ class ConceptDictionary extends Referable {
     }
 }
 
-export { ConceptDictionary, IConceptDictionaryConstructor, IConceptDictionary };
+export { ConceptDictionary, TConceptDictionaryJSON, IConceptDictionary };

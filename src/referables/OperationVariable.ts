@@ -1,4 +1,3 @@
-import { SubmodelElement } from './SubmodelElement';
 import { TSubmodelElements } from '../types/SubmodelElementTypes';
 interface IOperationVariable {
     value?: TSubmodelElements;

@@ -1,28 +1,29 @@
-import { Property, TPropertyJSON } from '../referables/Property';
 import { SubmodelElementCollection, TSubmodelElementCollectionJSON } from '../referables/SubmodelElementCollection';
 import { Operation, TOperationJSON } from '../referables/Operation';
-import { MultiLanguageProperty, TMultiLanguagePropertyJSON } from '../referables/MultiLanguageProperty';
-import { TFileJSON, File } from '../referables/File';
 import { TRelationShipElementJSON, RelationShipElement } from '../referables/RelationshipElement';
 import {
     TAnnotatedRelationshipElementJSON,
     AnnotatedRelationshipElement,
 } from '../referables/AnnotatedRelationshipElement';
+import { BasicEvent, TBasicEventJSON } from '../referables/BasicEvent';
+import { Entity, TEntityJSON } from '../referables/Entity';
+import { TDataElemets, TDataElemetsJSON } from './DataElementType';
 
 type TSubmodelElements =
-    | Property
+    | TDataElemets
     | SubmodelElementCollection
     | Operation
-    | MultiLanguageProperty
-    | File
     | RelationShipElement
-    | AnnotatedRelationshipElement;
+    | AnnotatedRelationshipElement
+    | BasicEvent
+    | Entity;
+
 type TSubmodelElementsJSON =
-    | TPropertyJSON
+    | TDataElemetsJSON
     | TSubmodelElementCollectionJSON
     | TOperationJSON
-    | TMultiLanguagePropertyJSON
-    | TFileJSON
     | TRelationShipElementJSON
-    | TAnnotatedRelationshipElementJSON;
+    | TAnnotatedRelationshipElementJSON
+    | TEntityJSON
+    | TBasicEventJSON;
 export { TSubmodelElements, TSubmodelElementsJSON };

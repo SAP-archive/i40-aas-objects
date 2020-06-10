@@ -1,24 +1,17 @@
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { ILangString } from '../baseClasses/LangString';
-import { Referable } from '../characteristics/Referable';
+import { Referable, IReferable } from '../characteristics/Referable';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
 
-interface IView {
-    modelType: IModelType;
-    semanticId?: IReference;
-    embeddedDataSpecifications?: IEmbeddedDataSpecification[];
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IView extends IReferable, IHasSemantics {
     containedElements?: Array<IReference>;
 }
 type TViewJSON = {
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     semanticId?: IReference;
     embeddedDataSpecifications?: IEmbeddedDataSpecification[];
     idShort: string;

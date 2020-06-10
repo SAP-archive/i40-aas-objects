@@ -1,30 +1,20 @@
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { AnyAtomicTypeEnum } from '../types/AnyAtomicTypeEnum';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 
-interface IBasicEvent {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IBasicEvent extends ISubmodelElement {
     observed?: IReference;
-    qualifiers?: Array<IConstraint>;
 }
 type TBasicEventJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -73,7 +63,7 @@ class BasicEvent extends SubmodelElement implements IBasicEvent {
         this.observed = observed;
     }
 
-    toJSON(): IBasicEvent {
+    toJSON(): TBasicEventJSON {
         let res: any = super.toJSON();
         res.observed = this.observed;
 

@@ -1,30 +1,19 @@
-import { IReference, Reference } from '../baseClasses/Reference';
-import { Referable } from './Referable';
+import { Reference } from '../baseClasses/Reference';
+import { Referable, TReferableJSON, IReferable } from './Referable';
 import { IIdentifier } from '../baseClasses//Identifier';
 import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
 import { IKey } from '../baseClasses/Key';
 import { ILangString } from '../baseClasses/LangString';
-import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-interface IIdentifiable {
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: ILangString[];
+import { IModelType } from '../baseClasses/ModelType';
+interface IIdentifiable extends IReferable {
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
 }
-interface IIdentifiableConstructor {
-    modelType?: IModelTypeConstructor;
-    idShort: string;
-    parent?: IReference;
-    category?: string;
-    description?: ILangString[];
+type TIdentifiableJSON = TReferableJSON & {
     identification: IIdentifier;
     administration?: IAdministrativeInformation;
-}
-abstract class Identifiable extends Referable implements Identifiable {
+};
+abstract class Identifiable extends Referable implements IIdentifiable {
     getReference(): Reference {
         let keys: Array<IKey> = [];
         if (!this.identification.idType || !this.identification.id) {
@@ -59,7 +48,7 @@ abstract class Identifiable extends Referable implements Identifiable {
         this.identification = identification;
         this.administration = administration;
     }
-    toJSON(): IIdentifiable {
+    toJSON(): TIdentifiableJSON {
         let supersJson = super.toJSON();
         let res: IIdentifiable = {
             identification: this.identification,
@@ -80,4 +69,4 @@ abstract class Identifiable extends Referable implements Identifiable {
     }
 }
 
-export { Identifiable };
+export { Identifiable, TIdentifiableJSON };

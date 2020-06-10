@@ -735,18 +735,7 @@
                             }
                         ]
                     },
-                    "annotation": [
-                        {
-                            "keys": [
-                                {
-                                    "type": "Property",
-                                    "idType": "IdShort",
-                                    "value": "ExampleProperty3",
-                                    "local": true
-                                }
-                            ]
-                        }
-                    ]
+                    "annotation": []
                 },
                 {
                     "idShort": "ExampleOperation",
@@ -1301,7 +1290,8 @@
                                 "local": true
                             }
                         ]
-                    }
+                    },
+                    "annotation": []
                 },
                 {
                     "idShort": "ExampleOperation",
@@ -1539,18 +1529,7 @@
                             }
                         ]
                     },
-                    "annotation": [
-                        {
-                            "keys": [
-                                {
-                                    "type": "Property",
-                                    "idType": "IdShort",
-                                    "value": "ExampleProperty",
-                                    "local": true
-                                }
-                            ]
-                        }
-                    ]
+                    "annotation": []
                 },
                 {
                     "idShort": "ExampleOperation",
@@ -2160,7 +2139,8 @@
                                 "local": true
                             }
                         ]
-                    }
+                    },
+                    "annotation": []
                 },
                 {
                     "idShort": "ExampleOperation",

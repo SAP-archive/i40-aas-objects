@@ -1,6 +1,6 @@
 import { IModelType } from '../baseClasses//ModelType';
 interface IHasModelType {
-    modelType: IModelType;
+    modelType?: IModelType;
 }
 
 export { IHasModelType };

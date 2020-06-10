@@ -1,10 +1,10 @@
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { ILangString } from '../baseClasses/LangString';
 import { IIdentifier } from '../baseClasses/Identifier';
 import { IAdministrativeInformation } from '../baseClasses/AdministrativeInformation';
-import { ConceptDictionary, IConceptDictionary, IConceptDictionaryConstructor } from '../referables/ConceptDictionary';
+import { ConceptDictionary, IConceptDictionary } from '../referables/ConceptDictionary';
 import { View, IView } from '../referables/View';
 import { Identifiable } from '../characteristics/Identifiable';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
@@ -27,7 +27,7 @@ interface IAssetAdministrationShell {
     asset: Reference;
 }
 interface TAssetAdministrationShellJSON {
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;
     parent?: IReference;
@@ -123,15 +123,15 @@ class AssetAdministrationShell extends Identifiable implements IAssetAdministrat
         this.asset = new Reference(asset);
         return this;
     }
-    setConceptDictionaries(conceptDictionaries: Array<IConceptDictionaryConstructor>) {
+    setConceptDictionaries(conceptDictionaries: Array<IConceptDictionary>) {
         var that = this;
         this.conceptDictionaries = [];
-        conceptDictionaries.forEach(function(conceptDictionary: IConceptDictionaryConstructor) {
+        conceptDictionaries.forEach(function(conceptDictionary: IConceptDictionary) {
             that.addConceptDictionary(conceptDictionary);
         });
         return this;
     }
-    addConceptDictionary(conceptDictionary: IConceptDictionaryConstructor) {
+    addConceptDictionary(conceptDictionary: IConceptDictionary) {
         if (!this.conceptDictionaries) {
             this.conceptDictionaries = [];
         }

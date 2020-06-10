@@ -1,30 +1,22 @@
 import { KindEnum } from '../types/KindEnum';
-import { IReference, Reference } from '../baseClasses/Reference';
+import { IReference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 import * as fs from 'fs';
-interface IBlob {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+
+interface IBlob extends ISubmodelElement {
     value?: string;
     mimeType: string;
-    qualifiers?: Array<IConstraint>;
 }
 type TBlobJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -96,7 +88,7 @@ class Blob extends SubmodelElement implements IBlob {
             throw new Error('Attribute MimeType is required for a Blob.');
         }
     }
-    toJSON(): IBlob {
+    toJSON(): TBlobJSON {
         let res: any = super.toJSON();
         res.value = this.value;
         res.mimeType = this.mimeType;

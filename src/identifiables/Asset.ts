@@ -1,4 +1,4 @@
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { AssetKindEnum } from '../types/AssetKindEnum';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IReference, Reference } from '../baseClasses/Reference';
@@ -24,7 +24,7 @@ interface IAsset {
 }
 
 interface TAssetJSON {
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     kind?: AssetKindEnum;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     idShort: string;

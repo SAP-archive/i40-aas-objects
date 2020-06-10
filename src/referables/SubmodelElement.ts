@@ -1,7 +1,7 @@
 import { KindEnum } from '../types/KindEnum';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { IConstraint } from '../baseClasses/Constraint';
 import { Referable } from '../characteristics/Referable';
@@ -9,12 +9,11 @@ import { IHasKind } from '../characteristics/HasKind';
 import { IHasSemantics } from '../characteristics/HasSemantics';
 import { IQualifiable } from '../characteristics/Qualifiable';
 import { IHasDataSpecification } from '../characteristics/HasDataSpecification';
-import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
-import { TSubmodelElements } from '../types/SubmodelElementTypes';
+import { TSubmodelElementsJSON } from '../types/SubmodelElementTypes';
 
 interface ISubmodelElement {
     kind?: KindEnum;
-    semanticId: IReference;
+    semanticId?: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
     modelType: IModelType;
     idShort: string;
@@ -27,7 +26,7 @@ type TSubmodelElementJSON = {
     kind?: KindEnum;
     semanticId?: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -61,7 +60,7 @@ abstract class SubmodelElement extends Referable
         this.semanticId = new Reference(semanticId);
         return this;
     }
-    toJSON(): ISubmodelElement {
+    toJSON(): TSubmodelElementsJSON {
         let res: any = super.toJSON();
         res.kind = this.kind;
         res.semanticId = this.semanticId;

@@ -3,22 +3,13 @@ import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
 import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 import { IConstraint } from '../baseClasses/Constraint';
 
-interface IRelationShipElement {
-    kind: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
+interface IRelationShipElement extends ISubmodelElement {
     first: Reference;
     second: Reference;
-    qualifiers?: Array<IConstraint>;
 }
 type TRelationShipElementJSON = {
     kind?: KindEnum;
@@ -79,7 +70,7 @@ class RelationShipElement extends SubmodelElement implements IRelationShipElemen
         this.second = new Reference(second);
     }
 
-    toJSON(): IRelationShipElement {
+    toJSON(): TRelationShipElementJSON {
         let res: any = super.toJSON();
         res.first = this.first;
         res.second = this.second;

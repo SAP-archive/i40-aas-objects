@@ -1,27 +1,26 @@
 import { Reference, IReference } from '../baseClasses/Reference';
 import { IHasModelType } from './HasModelType';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { IdTypeEnum } from '../types/IdTypeEnum';
 import { Key } from '../baseClasses/Key';
 import { ILangString } from '../baseClasses/LangString';
-import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
+import { TReferablesTypesJSON } from '../types/ReferableTypes';
 
-interface IReferable {
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
-}
-interface IReferableJSON {
-    modelType?: IModelTypeConstructor;
+interface IReferable extends IHasModelType {
     idShort: string;
     parent?: IReference;
     category?: string;
     description?: Array<ILangString>;
 }
+type TReferableJSON = {
+    modelType?: IModelType;
+    idShort: string;
+    parent?: IReference;
+    category?: string;
+    description?: Array<ILangString>;
+};
 
-abstract class Referable implements IHasModelType {
+abstract class Referable implements IReferable {
     modelType: IModelType;
     idShort: string;
     parent?: Reference;
@@ -63,7 +62,7 @@ abstract class Referable implements IHasModelType {
         });
     }
 
-    toJSON(): IReferable {
+    toJSON(): TReferablesTypesJSON {
         return {
             idShort: this.idShort,
             parent: this.parent,
@@ -79,4 +78,4 @@ abstract class Referable implements IHasModelType {
     }
 }
 
-export { Referable };
+export { Referable, IReferable, TReferableJSON };

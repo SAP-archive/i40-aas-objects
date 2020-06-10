@@ -1,32 +1,24 @@
 import { KindEnum } from '../types/KindEnum';
 import { IReference, Reference } from '../baseClasses/Reference';
 import { IEmbeddedDataSpecification } from '../baseClasses/EmbeddedDataSpecification';
-import { IModelType, IModelTypeConstructor } from '../baseClasses/ModelType';
+import { IModelType } from '../baseClasses/ModelType';
 import { ILangString } from '../baseClasses/LangString';
 import { IConstraint } from '../baseClasses/Constraint';
 import { OperationVariable } from './OperationVariable';
-import { SubmodelElement } from './SubmodelElement';
+import { SubmodelElement, ISubmodelElement } from './SubmodelElement';
 import { KeyElementsEnum } from '../types/ModelTypeElementsEnum';
 
-interface IOperation {
-    kind?: KindEnum;
-    semanticId: IReference;
-    embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType: IModelType;
-    idShort: string;
-    parent?: Reference;
-    category?: string;
-    description?: Array<ILangString>;
-    qualifiers?: Array<IConstraint>;
+interface IOperation extends ISubmodelElement {
     inputVariable?: Array<OperationVariable>;
     outputVariable?: Array<OperationVariable>;
     inoutputVariable?: Array<OperationVariable>;
+    invoke(_in?: OperationVariable, _inout?: OperationVariable, obj?: any): any;
 }
 type TOperationJSON = {
     kind?: KindEnum;
     semanticId: IReference;
     embeddedDataSpecifications?: Array<IEmbeddedDataSpecification>;
-    modelType?: IModelTypeConstructor;
+    modelType?: IModelType;
     idShort: string;
     parent?: IReference;
     category?: string;
@@ -83,8 +75,11 @@ class Operation extends SubmodelElement implements IOperation {
         this.outputVariable = outputVariable;
         this.inoutputVariable = inoutputVariable;
     }
+    invoke(_in?: OperationVariable | undefined, _inout?: OperationVariable | undefined, obj?: any) {
+        throw new Error('Method not implemented.');
+    }
 
-    toJSON(): IOperation {
+    toJSON(): TOperationJSON {
         let res: any = super.toJSON();
         res.inputVariable = this.inputVariable;
         res.outputVariable = this.outputVariable;
