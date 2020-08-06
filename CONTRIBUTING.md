@@ -5,7 +5,7 @@ You want to contribute to *i40-aas-objects*? Welcome! Please read this document 
  * [Issue Handling Process](#issue-handling-process)
  * [Contribute Code](#contribute-code)
  * [Reporting Security Issues](#reporting-security-issues)
- * [Contributor License Agreement Acceptance](#contributor-license-agreement-acceptance)
+ * [Developer Certificate of Origin (DCO)](#developer-certificate-of-origin-dco)
 
 ## Analyze Issues
 Analyzing issue reports can be a lot of effort. Any help is welcome!
@@ -26,17 +26,6 @@ In particular you need to agree to the Individual Contributor License Agreement,
 which can be [found here](https://gist.github.com/CLAassistant/bd1ea8ec8aa0357414e8).
 (This applies to all contributors, including those contributing on behalf of a company). If you agree to its content, you simply have to click on the link posted by the CLA assistant as a comment to the pull request. Click it to check the CLA, then accept it on the following screen if you agree to it. CLA assistant will save this decision for upcoming contributions and will notify you if there is any change to the CLA in the meantime.
 
-### Company Contributors
-If employees of a company contribute code, in **addition** to the individual agreement mentioned above, one company agreement must be submitted. This is mainly for the protection of the contributing employees.
+## Developer Certificate of Origin (DCO)
 
-A company representative authorized to do so needs to download, fill in, and print the [Corporate Contributor License Agreement](/SAP%20CCLA.pdf) form and then proceed with one of the following options:
-
-- Scan and e-mail it to [opensource@sap.com](mailto:opensource@sap.com)
-- Fax it to: +49 6227 78-45813
-- Send it by traditional letter to:  
-  *OSPO Core*  
-  *Dietmar-Hopp-Allee 16*  
-  *69190 Walldorf*  
-  *Germany*
-
-The form contains a list of employees who are authorized to contribute on behalf of your company. When this list changes, please let us know.
+Due to legal reasons, contributors will be asked to accept a DCO before they submit the first pull request to this projects, this happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
