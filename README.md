@@ -2,7 +2,7 @@
 
 -	[Eclipse AAS Model for Java (AAS4J)](https://projects.eclipse.org/projects/dt.aas4j) provides libraries for Java implementing the specification of the AAS such as metamodels, submodels, serialization and deserialization modules, validators, and transformation libraries to other industry standards.
 
-By working within the E[Eclipse Digital Twin Top-Level Project](https://projects.eclipse.org/projects/dt), we have bigger Open Source community backed up by the Eclipse Foundation to bring Digital Twins based on AAS to the next level.
+By working within the [Eclipse Digital Twin Top-Level Project](https://projects.eclipse.org/projects/dt), we have bigger Open Source community backed up by the Eclipse Foundation to bring Digital Twins based on AAS to the next level.
 
 Looking forward to seeing in the [Eclipse AAS Model for Java (AAS4J)](https://projects.eclipse.org/projects/dt.aas4j)!
 
