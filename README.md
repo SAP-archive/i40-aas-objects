@@ -1,3 +1,12 @@
+:warning: **Note:** i40-aas-objects has been archived and will no longer be maintained by the community. The Open Source implementations of the specification "Details of the AssetAdministrationShell" Part 1 are carried out in the [Eclipse AAS Model for Java (AAS4J)](https://projects.eclipse.org/projects/dt.aas4j) in the context of the activities within the [Industrial Digital Twin Association (IDTA)](https://industrialdigitaltwin.org/) and [Eclipse Digital Twin Top-Level Project](https://projects.eclipse.org/projects/dt). 
+
+-	[Eclipse AAS Model for Java (AAS4J)](https://projects.eclipse.org/projects/dt.aas4j) provides libraries for Java implementing the specification of the AAS such as metamodels, submodels, serialization and deserialization modules, validators, and transformation libraries to other industry standards.
+
+By working within the [Eclipse Digital Twin Top-Level Project](https://projects.eclipse.org/projects/dt), we have bigger Open Source community backed up by the Eclipse Foundation to bring Digital Twins based on AAS to the next level.
+
+Looking forward to seeing in the [Eclipse AAS Model for Java (AAS4J)](https://projects.eclipse.org/projects/dt.aas4j)!
+
+
 # i40-aas-objects
 
 Provide a set of tools to realize the Asset Administration Shell for Industrie 4.0.
